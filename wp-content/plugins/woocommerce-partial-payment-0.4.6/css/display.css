@@ -1,0 +1,134 @@
+#partial-payment {
+    background: none repeat scroll 0 0 #F7F6F7;
+    border-radius: 5px 5px 5px 5px;
+}
+
+#partial-payment ul.payment_methods:after {
+    clear: both;
+    content: "";
+    display: block;
+}
+
+#partial-payment ul.payment_methods {
+    border-bottom: 1px solid #DFDBDF;
+    list-style: none outside none;
+    margin: 0;
+    padding: 1em;
+    text-align: left;
+}
+
+#partial-payment ul.payment_methods li {
+    font-weight: normal;
+    line-height: 2em;
+    margin: 0;
+    text-align: left;
+}
+
+#partial-payment ul.payment_methods li input {
+    margin: 0 1em 0 0;
+}
+
+tr.pending-payment, tr.total-pending-payment {
+    display: none;
+}
+
+.base-depo-price, .wpp-original-deposit-value, .pay-full-price {
+	display: none;
+}
+
+#wpp-instructions-for-paying {
+	padding: 20px 10px;
+}
+
+form.checkout span.deposit-wrapper {
+	display: none;
+}
+
+/* 0.2.3 styles below */
+#wpp-calculate-deposit {
+	display: none;
+	float: right;
+}
+
+.woocommerce #payment #partial-payment ul.payment_methods, .woocommerce-page #payment #partial-payment ul.payment_methods {
+	margin: 0;
+	padding: 0;
+	border-bottom: none;
+}
+
+#partial-payment label {
+	display: inline;
+}
+
+#partial-payment {
+	margin-bottom: 1em;
+}
+
+#partial-payment h3 {
+	margin: 0 0 0.3em 0;
+}
+
+#wpp-spinner {
+	display: block;
+	float: right;
+	margin-left: 5px;
+	width: 16px;
+	height: 21px;
+	background: url('../../../../wp-includes/images/wpspin.gif') 0 5px no-repeat;
+}
+
+#wpp_calculated_deposit {
+	margin: 20px auto;
+}
+
+#wpp_calculated_deposit td {
+	padding: 10px;
+}
+
+#wpp_calculated_deposit .row-label {
+	font-weight: bold;
+}
+
+#wpp-pay-deposit {
+	margin-bottom: 10px;
+}
+
+
+/* View Order page */
+table.wpp-payment-details, table.wpp-payment-totals {
+	border: none;
+}
+
+table.wpp-payment-details td, table.wpp-payment-totals td {
+	border: none;
+	color: #000;
+	padding: 3px 10px;
+	font-size: 18px;
+}
+
+table.wpp-payment-details thead td, table.wpp-payment-totals td.row-title {
+	background-color: #5b9bd5;
+	color: #FFF;
+	font-weight: bold;
+}
+
+table.wpp-payment-details tbody tr.odd td, table.wpp-payment-totals tbody tr.odd td {
+	background-color: #adc9ef;
+}
+
+table.wpp-payment-details tbody tr.even td, table.wpp-payment-totals tbody tr.even td {
+	background-color: #d1deef;
+	/*background-color: #e9eff7;*/
+}
+
+table.wpp-payment-totals {
+	width: auto;
+}
+
+table.wpp-payment-totals tbody tr td.wpp-amount-pending {
+	background-color: #5b9bd5;
+}
+
+table.wpp-payment-totals td.row-title {
+	width: 50%;
+}

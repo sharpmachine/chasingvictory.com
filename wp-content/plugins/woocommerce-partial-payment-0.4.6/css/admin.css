@@ -1,0 +1,64 @@
+/* This stylesheet is used to style the admin option form of the plugin. */
+
+.deposit-paid li {
+	font-size: 1.2em;
+}
+
+.depo-value-currency-sign, .depo-value-percent-sign {
+	display: none;
+}
+
+#paid-deposits li {
+	display: block;
+	border: 1px grey dashed;
+	padding: 2px 10px 5px 10px;
+	margin-bottom: 10px;
+}
+
+.deposit-sum, .payment-status {
+	font-size: 14px;
+}
+
+.deposit-date, .deposit-payment-method {
+	font-size: 11px;
+}
+
+.remove-deposit {
+	display: block;
+	float: right;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+#new-deposit {
+	display: block;
+	margin-bottom: 5px;
+}
+
+#new-deposit-wrapper {
+	display: none;
+}
+
+#new-deposit-wrapper label {
+	display: inline-block;
+	width: 40%;
+}
+
+#new-deposit-wrapper input, #new-deposit-wrapper select {
+	display: inline-block;
+	width: 58%;
+}
+
+#wpp_reset_labels_to_defaults {
+	display: block;
+	margin-left: 10px;
+}
+
+#wpp-shortcodes-desc {
+	width: 40%;
+	border: 1px grey solid;
+	padding: 5px 20px 15px 20px;
+	position: relative;
+	top: -1145px;
+	left: 680px;
+}
