@@ -1289,7 +1289,10 @@ class WC_Shipping_USPS extends WC_Shipping_Method {
 												else
 													$cost = (float) $quote->{'Rate'} * $cart_item_qty;
 											} else {
-												$cost = (float) $quote->{'Postage'} * $cart_item_qty;
+												if ( ! empty( $quote->{'CommercialPostage'} ) )
+													$cost = (float) $quote->{'CommercialPostage'} * $cart_item_qty;
+												else
+													$cost = (float) $quote->{'Postage'} * $cart_item_qty;
 											}
 
 											// Cost adjustment %
@@ -1568,7 +1571,7 @@ class WC_Shipping_USPS extends WC_Shipping_Method {
 				$request .= '	<Height>' . $dimensions[0] . '</Height>' . "\n";
 				$request .= '	<Girth>' . round( $girth ) . '</Girth>' . "\n";
 				$request .= '	<OriginZip>' . str_replace( ' ', '', strtoupper( $this->origin ) ) . '</OriginZip>' . "\n";
-				$request .= '	<CommercialFlag>N</CommercialFlag>' . "\n";
+				$request .= '	<CommercialFlag>' . ( $this->settings['shippingrates'] == "ONLINE" ? 'Y' : 'N' ) . '</CommercialFlag>' . "\n";
 				$request .= '</Package>' . "\n";
 
 			}
@@ -1649,7 +1652,7 @@ class WC_Shipping_USPS extends WC_Shipping_Method {
 				$request .= '	<Height>' . $dimensions[0] . '</Height>' . "\n";
 				$request .= '	<Girth>' . round( $girth ) . '</Girth>' . "\n";
 				$request .= '	<OriginZip>' . str_replace( ' ', '', strtoupper( $this->origin ) ) . '</OriginZip>' . "\n";
-				$request .= '	<CommercialFlag>N</CommercialFlag>' . "\n";
+				$request .= '	<CommercialFlag>' . ( $this->settings['shippingrates'] == "ONLINE" ? 'Y' : 'N' ) . '</CommercialFlag>' . "\n";
 				$request .= '</Package>' . "\n";
 			}
 
@@ -1697,7 +1700,7 @@ class WC_Shipping_USPS extends WC_Shipping_Method {
 					$request .= '	<Height />' . "\n";
 					$request .= '	<Girth />' . "\n";
 					$request .= '	<OriginZip>' . str_replace( ' ', '', strtoupper( $this->origin ) ) . '</OriginZip>' . "\n";
-					$request .= '	<CommercialFlag>N</CommercialFlag>' . "\n";
+					$request .= '	<CommercialFlag>' . ( $this->settings['shippingrates'] == "ONLINE" ? 'Y' : 'N' ) . '</CommercialFlag>' . "\n";
 					$request .= '</Package>' . "\n";
 				}
 
@@ -1790,7 +1793,7 @@ class WC_Shipping_USPS extends WC_Shipping_Method {
 			if ( $domestic ) {
 
 				$request  = '<Package ID="' . $key . ':1">' . "\n";
-				$request .= '	<Service>' . ( !$this->settings['shippingrates'] ? 'ONLINE' : $this->settings['shippingrates'] ) . '</Service>' . "\n";
+				$request .= '	<Service>' . ( ! $this->settings['shippingrates'] ? 'ONLINE' : $this->settings['shippingrates'] ) . '</Service>' . "\n";
 				$request .= '	<ZipOrigination>' . str_replace( ' ', '', strtoupper( $this->origin ) ) . '</ZipOrigination>' . "\n";
 				$request .= '	<ZipDestination>' . strtoupper( substr( $package['destination']['postcode'], 0, 5 ) ) . '</ZipDestination>' . "\n";
 				$request .= '	<Pounds>' . floor( $weight ) . '</Pounds>' . "\n";
@@ -1821,7 +1824,7 @@ class WC_Shipping_USPS extends WC_Shipping_Method {
 				$request .= '	<Height>' . $dimensions[0] . '</Height>' . "\n";
 				$request .= '	<Girth>' . round( $girth ) . '</Girth>' . "\n";
 				$request .= '	<OriginZip>' . str_replace( ' ', '', strtoupper( $this->origin ) ) . '</OriginZip>' . "\n";
-				$request .= '	<CommercialFlag>N</CommercialFlag>' . "\n";
+				$request .= '	<CommercialFlag>' . ( $this->settings['shippingrates'] == "ONLINE" ? 'Y' : 'N' ) . '</CommercialFlag>' . "\n";
 				$request .= '</Package>' . "\n";
 
 			}

@@ -28,6 +28,12 @@
     <script src="<?php bloginfo ('template_directory'); ?>/js/plugins.js"></script>
     <script src="<?php bloginfo ('template_directory'); ?>/js/script.js"></script>
 
+    <script>
+        jQuery(document).ready(function($) {
+            // $('.carousel').carousel();
+        });
+    </script>
+
     <!-- Remove these before deploying to production -->
     <script src="<?php bloginfo ('template_directory'); ?>/js/hashgrid.js" type="text/javascript"></script>
 

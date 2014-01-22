@@ -9,6 +9,15 @@ body.admin-bar {
 	}
 }
 
+@media(min-width: @screen-md) {
+	.two-col {
+		-moz-column-count: 2;
+		-moz-column-gap: @grid-gutter-width;
+		-webkit-column-count: 2;
+		-webkit-column-gap: @grid-gutter-width;
+	}
+}
+
 .video-container { 
 	position: relative;
 	padding-bottom: 56.25%; 
@@ -21,5 +30,10 @@ body.admin-bar {
 		top: 0; 
 		left: 0; 
 		width: 100%; 
-		height: 100%;		}
+		height: 100%;		
+	}
+}
+
+#jumbotron-cinematic .item img {
+	margin: 0 auto;
 }

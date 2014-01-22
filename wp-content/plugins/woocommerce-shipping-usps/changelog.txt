@@ -1,5 +1,8 @@
 *** USPS Shipping ***
 
+2014.01.16 - version 3.6.1
+ * Fix commercialflag for international shipping requests
+
 2014.01.02 - version 3.6.0
  * MX max weight increased to 70lbs
  * Updated rates for 2014

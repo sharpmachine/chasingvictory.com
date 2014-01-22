@@ -372,7 +372,7 @@ add_filter( 'wp_page_menu', 'bootstrap_menu' );
 
 // Add's classes to default wp_nav() output to utilize the Bootstraps menu
 class Bootstrap_Menu_Walker extends Walker_Nav_Menu{
-	function start_lvl(&$output, $depth) {
+	function start_lvl(&$output, $depth = 0, $args = array()) {
 		$indent = str_repeat("\t", $depth);
 		$output .= "\n$indent<ul class=\"dropdown-menu\">\n";
 	}
@@ -381,10 +381,10 @@ class Bootstrap_Menu_Walker extends Walker_Nav_Menu{
 			return;
 		$id_field = $this->db_fields['id'];
 		if ( is_array( $args[0] ) )
-			$args[0]['has_children'] = ! empty( $children_elements[$element->$id_field] );		
+			$args[0]['has_children'] = ! empty( $children_elements[$element->$id_field] );                
 		if( ! empty( $children_elements[$element->$id_field] ) )
 			array_push($element->classes,'dropdown');
-		$cb_args = array_merge( array(&$output, $element, $depth), $args);	
+		$cb_args = array_merge( array(&$output, $element, $depth), $args);        
 		call_user_func_array(array(&$this, 'start_el'), $cb_args);
 		$id = $element->$id_field;
 		if ( ($max_depth == 0 || $max_depth > $depth+1 ) && isset( $children_elements[$id]) ) {
@@ -447,3 +447,38 @@ function my_theme_wrapper_end() {
 }
 
 add_theme_support( 'woocommerce' );
+
+if ( function_exists( 'add_image_size' ) ) {
+	add_image_size( 'jumbotron-standard', 1200, 585, true );
+	add_image_size( 'jumbotron-cinematic', 1600, 460, true );
+	add_image_size( 'material-thumbs', 100, 100, true );
+}
+
+add_filter( 'image_size_names_choose', 'custom_image_sizes_choose' );  
+function custom_image_sizes_choose( $sizes ) {  
+	$custom_sizes = array(  
+		'jumbotron-standard' => 'Jumbotron - Standard'
+		);  
+	return array_merge( $sizes, $custom_sizes );  
+}
+
+function remove_acf_menu()
+{
+ 
+    // provide a list of usernames who can edit custom field definitions here
+    $admins = array( 
+        'sharpmachine'
+    );
+ 
+    // get the current user
+    $current_user = wp_get_current_user();
+ 
+    // match and remove if needed
+    if( !in_array( $current_user->user_login, $admins ) )
+    {
+        remove_menu_page('edit.php?post_type=acf');
+    }
+ 
+}
+ 
+add_action( 'admin_menu', 'remove_acf_menu', 999 );

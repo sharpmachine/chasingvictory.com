@@ -1,4 +1,9 @@
-<?php get_header(); ?>
+<?php 
+/*
+Template Name: Home
+*/
+
+get_header(); ?>
 
 <div id="single-page" class="page">
 	<div class="container">
@@ -6,7 +11,7 @@
 			<div class="col-lg-12">
 
 				<?php get_template_part('page', 'title' ); ?>
-				
+				HELLO
 				<?php get_template_part( 'loop', 'page' ); ?>
 
 			</div>

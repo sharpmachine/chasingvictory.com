@@ -61,6 +61,15 @@ class WC_Boxpack_Box {
 	}
 
 	/**
+	 * Get max weight.
+	 *
+	 * @return float
+	 */
+	public function get_max_weight() {
+		return floatval( $this->max_weight );
+	}	
+
+	/**
 	 * set_max_weight function.
 	 *
 	 * @access public
@@ -126,7 +135,7 @@ class WC_Boxpack_Box {
 			}
 
 			// Check max weight
-			if ( ( $packed_weight + $item->get_weight() ) > $this->max_weight && $this->max_weight > 0 ) {
+			if ( ( $packed_weight + $item->get_weight() ) > $this->get_max_weight() && $this->get_max_weight() > 0 ) {
 				$unpacked[] = $item;
 				continue;
 			}
@@ -166,7 +175,7 @@ class WC_Boxpack_Box {
 	 * @return void
 	 */
 	function get_volume() {
-		return $this->get_height() * $this->get_width() * $this->get_length();
+		return floatval( $this->get_height() * $this->get_width() * $this->get_length() );
 	}
 
 	/**

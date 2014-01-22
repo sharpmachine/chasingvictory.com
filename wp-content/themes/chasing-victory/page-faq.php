@@ -6,9 +6,11 @@
 			<div class="col-lg-12">
 
 				<?php get_template_part('page', 'title' ); ?>
-				
+					
+					<div class="two-col">
 				<?php get_template_part( 'loop', 'page' ); ?>
 
+				</div>
 			</div>
 		</div>
 	</div>

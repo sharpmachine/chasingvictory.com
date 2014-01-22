@@ -94,7 +94,7 @@ class WC_Boxpack {
 
 			// Order the boxes and items by volume
 			$this->items = $this->order_by_volume( $this->items );
-			$this->boxes = $this->order_by_volume( $this->boxes );
+			$this->boxes = $this->order_boxes( $this->boxes );
 
 			// Keep looping until packed
 			while ( sizeof( $this->items ) > 0 ) {
@@ -165,6 +165,17 @@ class WC_Boxpack {
 	}
 
 	/**
+	 * Order boxes by weight and volume
+	 * $param array $sort
+	 * @return array
+	 */
+	private function order_boxes( $sort ) {
+		if ( ! empty( $sort ) )
+			uasort( $sort, array( $this, 'box_sorting' ) );
+		return $sort;
+	}
+
+	/**
 	 * order_by_volume function.
 	 *
 	 * @access private
@@ -174,6 +185,24 @@ class WC_Boxpack {
 		if ( ! empty( $sort ) )
 			uasort( $sort, array( $this, 'volume_based_sorting' ) );
 		return $sort;
+	}
+	
+	/**
+	 * box_sorting function.
+	 *
+	 * @access public
+	 * @param mixed $a
+	 * @param mixed $b
+	 * @return void
+	 */
+	public function box_sorting( $a, $b ) {
+		if ( $a->get_volume() == $b->get_volume() ) {
+	        if ( $a->get_max_weight() == $b->get_max_weight() ) {
+		        return 0;
+		    }
+		    return ( $a->get_max_weight() < $b->get_max_weight() ) ? 1 : -1;
+	    }
+	    return ( $a->get_volume() < $b->get_volume() ) ? 1 : -1;
 	}
 
 	/**

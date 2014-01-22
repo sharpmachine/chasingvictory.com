@@ -288,7 +288,7 @@ class WC_Shipping_Fedex extends WC_Shipping_Method {
 				'Currency' => get_woocommerce_currency() 
 			);
 
-			$to_ship[] = $item;
+			$to_ship[] = $group;
 
 			$group_id++;
     	}
