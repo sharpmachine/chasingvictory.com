@@ -92,7 +92,6 @@
 		<div class="col-lg-12">
 
 			<?php woocommerce_content(); ?>
-			
 
 			<!-- Button trigger modal -->
 			<button class="btn btn-primary btn-md woods-active" data-toggle="modal" data-target="#swatchModal">

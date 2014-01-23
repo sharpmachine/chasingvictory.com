@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Subscribe to Newsletter
 Plugin URI: http://woothemes.com/woocommerce
 Description: Allow users to subscribe to your newsletter via the checkout page and via a sidebar widget. Supports MailChimp and Campaign Monitor and also MailChimp ecommerce360 tracking. Go to WooCommerce > Settings > Newsletter to configure the plugin.
-Version: 2.1.2
+Version: 2.1.3
 Author: WooThemes
 Author URI: http://woothemes.com
 Requires at least: 3.1
@@ -310,7 +310,7 @@ if ( is_woocommerce_active() ) {
 
 				)); // End newsletter settings
 
-				$woocommerce->add_inline_js("
+				$js = "
 					jQuery('#woocommerce_newsletter_service').change(function(){
 
 						jQuery('#mainform [id^=woocommerce_mailchimp_], #mainform [id^=woocommerce_cmonitor_]').closest('tr').hide();
@@ -322,7 +322,13 @@ if ( is_woocommerce_active() ) {
 						}
 
 					}).change();
-				");
+				";
+
+				if ( function_exists( 'wc_enqueue_js' ) ) {
+					wc_enqueue_js( $js );
+				} else {
+					$woocommerce->add_inline_js( $js );
+				}
 			}
 
 			/**

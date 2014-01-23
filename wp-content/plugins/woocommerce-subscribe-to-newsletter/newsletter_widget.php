@@ -49,7 +49,7 @@ class WooCommerce_Widget_Subscibe_to_Newsletter extends WP_Widget {
 		if ($title) echo $before_title . $title . $after_title;
 
 		?>
-		<form method="post" id="subscribeform" action="#subscribeform">
+		<form method="post" id="subscribeform" action="#subscribeform" class="woocommerce">
 			<?php
 				if ( isset( $_POST['newsletter_email'] ) ) :
 					$email = woocommerce_clean( $_POST['newsletter_email'] );
