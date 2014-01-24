@@ -1,14 +1,130 @@
 body {
-	padding-top: 50px;
+	padding-top: 249px;
 	padding-bottom: 20px;
 }
 
-body.admin-bar {
-	.navbar-fixed-top {
-		top: 28px;
+/*..................................the header */
+.navbar-header {
+	float: none;
+}
+
+.navbar-inverse {
+	background-color: @brand-ebony;
+	border: none;
+
+	.navbar-collapse {
+		border-color: @brand-champagne;
+	}
+
+	.navbar-nav > li > a:hover {
+		color: @brand-ebony;
 	}
 }
 
+// Brand
+.navbar-brand {
+	float: none;
+	display: block;
+	width: 169px;
+	padding: 0;
+}
+
+.navbar > .container .navbar-brand {
+	margin: 38px auto;
+}
+
+// Nav Menu
+.navbar-nav {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.navbar-collapse {
+	background-color: white;
+	padding-right: 0;
+	padding-left: 0;
+	border: none;
+	border-bottom: 1px solid;
+}
+
+@media (min-width: @screen-sm) {
+	.navbar-nav {
+		float: none;
+		text-align: center;
+
+		& > li {
+			float: none;
+			display: inline-block;
+
+			&:before {
+				position: absolute;
+				top: 15px;
+				left: -5px;
+				content: '-';
+				color: @brand-champagne;
+			}
+
+			&:first-child:before {
+				content: '';
+			}
+
+			& > a {
+				padding-top: 17px;
+				padding-bottom: 17px;
+			}
+		}
+	}
+}
+
+// Mobile Nav Menu
+@media (max-width: @screen-xs-max) {
+	.nav > li {
+		border-bottom: 1px solid @brand-champagne;
+		text-align: center;
+
+		&:last-child {
+			border-bottom: none;
+		}
+
+		& > a {
+			padding-top: 12px;
+			padding-bottom: 12px;
+			font-size: 16px;
+		}
+	}
+}
+
+.menu-btn {
+	height: 60px;
+	background-color: @gray;
+}
+
+.navbar-toggle {
+	top: 13px;
+	float: none;
+	display: block;
+	margin: 0 auto;
+	border: none;
+	border-radius: 0;
+
+	.icon-bar {
+		width: 25px;
+		height: 1px;
+		border-radius: 0;
+
+		+.icon-bar {
+			margin-top: 5px;
+		}
+	}
+}
+
+/*..................................the home page */
+// Jumbotron slider
+#jumbotron-cinematic .item img {
+	margin: 0 auto;
+}
+
+/*..................................the FAQ page */
 @media(min-width: @screen-md) {
 	.two-col {
 		-moz-column-count: 2;
@@ -16,24 +132,4 @@ body.admin-bar {
 		-webkit-column-count: 2;
 		-webkit-column-gap: @grid-gutter-width;
 	}
-}
-
-.video-container { 
-	position: relative;
-	padding-bottom: 56.25%; 
-	padding-top: 30px; 
-	height: 0; 
-	overflow: hidden;
- 
-	iframe {
-		position: absolute; 
-		top: 0; 
-		left: 0; 
-		width: 100%; 
-		height: 100%;		
-	}
-}
-
-#jumbotron-cinematic .item img {
-	margin: 0 auto;
 }

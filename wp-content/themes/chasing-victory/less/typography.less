@@ -1,0 +1,254 @@
+
+/*..................................the type base */
+@font-face {
+	font-family: 'GillSans';
+	src: url('../fonts/GillSans.eot?') format('eot'), 
+	url('../fonts/GillSans.woff') format('woff'), 
+	url('../fonts/GillSans.ttf')  format('truetype'),
+	url('../fonts/GillSans.svg#GillSans') format('svg');
+}
+
+.gill-sans-regular {
+	font-family: 'GillSans';
+	font-weight: 400;
+	font-style: normal;
+}
+
+.gill-sans-italic {
+	font-family: 'GillSans';
+	font-weight: 400;
+	font-style: italic;
+}
+
+.gill-sans-bold {
+	font-family: 'GillSans';
+	font-weight: 700;
+	font-style: normal;
+}
+
+.gill-sans-semi-bold {
+	font-family: 'GillSans';
+	font-weight: 600;
+	font-style: normal;
+}
+
+.gill-sans-light {
+	font-family: 'GillSans';
+	font-weight: 200;
+	font-style: normal;
+}
+
+.gill-sans-italic-light {
+	font-family: 'GillSans';
+	font-weight: 200;
+	font-style: italic;
+}
+
+.gill-sans-italic-bold {
+	font-family: 'GillSans';
+	font-weight: 500;
+	font-style: italic;
+}
+
+/*..................................the typefaces */
+// Regular 
+label {
+	.gill-sans-regular
+}
+
+// Light
+.btn,
+.navbar-brand {
+	.gill-sans-light;
+}
+
+// Italic
+h4,
+i,
+em,
+.italic-label label {
+	.gill-sans-italic;
+}
+
+// Italic Light
+h5 {
+	.gill-sans-italic-light;
+}
+
+// Bold
+strong,
+b
+{
+	.gill-sans-bold
+}
+
+// Semi Bold
+.navbar-nav > li > a {
+	.gill-sans-semi-bold
+}
+
+// Bold Italic 
+blockquote p{
+	.gill-sans-italic-bold;
+}
+
+/*..................................the font sizes */
+blockquote p {
+	font-size: 28px;
+}
+
+h1 {
+	font-size: 26px;
+}
+
+h2,
+input[type='checkbox'] + label:before {
+	font-size: 20px;
+}
+
+p.lead {
+	font-size: 18px;
+}
+
+.navbar-brand {
+	font-size: 16px;
+}
+
+h3,
+h4,
+h5,
+.input-group-lg > .input-group-btn > .btn,
+.select-styled select,
+.navbar-nav > li > a {
+	font-size: 14px;
+}
+
+h6,
+label,
+.btn-sm,
+.input-group-btn > .btn,
+.input-group-sm > .input-group-btn > .btn {
+	font-size: 12px;
+}
+
+/*..................................the font colors */
+// Champagne
+.navbar-brand,
+blockquote p,
+input[type='checkbox'] + label:before {
+	color: @brand-champagne;
+}
+
+// Ebony
+.btn-gray-lighter {
+	color: @brand-ebony;
+
+	&:hover,
+	&:active {
+		color: @brand-ebony;
+	}
+}
+
+// White
+.btn-default,
+.btn-champagne {
+	color: white;
+
+	&:hover,
+	&:active {
+		color: white;
+	}
+}
+
+// Gray
+.select-styled select,
+label,
+.btn-gray-light {
+	color: #656565;
+}
+
+// Nav Gray
+.navbar-nav > li > a {
+	color: #4C4C4C;
+}
+
+/*..................................the letter spacing */
+// 2px
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label,
+.btn,
+.select-styled select,
+.navbar-nav > li > a
+ {
+	letter-spacing: 2px;
+}
+
+//	Normal
+.italic-label label {
+	letter-spacing: 0;
+}
+
+/*..................................the text transforms */
+// Uppercase
+h2,
+h3,
+h4,
+h5,
+h6,
+label,
+.select-styled select,
+.navbar-nav > li > a {
+	text-transform: uppercase;
+}
+
+// None
+.italic-label label {
+	text-transform: none;
+}
+
+/*..................................the font icons */
+@font-face {
+	font-family: 'icomoon';
+	src:url('../fonts/icomoon.eot');
+	src:url('../fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/icomoon.ttf') format('truetype'),
+	url('../fonts/icomoon.woff') format('woff'),
+	url('../fonts/icomoon.svg#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/*..................................the hightlight colors */
+::selection {
+	background: @brand-champagne;
+}
+::-moz-selection {
+	background: @brand-champagne;
+}
+
+blockquote p,
+a {
+	&::selection {
+		background: @brand-ebony;
+	}
+	&::-moz-selection {
+		background: @brand-ebony;
+	}
+}

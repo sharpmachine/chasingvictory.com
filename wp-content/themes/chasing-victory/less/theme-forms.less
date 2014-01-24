@@ -1,0 +1,109 @@
+.form-control {
+	border-radius: 0;
+	.box-shadow(0);
+
+	&:focus {
+		border-color: @brand-champagne;
+		box-shadow: 0 0 0;
+	}
+}
+
+// selects
+.select-styled {
+	display:inline-block;
+	position: relative;
+	width: 100%;
+	background-clip: padding-box;
+
+	select {
+		float: left;
+		position: relative;
+		z-index: 2;
+		display: block;
+		-moz-appearance: window;
+		-moz-padding-end: 19px;
+		background: transparent;
+		background-color: transparent;
+		-webkit-appearance: none;
+		appearance: none;
+	}
+
+	&:after {
+		position:absolute;
+		font-family: 'FontAwesome';
+		top: 6px;
+		right: 16px;
+		color: @brand-champagne;
+		content: "\f0d7";
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	&.champagn-border select{
+		border: 1px solid @brand-champagne;
+	}
+}
+
+// Checkboxes
+input[type="checkbox"] {
+	display: none !important;
+}
+
+input[type='checkbox'] + label:before {
+	font-family: 'icomoon';
+	padding-right: 10px;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+input[type="checkbox"] + label:before {
+	position: relative;
+	top: 3px;
+	content: "\e600"; /* checkbox unchecked */
+}
+
+input[type="checkbox"]:checked + label:before, {
+	content: "\e601"; /* checkbox checked */
+}
+
+// Files uploads
+#uploadFile {
+	border: 0;
+	width: 100%;
+}
+.fileUpload {
+	position: relative;
+	overflow: hidden;
+}
+.fileUpload input.upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+
+/*..................................the input groups */
+// No border radius damnit!
+.input-group-sm > .form-control,
+.input-group-lg > .form-control {
+	border-radius: 0;
+}
+
+.input-group-lg > .form-control {
+	height: 50px;
+}
+
+.input-group-sm>.form-control {
+	height: 30px;
+}

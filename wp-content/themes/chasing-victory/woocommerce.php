@@ -94,13 +94,13 @@
 			<?php woocommerce_content(); ?>
 
 			<!-- Button trigger modal -->
-			<button class="btn btn-primary btn-md woods-active" data-toggle="modal" data-target="#swatchModal">
+			<button class="btn btn-champagne woods-active" data-toggle="modal" data-target="#swatchModal">
 				Woods
 			</button>
-			<button class="btn btn-primary btn-md metals-active" data-toggle="modal" data-target="#swatchModal">
+			<button class="btn btn-default metals-active" data-toggle="modal" data-target="#swatchModal">
 				Metals
 			</button>
-			<button class="btn btn-primary btn-md gemstones-active" data-toggle="modal" data-target="#swatchModal">
+			<button class="btn btn-gray-light btn-sm gemstones-active" data-toggle="modal" data-target="#swatchModal">
 				Gemstones
 			</button>
 

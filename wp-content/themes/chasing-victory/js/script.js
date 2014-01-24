@@ -57,7 +57,10 @@ jQuery(document).ready(function($) {
 });
 
 
-
+// Upload form style
+document.getElementById("uploadBtn").onchange = function () {
+    document.getElementById("uploadFile").value = this.value;
+};
 
 
 
