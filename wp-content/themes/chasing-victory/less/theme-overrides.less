@@ -3,3 +3,19 @@ blockquote {
 	padding-right: 0;
 	border: 0;
 }
+
+.carousel-control.right,
+.carousel-control.left {
+	background-image: none;
+}
+
+/*..................................the mobile overrides */
+@media (max-width: @screen-xs-max) {
+	body {
+		padding-top: 0;
+	}
+
+	.navbar-fixed-top {
+		position: static;
+	}
+}

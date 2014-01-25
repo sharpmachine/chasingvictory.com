@@ -17,26 +17,26 @@ jQuery(document).ready(function($) {
 	$("ul.page-numbers").addClass('pagination');
 
 	// HTML Placeholder for IE
-	$('[placeholder]').focus(function() {
-		var input = $(this);
-		if (input.val() == input.attr('placeholder')) {
-			input.val('');
-			input.removeClass('placeholder');
-		}
-	}).blur(function() {
-		var input = $(this);
-		if (input.val() == '' || input.val() == input.attr('placeholder')) {
-			input.addClass('placeholder');
-			input.val(input.attr('placeholder'));
-		}
-	}).blur().parents('form').submit(function() {
-		$(this).find('[placeholder]').each(function() {
-			var input = $(this);
-			if (input.val() == input.attr('placeholder')) {
-				input.val('');
-			}
-		})
-	});
+	// $('[placeholder]').focus(function() {
+	// 	var input = $(this);
+	// 	if (input.val() == input.attr('placeholder')) {
+	// 		input.val('');
+	// 		input.removeClass('placeholder');
+	// 	}
+	// }).blur(function() {
+	// 	var input = $(this);
+	// 	if (input.val() == '' || input.val() == input.attr('placeholder')) {
+	// 		input.addClass('placeholder');
+	// 		input.val(input.attr('placeholder'));
+	// 	}
+	// }).blur().parents('form').submit(function() {
+	// 	$(this).find('[placeholder]').each(function() {
+	// 		var input = $(this);
+	// 		if (input.val() == input.attr('placeholder')) {
+	// 			input.val('');
+	// 		}
+	// 	})
+	// });
 
 	$('#jumbotron-standard .item:first-child, #jumbotron-cinematic .item:first-child').addClass("active");
 	$('#jumbotron-standard li, #jumbotron-cinematic li').addClass("active");

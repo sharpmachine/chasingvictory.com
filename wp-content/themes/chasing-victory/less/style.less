@@ -1,6 +1,5 @@
 body {
-	padding-top: 249px;
-	padding-bottom: 20px;
+	padding-top: 261px;
 }
 
 /*..................................the header */
@@ -120,6 +119,19 @@ body {
 
 /*..................................the home page */
 // Jumbotron slider
+#jumbotron-cinematic {
+	margin-top: -48px;
+	background-color: white;
+
+	@media (max-width: @screen-xs-max) {
+		margin-top: -22px;
+	}
+
+	@media (min-width: 768px) and (max-width: 782px) {
+		margin-top: -62px;
+	}
+}
+
 #jumbotron-cinematic .item img {
 	margin: 0 auto;
 }
@@ -132,4 +144,79 @@ body {
 		-webkit-column-count: 2;
 		-webkit-column-gap: @grid-gutter-width;
 	}
+}
+
+/*..................................the footer */
+footer {
+	margin-top: 46px;
+
+	h3 {
+		margin-top: 0;
+		margin-bottom: 20px;
+	}
+
+	.input-group,
+	.social-media {
+		padding-top: 25px;
+		border-top: 1px solid @brand-champagne;
+	}
+
+	.input-group {
+		margin-bottom: 55px;
+
+		@media (min-width: @screen-sm) {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.footer {
+	padding: 36px 0;
+	background-color: @brand-ebony;
+
+	@media (min-width: @screen-sm) {
+		padding: 68px 0;
+	}
+}
+
+// Social media icons
+.social-media {
+	text-align: center;
+
+	@media (min-width: @screen-sm) {
+		display: inline-block;
+	}
+
+	a {
+		display: inline-block;
+		.square(48px);
+		margin-right: 35px;
+		background-color: @brand-champagne;
+		border-radius: 50%;
+		text-align: center;
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+		&:hover {
+			text-decoration: none;
+			background-color: lighten(@brand-champagne, 10%);
+		}
+
+		i {
+			position: relative;
+			top: 8px;
+			left: 1px;
+		}
+
+		@media (max-width: @screen-xs-max) {
+			margin-right: 10%;
+		}
+	}
+}
+
+// Site info
+.site-info {
+	padding: 6px 0;
 }
