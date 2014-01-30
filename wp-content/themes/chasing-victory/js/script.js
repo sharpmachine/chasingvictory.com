@@ -41,15 +41,15 @@ jQuery(document).ready(function($) {
 	$('#jumbotron-standard .item:first-child, #jumbotron-cinematic .item:first-child').addClass("active");
 	$('#jumbotron-standard li, #jumbotron-cinematic li').addClass("active");
 
-	$('button.woods-active').click(function(){
+	$('.woods-active').click(function(){
 		$('li.metals, li.gemstones, #woods, #gemstones').removeClass('active');
 		$('li.woods, #woods').addClass('active');
 	});
-	$('button.metals-active').click(function(){
+	$('.metals-active').click(function(){
 		$('li.woods, li.gemstones, #woods, #gemstones').removeClass('active');
 		$('li.metals, #metals').addClass('active');
 	});
-	$('button.gemstones-active').click(function(){
+	$('.gemstones-active').click(function(){
 		$('li.woods, li.metals, #woods, #metals').removeClass('active');
 		$('li.gemstones, #gemstones').addClass('active');
 	});

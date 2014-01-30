@@ -8,18 +8,21 @@
 	url('../fonts/GillSans.svg#GillSans') format('svg');
 }
 
+// Roman
 .gill-sans-regular {
 	font-family: 'GillSans';
 	font-weight: 400;
 	font-style: normal;
 }
 
+// Roman Italic
 .gill-sans-italic {
 	font-family: 'GillSans';
 	font-weight: 400;
 	font-style: italic;
 }
 
+// Roman Bold
 .gill-sans-bold {
 	font-family: 'GillSans';
 	font-weight: 700;
@@ -32,12 +35,14 @@
 	font-style: normal;
 }
 
+// Light
 .gill-sans-light {
 	font-family: 'GillSans';
 	font-weight: 200;
 	font-style: normal;
 }
 
+// Light Italic
 .gill-sans-italic-light {
 	font-family: 'GillSans';
 	font-weight: 200;
@@ -58,7 +63,7 @@ label {
 
 // Light
 .btn,
-.navbar-brand {
+.navbar-brand, {
 	.gill-sans-light;
 }
 
@@ -71,7 +76,8 @@ em,
 }
 
 // Italic Light
-h5 {
+h5,
+.view-swatch a {
 	.gill-sans-italic-light;
 }
 
@@ -106,6 +112,7 @@ h1 {
 }
 
 h2,
+h1.entry-title,
 input[type='checkbox'] + label:before {
 	font-size: 20px;
 }
@@ -125,7 +132,8 @@ h5,
 .input-group-lg > .input-group-btn > .btn,
 .select-styled select,
 .navbar-nav > li > a,
-.footer {
+.footer,
+.view-swatch a {
 	font-size: 14px;
 }
 
@@ -173,8 +181,9 @@ footer .input-group-lg > .input-group-btn > .btn,
 // Gray
 .select-styled select,
 label,
-.btn-gray-light {
-	color: #656565;
+.btn-gray-light,
+.view-swatch a {
+	color: @brand-gray;
 }
 
 // Nav Gray
@@ -206,6 +215,7 @@ label,
 
 /*..................................the text transforms */
 // Uppercase
+h1.entry-title,
 h2,
 h3,
 h4,
@@ -264,3 +274,8 @@ a {
 		background: @brand-ebony;
 	}
 }
+
+/*..................................the type utilities */
+// .text-justified {
+// 	text-align: justify;
+// }

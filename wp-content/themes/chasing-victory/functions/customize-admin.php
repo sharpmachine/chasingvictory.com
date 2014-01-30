@@ -34,10 +34,10 @@ function custom_login_logo() {
     h1 a 
     {
     	 background-image:url('.get_bloginfo('template_directory').'/img/logo.png) !important;
-		 background-size: 200px 200px !important;
-    	 width: 200px !important; /* Same width as logo */
-    	 height: 200px !important; /* Same height as logo */
-	     margin-left: -20px !important; /* adjust to center logo above login box */
+		 background-size: 320px 150px !important;
+    	 width: 320px !important; /* Same width as logo */
+    	 height: 150px !important; /* Same height as logo */
+	     margin: 0 auto !important;
 	 }
     </style>';
 }

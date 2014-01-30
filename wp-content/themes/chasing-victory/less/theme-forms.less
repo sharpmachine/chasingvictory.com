@@ -93,6 +93,10 @@ input[type="checkbox"]:checked + label:before, {
 	filter: alpha(opacity=0);
 }
 
+.view-swatch {
+	margin-top: -3px;
+}
+
 /*..................................the input groups */
 // No border radius damnit!
 .input-group-sm > .form-control,
@@ -106,4 +110,22 @@ input[type="checkbox"]:checked + label:before, {
 
 .input-group-sm>.form-control {
 	height: 30px;
+}
+
+/*..................................the contact form 7 stuff */
+form.wpcf7-form {
+	input[type="submit"] {
+		.btn-default !important;
+		.center-block !important;
+	}
+
+	textarea {
+		height: 232px !important;
+	}
+}
+
+div.wpcf7-response-output {
+	margin: -@padding-large-horizontal 0 !important;
+	padding: @padding-large-horizontal !important;
+	text-align: center;
 }

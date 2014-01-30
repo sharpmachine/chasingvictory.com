@@ -1,5 +1,13 @@
 *** Stripe Changelog ***
 
+2014.01.28 - version 1.8.1
+ * set default for $checked
+ 
+2014.01.08 - version 1.8.0
+ * Checked compatibility with 2013-12-03 API
+ * 2.1 compatibility
+ * Pre-filled email address when using stripe checkout
+
 2013.12.02 - version 1.7.6
  * Fix card display
 

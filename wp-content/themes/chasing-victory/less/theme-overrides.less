@@ -9,13 +9,24 @@ blockquote {
 	background-image: none;
 }
 
+/*..................................the alerts */
+.alert {
+	border-radius: 0;
+}
+
 /*..................................the mobile overrides */
-@media (max-width: @screen-xs-max) {
+@media (max-width: @screen-sm-max) {
 	body {
 		padding-top: 0;
 	}
 
 	.navbar-fixed-top {
 		position: static;
+	}
+}
+
+@media (max-width: @screen-xs-max) {
+	.btn {
+		.btn-block;
 	}
 }

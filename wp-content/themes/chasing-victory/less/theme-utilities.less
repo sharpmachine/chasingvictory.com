@@ -7,6 +7,13 @@ body.admin-bar {
 	}
 }
 
+/*..................................the center content blocks */
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /*..................................the fluid video container */
 .video-container { 
 	position: relative;
@@ -25,14 +32,89 @@ body.admin-bar {
 }
 
 /*..................................the button element outline remover */
-button:active {
+button:active,
+input[type="submit"] {
 	outline: none !important;
 	border: none !important;
 }
 
-button:focus {
+button:focus,
+input[type="submit"] {
 	outline: none !important;
 }
+
+/*..................................the contact form 7 and BS3 play nice */
+form.wpcf7-form {
+	input[type="text"],
+	input[type="email"],
+	textarea {
+		.form-control;
+	}
+
+	input[type="submit"] {
+		.btn;
+	}
+
+	p {
+		display: none;
+	}
+}
+
+div.wpcf7-response-output {
+	margin: 0;
+	.alert;
+	border: none !important;
+}
+
+div.wpcf7-mail-sent-ok {
+	.alert-success;
+}
+
+div.wpcf7-validation-errors {
+	.alert-danger;
+}
+
+div.wpcf7-mail-sent-ng {
+	.alert-warning;
+}
+
+span.wpcf7-not-valid-tip {
+	color: @brand-danger !important;
+}
+
+
+/*..................................the images */
+.wp-caption {
+	width: auto !important;
+}
+
+.aligncenter {
+	img {
+		.img-responsive();
+	}
+}
+
+img {
+	&.aligncenter,
+	&.alignleft,
+	&.alignright {
+		.img-responsive();
+	}
+
+	&.aligncenter {
+		.center-block();
+	}
+
+	&.alignleft {
+		.pull-left();
+	}
+
+	&.alignright {
+		.pull-right();
+	}
+}
+
+
 
 /*..................................the placeholder text color */
 input::-webkit-input-placeholder,

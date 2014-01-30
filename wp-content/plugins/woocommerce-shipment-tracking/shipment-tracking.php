@@ -3,7 +3,7 @@
 	Plugin Name: WooCommerce Shipment Tracking
 	Plugin URI: http://woothemes.com/woocommerce
 	Description: Add tracking numbers to orders allowing customers to track their orders via a link. Supports many shipping providers, as well as custom ones if neccessary via a regular link.
-	Version: 1.2.0
+	Version: 1.2.1
 	Author: Mike Jolley
 	Author URI: http://mikejolley.com
 
@@ -121,6 +121,8 @@ enericSiteIdent=',
 							=> 'http://www.tnt.com/webtracker/tracking.do?requestType=GEN&searchType=REF&respLang=en&r
 espCountry=GENERIC&sourceID=1&sourceCountry=ww&cons=%1$s&navigation=1&gen
 ericSiteIdent=',
+						'UK Mail'
+							=> 'https://old.ukmail.com/ConsignmentStatus/ConsignmentSearchResults.aspx?SearchType=Reference&SearchString=%1$s',
 					),
 					'United States' => array(
 						'Fedex'

@@ -10,6 +10,11 @@
 
 			<?php woocommerce_content(); ?>
 
+			<h1><?php global $woocommerce; ?>
+ 
+<a class="cart-contents" href="<?php echo $woocommerce->cart->get_cart_url(); ?>" title="<?php _e('View your shopping cart', 'woothemes'); ?>"><?php echo sprintf(_n('%d item', '%d items', $woocommerce->cart->cart_contents_count, 'woothemes'), $woocommerce->cart->cart_contents_count);?></a>
+</h1>
+
 			<!-- Button trigger modal -->
 			<button class="btn btn-champagne woods-active" data-toggle="modal" data-target="#swatchModal">
 				Woods

@@ -2,6 +2,21 @@ body {
 	padding-top: 261px;
 }
 
+html,
+body {
+  height: 100%;
+}
+
+@footer-height: 271px;
+
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -@footer-height;
+  padding: 0 0 @footer-height;
+}
+
 /*..................................the header */
 .navbar-header {
 	float: none;
@@ -17,6 +32,13 @@ body {
 
 	.navbar-nav > li > a:hover {
 		color: @brand-ebony;
+	}
+
+	.navbar-toggle {
+		&:hover,
+		&:focus {
+			background-color: transparent;
+		}
 	}
 }
 
@@ -123,17 +145,63 @@ body {
 	margin-top: -48px;
 	background-color: white;
 
-	@media (max-width: @screen-xs-max) {
+	@media (min-width: 0) and (max-width: @screen-sm-max) {
 		margin-top: -22px;
-	}
-
-	@media (min-width: 768px) and (max-width: 782px) {
-		margin-top: -62px;
 	}
 }
 
 #jumbotron-cinematic .item img {
 	margin: 0 auto;
+}
+
+/*..................................the general pages */
+h1.entry-title {
+	text-align: center;
+	// margin-top: 0;
+	margin-bottom: 50px;
+	padding-bottom: 35px;
+	border-bottom: 1px solid @brand-champagne;
+
+	@media (min-width: @screen-md) {
+		margin-top: 0;
+	}
+}
+
+/*..................................the about page */
+.post-33,
+body.page-id-33 {
+
+	p {
+		text-align: justify;
+
+		&.text-right {
+			text-align: right !important;
+		}
+
+		em {
+			.gill-sans-italic-light;
+		}
+	}
+
+	.col-md-4:first-child p:first-child:first-letter {
+		display: block;
+		float: left;
+		margin-top: 10px;
+		margin-right: 5px;
+		color: @brand-champagne;
+		font-size: 52px;
+		line-height: 0.5;
+	}
+
+	blockquote p {
+		span {
+			display: block;
+
+			@media (min-width: @screen-md) {
+				text-align: right !important;
+			}
+		}
+	}
 }
 
 /*..................................the FAQ page */
@@ -143,11 +211,23 @@ body {
 		-moz-column-gap: @grid-gutter-width;
 		-webkit-column-count: 2;
 		-webkit-column-gap: @grid-gutter-width;
+		 -moz-column-rule-color:  @brand-gray;
+		 -moz-column-rule-style:  dotted;
+		 -moz-column-rule-width:  1px;
+		 -webkit-column-rule-color:  @brand-gray;
+		 -webkit-column-rule-style: dotted ;
+		 -webkit-column-rule-width:  1px;
+		 text-align: justify;
+
+		 p {
+		 	padding: 0 14px;
+		 }
 	}
 }
 
 /*..................................the footer */
 footer {
+	// height: @footer-height;
 	margin-top: 46px;
 
 	h3 {
@@ -171,11 +251,11 @@ footer {
 }
 
 .footer {
-	padding: 36px 0;
+	padding: 36px 0 16px;
 	background-color: @brand-ebony;
 
 	@media (min-width: @screen-sm) {
-		padding: 68px 0;
+		padding: 68px 0 16px;
 	}
 }
 
@@ -218,5 +298,44 @@ footer {
 
 // Site info
 .site-info {
-	padding: 6px 0;
+	margin-top: 60px;
+}
+
+/*..................................the 404 page */
+body.error404 {
+	color: white;
+	background: url(../img/lost.jpg) center center no-repeat;
+	background-size: cover;
+
+	.not-found {
+		text-shadow: 1px 1px 1px @brand-ebony;
+	}
+
+	h1 {
+		font-size: 48px;
+	}
+
+	p {
+		font-size: 22px;
+	}
+}
+
+/*..................................the misc */
+hr.dotted {
+	border-top: 1px dotted @gray-light;
+}
+
+figure,
+.wp-caption {
+	margin-top: @padding-large-horizontal;
+
+	figcaption,
+	.wp-caption-text {
+		margin-bottom: @padding-large-horizontal;
+		padding: @padding-large-horizontal 0;
+		font-size: 14px;
+		font-style: italic;
+		color: @brand-gray;
+		border-bottom: 1px dotted @gray-light;
+	}
 }

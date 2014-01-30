@@ -38,6 +38,7 @@ jQuery( function() {
 			panelLabel:  jQuery(this).data( 'label' ),
 			currency:    jQuery(this).data( 'currency' ),
 			image:       jQuery(this).data( 'image' ),
+			email: 		 jQuery('#billing_email').val(),
 			token:       token_action
 		});
 

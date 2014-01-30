@@ -193,7 +193,8 @@ class WC_Gateway_Stripe_Subscriptions extends WC_Gateway_Stripe {
 			$response = $this->stripe_request( array(
 				'email'       => $order->billing_email,
 				'description' => 'Customer: ' . $order->shipping_first_name . ' ' . $order->shipping_last_name,
-				'card'        => $stripe_token
+				'card'        => $stripe_token,
+				'expand[]'    => 'default_card'
 			), 'customers' );
 
 			if ( is_wp_error( $response ) ) {
@@ -201,15 +202,14 @@ class WC_Gateway_Stripe_Subscriptions extends WC_Gateway_Stripe {
 			} else {
 				$order->add_order_note( sprintf( __('Stripe customer added: %s', 'wc_stripe' ), $response->id ) );
 
-				$cards = $response->cards->data;
-
-				if ( is_user_logged_in() && isset( $cards[0]->last4 ) )
+				if ( is_user_logged_in() && ! empty( $response->default_card ) ) {
 					add_user_meta( get_current_user_id(), '_stripe_customer_id', array(
 						'customer_id' 	=> $response->id,
-						'active_card' 	=> $cards[0]->last4,
-						'exp_year'		=> $cards[0]->exp_year,
-						'exp_month'		=> $cards[0]->exp_month
+						'active_card' 	=> $response->default_card->last4,
+						'exp_year'		=> $response->default_card->exp_year,
+						'exp_month'		=> $response->default_card->exp_month,
 					) );
+				}
 
 				update_post_meta( $order->id, '_stripe_customer_id', $response->id );
 			}

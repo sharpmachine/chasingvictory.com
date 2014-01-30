@@ -210,6 +210,8 @@ class WC_Gateway_Stripe extends WC_Payment_Gateway {
      */
 	function payment_fields() {
 		global $woocommerce;
+
+		$checked = 1;
 		?>
 		<fieldset>
 
@@ -221,8 +223,6 @@ class WC_Gateway_Stripe extends WC_Payment_Gateway {
 			<?php endif; ?>
 
 			<?php if ( is_user_logged_in() && ( $credit_cards = get_user_meta( get_current_user_id(), '_stripe_customer_id', false ) ) ) : 
-
-				$checked = 1;
 				?>
 				<p class="form-row form-row-wide">
 
@@ -508,21 +508,22 @@ class WC_Gateway_Stripe extends WC_Payment_Gateway {
 			$response = $this->stripe_request( array(
 				'email'       => $order->billing_email,
 				'description' => 'Customer: ' . $order->shipping_first_name . ' ' . $order->shipping_last_name,
-				'card'        => $stripe_token
+				'card'        => $stripe_token,
+				'expand[]'    => 'default_card'
 			), 'customers' );
 
 			if ( is_wp_error( $response ) ) {
 				return $response;
 			} else {
-				$cards = $response->cards->data;
 
-				if ( isset( $cards[0]->last4 ) )
+				if ( ! empty( $response->default_card ) ) {
 					add_user_meta( get_current_user_id(), '_stripe_customer_id', array(
 						'customer_id' 	=> $response->id,
-						'active_card' 	=> $cards[0]->last4,
-						'exp_year'		=> $cards[0]->exp_year,
-						'exp_month'		=> $cards[0]->exp_month,
+						'active_card' 	=> $response->default_card->last4,
+						'exp_year'		=> $response->default_card->exp_year,
+						'exp_month'		=> $response->default_card->exp_month,
 					) );
+				}
 
 				return $response->id;
 			}
