@@ -1,84 +1,82 @@
-
 /*..................................the type base */
-@font-face {
-	font-family: 'GillSans';
-	src: url('../fonts/GillSans.eot?') format('eot'), 
-	url('../fonts/GillSans.woff') format('woff'), 
-	url('../fonts/GillSans.ttf')  format('truetype'),
-	url('../fonts/GillSans.svg#GillSans') format('svg');
-}
-
-// Roman
-.gill-sans-regular {
-	font-family: 'GillSans';
-	font-weight: 400;
-	font-style: normal;
-}
-
-// Roman Italic
-.gill-sans-italic {
-	font-family: 'GillSans';
-	font-weight: 400;
-	font-style: italic;
-}
-
-// Roman Bold
-.gill-sans-bold {
-	font-family: 'GillSans';
-	font-weight: 700;
-	font-style: normal;
-}
-
-.gill-sans-semi-bold {
-	font-family: 'GillSans';
-	font-weight: 600;
-	font-style: normal;
-}
 
 // Light
 .gill-sans-light {
-	font-family: 'GillSans';
-	font-weight: 200;
+	font-family: GillSansMTStd-Light;
+	font-weight: normal;
 	font-style: normal;
 }
 
 // Light Italic
 .gill-sans-italic-light {
-	font-family: 'GillSans';
-	font-weight: 200;
-	font-style: italic;
+	font-family: GillSansMTStd-LightItalic;
+	font-weight: normal;
+	font-style: normal;
 }
 
+
+// Roman/Regular
+.gill-sans-regular {
+	font-family: 'GillSansMTStd-Medium';
+	font-weight: normal;
+	font-style: normal;
+}
+
+// Italic
+.gill-sans-italic {
+	font-family: GillSansMTStd-MediumItalic;
+	font-weight: normal;
+	font-style: normal;
+}
+
+// Bold
+.gill-sans-bold {
+	font-family: GillSansMTStd-Bold;
+	font-weight: normal;
+	font-style: normal;
+}
+
+// Bold Italic
 .gill-sans-italic-bold {
-	font-family: 'GillSans';
-	font-weight: 500;
-	font-style: italic;
+	font-family: GillSansMTStd-BoldItalic;
+	font-weight: normal;
+	font-style: normal;
 }
 
 /*..................................the typefaces */
-// Regular 
-label {
-	.gill-sans-regular
-}
-
 // Light
 .btn,
-.navbar-brand, {
+.navbar-brand,
+input[type="text"],
+input[type="email"],
+input[type="password"] {
 	.gill-sans-light;
+}
+
+// Light Italic
+h5,
+.view-swatch a,
+figcaption,
+.wp-caption-text {
+	.gill-sans-italic-light;
+}
+
+// Roman/Regular 
+label,
+.navbar-nav > li > a,
+.btn-gray-light,
+.input-group-btn > .btn {
+	.gill-sans-regular
 }
 
 // Italic
 h4,
+
+blockquote p,
 i,
 em,
 .italic-label label {
 	.gill-sans-italic;
-}
-
-// Italic Light
-h5,
-.view-swatch a {
-	.gill-sans-italic-light;
 }
 
 // Bold
@@ -88,15 +86,10 @@ b
 	.gill-sans-bold
 }
 
-// Semi Bold
-.navbar-nav > li > a {
-	.gill-sans-semi-bold
-}
-
 // Bold Italic 
-blockquote p{
-	.gill-sans-italic-bold;
-}
+// .navbar-nav > li > a {
+// 	.gill-sans-italic-bold;
+// }
 
 /*..................................the font sizes */
 blockquote p {
@@ -133,7 +126,9 @@ h5,
 .select-styled select,
 .navbar-nav > li > a,
 .footer,
-.view-swatch a {
+.view-swatch a,
+figcaption,
+.wp-caption-text {
 	font-size: 14px;
 }
 
@@ -182,7 +177,9 @@ footer .input-group-lg > .input-group-btn > .btn,
 .select-styled select,
 label,
 .btn-gray-light,
-.view-swatch a {
+.view-swatch a,
+figcaption,
+.wp-caption-text {
 	color: @brand-gray;
 }
 

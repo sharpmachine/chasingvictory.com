@@ -33,6 +33,7 @@
 
 	<!-- Le styles -->
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<link href="<?php bloginfo('template_directory'); ?>/css/GillSans.css" rel="stylesheet">
 	<link href="<?php bloginfo('template_directory'); ?>/css/bootstrap.css" rel="stylesheet">
 
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />

@@ -91,7 +91,7 @@ body {
 
 			& > a {
 				padding-top: 17px;
-				padding-bottom: 17px;
+				padding-bottom: 15px;
 			}
 		}
 	}
@@ -108,8 +108,8 @@ body {
 		}
 
 		& > a {
-			padding-top: 12px;
-			padding-bottom: 12px;
+			padding-top: 14px;
+			padding-bottom: 10px;
 			font-size: 16px;
 		}
 	}
@@ -142,7 +142,7 @@ body {
 /*..................................the home page */
 // Jumbotron slider
 #jumbotron-cinematic {
-	margin-top: -48px;
+	margin-top: -51px;
 	background-color: white;
 
 	@media (min-width: 0) and (max-width: @screen-sm-max) {
@@ -270,10 +270,13 @@ footer {
 	a {
 		display: inline-block;
 		.square(48px);
+		// .square(24px);
 		margin-right: 35px;
+		// padding: 21px;
 		background-color: @brand-champagne;
 		border-radius: 50%;
 		text-align: center;
+		line-height: 0;
 
 		&:last-child {
 			margin-right: 0;
@@ -286,7 +289,7 @@ footer {
 
 		i {
 			position: relative;
-			top: 8px;
+			top: 12px;
 			left: 1px;
 		}
 
@@ -333,9 +336,9 @@ figure,
 	.wp-caption-text {
 		margin-bottom: @padding-large-horizontal;
 		padding: @padding-large-horizontal 0;
-		font-size: 14px;
-		font-style: italic;
-		color: @brand-gray;
+		// font-size: 14px;
+		// font-style: italic;
+		// color: @brand-gray;
 		border-bottom: 1px dotted @gray-light;
 	}
 }

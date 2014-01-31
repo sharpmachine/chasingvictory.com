@@ -20,7 +20,7 @@
 
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label for="ring-style" class="pull-left">Ring Style:</label>
+								<label class="pull-left">Ring Style:</label>
 								<div class="view-swatch pull-right text-right">
 									<a href="#" class="gemstones-active" data-toggle="modal" data-target="#swatchModal">View Swatches</a>
 								</div>
@@ -37,7 +37,7 @@
 						
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label for="ring-style" class="pull-left">Gemstone:</label>
+								<label class="pull-left">Gemstone:</label>
 								<div class="view-swatch pull-right text-right">
 									<a href="#" class="gemstones-active" data-toggle="modal" data-target="#swatchModal">View Swatches</a>
 								</div>
@@ -58,7 +58,7 @@
 
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label for="ring-style" class="pull-left">Material:</label>
+								<label class="pull-left">Material:</label>
 								<div class="view-swatch pull-right text-right">
 									<a href="#" class="gemstones-active" data-toggle="modal" data-target="#swatchModal">View Swatches</a>
 								</div>
@@ -75,7 +75,7 @@
 						
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label for="ring-style" class="pull-left">Inlay:</label>
+								<label class="pull-left">Inlay:</label>
 								<div class="view-swatch pull-right text-right">
 									<a href="#" class="gemstones-active" data-toggle="modal" data-target="#swatchModal">View Swatches</a>
 								</div>
@@ -98,7 +98,7 @@
 
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label for="ring-style" class="pull-left">Size:</label>
+								<label class="pull-left">Size:</label>
 								<div class="select-styled">
 									<select name="" id="" class="form-control">
 										<option value="">Option</option>
@@ -112,7 +112,7 @@
 						
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label for="ring-style" class="pull-left">Width:</label>
+								<label class="pull-left">Width:</label>
 								<div class="select-styled">
 									<select name="" id="" class="form-control">
 										<option value="">Option</option>
@@ -131,14 +131,14 @@
 
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label for="ring-style" class="pull-left">Date Needed:</label>
+								<label class="pull-left">Date Needed:</label>
 								<input type="date" placeholder="MM/DD/YY" class="form-control">
 							</div>
 						</div>
 						
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label for="ring-style" class="pull-left">Upload a photo or drawing (optional):</label>
+								<label class="pull-left">Upload a photo or drawing (optional):</label>
 								<div class="fileUpload btn btn-sm btn-gray-lighter"><span>Upload</span><input class="upload" id="uploadBtn" type="file" /></div>
 								<input id="uploadFile" type="text" disabled="disabled" placeholder="Choose File" />
 							</div>
@@ -161,14 +161,14 @@
 
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label for="ring-style" class="pull-left">Name:</label>
+								<label class="pull-left">Name:</label>
 								<input type="text" class="form-control">
 							</div>
 						</div>
 						
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label for="ring-style" class="pull-left">Email:</label>
+								<label class="pull-left">Email:</label>
 								<input type="email" class="form-control">
 							</div>
 						</div>
@@ -179,7 +179,7 @@
 
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label for="ring-style" class="pull-left">Phone</label>
+								<label class="pull-left">Phone</label>
 								<input type="text" class="form-control">
 							</div>
 						</div>
@@ -188,7 +188,7 @@
 
 					<div class="row">
 						<div class="col-xs-12">
-							<hr>
+							<hr class="dotted">
 							<div class="form-group">
 								<input type="submit" class="btn btn-default center-block" value="Submit Quote Request">
 							</div>

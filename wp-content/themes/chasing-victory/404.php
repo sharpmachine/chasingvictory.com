@@ -7,9 +7,9 @@
 		<div class="row fourofour-message">
 			<div class="col-lg-12">
 				<div id="post-0" class="post error404 not-found text-center">
-					<h1 class="entry-title">You look a little lost...</h1>
+					<h1>You look a little lost...</h1>
 					<div class="entry-content">
-						<p>Whatever it is you're looking for isn't out here!  <br>Can you find your way <a href="<?php bloginfo('url'); ?>">home</a> from here?</p>
+						<p>Whatever it is you're looking for isn't out here!  <br>Can you find your way <a href="<?php bloginfo('url'); ?>">home</a>?</p>
 					</div><!-- .entry-content -->
 					<h1 class="text-center"><strong>404</strong></h1>
 				</div><!-- #post-0 -->
