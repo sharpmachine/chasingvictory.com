@@ -12,9 +12,12 @@
 			<div class="item">
 				<?php $attachment_id = get_field('jumbotron_photo'); $size = "jumbotron-cinematic"; ?>
 				<?php echo wp_get_attachment_image( $attachment_id, $size ); ?>
-				<div class="carousel-caption">
-					<?php the_field('jumbotron_customer_testimony'); ?> <br>
-					<?php the_field('jumbotron_customer_name'); ?>
+				<div class="carousel-caption text-center hidden-xs">
+					<h1><?php the_title(); ?></h1>
+					<div class="jumbotron-testimony">
+						<?php the_field('jumbotron_customer_testimony'); ?> - 
+						<?php the_field('jumbotron_customer_name'); ?>
+					</div>
 				</div>
 			</div>
 
@@ -55,9 +58,12 @@
 						<div class="item">
 							<?php $attachment_id = get_field('jumbotron_photo'); $size = "jumbotron-standard"; ?>
 							<?php echo wp_get_attachment_image( $attachment_id, $size ); ?>
-							<div class="carousel-caption">
-								<?php the_field('jumbotron_customer_testimony'); ?> <br>
-								<?php the_field('jumbotron_customer_name'); ?>
+							<div class="carousel-caption text-center hidden-xs">
+								<h1><?php the_title(); ?></h1>
+								<div class="jumbotron-testimony">
+									<?php the_field('jumbotron_customer_testimony'); ?> - 
+									<?php the_field('jumbotron_customer_name'); ?>
+								</div>
 							</div>
 						</div>
 						

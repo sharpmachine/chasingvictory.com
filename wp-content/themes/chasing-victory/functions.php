@@ -450,7 +450,7 @@ add_theme_support( 'woocommerce' );
 
 if ( function_exists( 'add_image_size' ) ) {
 	add_image_size( 'jumbotron-standard', 1200, 585, true );
-	add_image_size( 'jumbotron-cinematic', 1600, 460, true );
+	add_image_size( 'jumbotron-cinematic', 1600, 514, true );
 	add_image_size( 'material-thumbs', 100, 100, true );
 }
 

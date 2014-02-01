@@ -20,13 +20,15 @@ body {
 /*..................................the header */
 .navbar-header {
 	float: none;
+	background-color: @brand-ebony;
 }
 
 .navbar-inverse {
-	background-color: @brand-ebony;
+	background-color: rgba(255, 255, 255, 0.85);
 	border: none;
 
 	.navbar-collapse {
+		background-color: transparent;
 		border-color: @brand-champagne;
 	}
 
@@ -47,11 +49,8 @@ body {
 	float: none;
 	display: block;
 	width: 169px;
-	padding: 0;
-}
-
-.navbar > .container .navbar-brand {
 	margin: 38px auto;
+	padding: 0;
 }
 
 // Nav Menu
@@ -142,16 +141,78 @@ body {
 /*..................................the home page */
 // Jumbotron slider
 #jumbotron-cinematic {
-	margin-top: -51px;
+	margin-top: -105px;
 	background-color: white;
 
-	@media (min-width: 0) and (max-width: @screen-sm-max) {
+	.jumbotron-testimony {
+		// width: 554px;
+	}
+
+	@media (max-width: @screen-sm-max) {
 		margin-top: -22px;
+
+		.carousel-caption {
+			top: 15%;
+			bottom: 10%;
+		}
+	}
+
+	@media (max-width: @screen-md-max) {
+		.carousel-caption {
+			// top: 15%;
+			bottom: 25%;
+			padding-top: 25px;
+		}
 	}
 }
 
 #jumbotron-cinematic .item img {
 	margin: 0 auto;
+}
+
+#jumbotron-standard {
+	.jumbotron-testimony {
+		// width: 920px;
+	}
+
+	.carousel-caption {
+		left: 15%;
+		right: 15%;
+	}
+}
+
+.carousel-caption {
+	// top: 130px;
+	top: 25%;
+	// bottom: 10%;
+	bottom: auto;
+	padding: 38px 60px 60px;
+	background-color: rgba(255, 255, 255, 0.8);
+	text-shadow: none;
+
+	@media (max-width: @screen-sm-max) {
+		// Cinematic
+		top: 5%;
+		// standard
+		// top: 18%;
+		bottom: 5%;
+
+		h1 {
+			font-size: 18px;
+		}
+	}
+}
+
+.jumbotron-testimony {
+	width: 75%;
+	margin: 40px auto 0;
+	padding-top: 40px;
+	border-top: 1px solid @brand-champagne;
+
+	@media (max-width: @screen-md-max) {
+		margin-top: 20px;
+		padding-top: 20px;
+	}
 }
 
 /*..................................the general pages */
@@ -202,6 +263,17 @@ body.page-id-33 {
 			}
 		}
 	}
+}
+
+/*..................................the swatch modal */
+.swatch-thumb {
+	float: left;
+	width: 100px;
+	margin: 0 15px;
+}
+
+.swatch-title {
+	margin: 5px 0 10px;
 }
 
 /*..................................the FAQ page */
