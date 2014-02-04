@@ -12,13 +12,15 @@
 			<div class="item">
 				<?php $attachment_id = get_field('jumbotron_photo'); $size = "jumbotron-cinematic"; ?>
 				<?php echo wp_get_attachment_image( $attachment_id, $size ); ?>
-				<div class="carousel-caption text-center hidden-xs">
-					<h1><?php the_title(); ?></h1>
-					<div class="jumbotron-testimony">
-						<?php the_field('jumbotron_customer_testimony'); ?> - 
-						<?php the_field('jumbotron_customer_name'); ?>
+				
+					<div class="carousel-caption text-center hidden-xs">
+						<h1><?php echo short_title(53); ?></h1>
+						<div class="jumbotron-testimony">
+							<?php the_field('jumbotron_customer_testimony'); ?> - 
+							<?php the_field('jumbotron_customer_name'); ?>
+						</div>
 					</div>
-				</div>
+				
 			</div>
 
 			<?php wp_reset_postdata(); ?>
@@ -32,12 +34,8 @@
 	if (($jumbo_count) > 1): ?>
 
 	<!-- Controls -->
-	<a class="left carousel-control" href="#jumbotron-cinematic" data-slide="prev">
-		<span class="glyphicon glyphicon-chevron-left"></span>
-	</a>
-	<a class="right carousel-control" href="#jumbotron-cinematic" data-slide="next">
-		<span class="glyphicon glyphicon-chevron-right"></span>
-	</a>
+	<a class="left carousel-control" href="#jumbotron-cinematic" data-slide="prev"></a>
+	<a class="right carousel-control" href="#jumbotron-cinematic" data-slide="next"></a>
 <?php endif; ?>
 </div>
 
@@ -59,7 +57,7 @@
 							<?php $attachment_id = get_field('jumbotron_photo'); $size = "jumbotron-standard"; ?>
 							<?php echo wp_get_attachment_image( $attachment_id, $size ); ?>
 							<div class="carousel-caption text-center hidden-xs">
-								<h1><?php the_title(); ?></h1>
+								<h1><?php echo short_title(53); ?></h1>
 								<div class="jumbotron-testimony">
 									<?php the_field('jumbotron_customer_testimony'); ?> - 
 									<?php the_field('jumbotron_customer_name'); ?>
@@ -78,12 +76,8 @@
 				if (($jumbo_count) > 1): ?>
 
 				<!-- Controls -->
-				<a class="left carousel-control" href="#jumbotron-standard" data-slide="prev">
-					<span class="glyphicon glyphicon-chevron-left"></span>
-				</a>
-				<a class="right carousel-control" href="#jumbotron-standard" data-slide="next">
-					<span class="glyphicon glyphicon-chevron-right"></span>
-				</a>
+				<a class="left carousel-control" href="#jumbotron-standard" data-slide="prev"></a>
+				<a class="right carousel-control" href="#jumbotron-standard" data-slide="next"></a>
 			<?php endif; ?>
 		</div>
 	</div>

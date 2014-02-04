@@ -4,9 +4,20 @@ blockquote {
 	border: 0;
 }
 
+/*..................................the carousels */
 .carousel-control.right,
 .carousel-control.left {
 	background-image: none;
+}
+
+.carousel-control.left {
+	background: center center no-repeat;
+	.at2x('../img/arrowleft.png', 30px, 60px);
+}
+
+.carousel-control.right {
+	background: center center no-repeat;
+	.at2x('../img/arrowright.png', 30px, 60px);
 }
 
 /*..................................the alerts */
@@ -15,11 +26,6 @@ blockquote {
 }
 
 /*..................................the modal */
-.modal {
-	// display: block !important;
-	// top: 20%;
-}
-
 body.modal-open, 
 .modal-open .navbar-fixed-top, 
 .modal-open .navbar-fixed-bottom {
@@ -35,12 +41,7 @@ body.modal-open,
 }
 
 .modal-dialog {
-	// width: 50%;
 	padding-top: 205px;
-
-	@media (max-width: @screen-xs) {
-		// width: 100%;
-	}
 }
 
 .close {
@@ -61,7 +62,7 @@ body.modal-open,
 	& > li {
 		&.active {
 			border: 0;
-			// border-right: 1px solid @brand-ebony;
+
 			& > a,
 			& > a:hover {
 				border: 0;
@@ -84,13 +85,9 @@ body.modal-open,
 			border-radius: 0;
 			background-color: @gray-lighter;
 
-			// &:last-child {
-			// 	border-right: 0;
-			// }
-
 			&:hover{
 				background-color: white;
-				// border: 0;
+
 				border-right: 1px solid @tabs-border-color;
 				border-bottom: 1px solid transparent;
 			}

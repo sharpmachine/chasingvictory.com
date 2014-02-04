@@ -482,3 +482,12 @@ function remove_acf_menu()
 }
  
 add_action( 'admin_menu', 'remove_acf_menu', 999 );
+
+function short_title($limit) {
+    $title = get_the_title($post->ID);
+    if(strlen($title) > $limit) {
+        $title = substr($title, 0, $limit) . '...';
+    }
+    
+    echo $title;
+}
