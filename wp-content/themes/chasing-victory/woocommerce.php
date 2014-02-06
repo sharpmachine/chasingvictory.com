@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 <?php if(is_page('home')): ?>
-<?php get_template_part('jumbotron-carousel'); ?>
+	<?php get_template_part('jumbotron-carousel'); ?>
 <?php endif; ?>
 
 <div class="container">
@@ -10,6 +10,9 @@
 
 			<?php woocommerce_content(); ?>
 
+			<?php // woocommerce_get_template_part( 'loop', 'shop' ); ?>
+
+	
 
 			<!-- Button trigger modal -->
 			<button class="btn btn-champagne woods-active" data-toggle="modal" data-target="#swatchModal">

@@ -12,26 +12,11 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 global $woocommerce;
 
 $woocommerce->show_messages();
+$available_methods = $woocommerce->shipping->get_available_shipping_methods();
 ?>
 
-<?php do_action( 'woocommerce_before_cart' ); ?>
-
+<?php //do_action( 'woocommerce_before_cart' ); ?>
 <form action="<?php echo esc_url( $woocommerce->cart->get_cart_url() ); ?>" method="post">
-
-<?php do_action( 'woocommerce_before_cart_table' ); ?>
-
-<table class="shop_table cart" cellspacing="0">
-	<thead>
-		<tr>
-			<th class="product-remove">&nbsp;</th>
-			<th class="product-thumbnail">&nbsp;</th>
-			<th class="product-name"><?php _e( 'Product', 'woocommerce' ); ?></th>
-			<th class="product-price"><?php _e( 'Price', 'woocommerce' ); ?></th>
-			<th class="product-quantity"><?php _e( 'Quantity', 'woocommerce' ); ?></th>
-			<th class="product-subtotal"><?php _e( 'Total', 'woocommerce' ); ?></th>
-		</tr>
-	</thead>
-	<tbody>
 		<?php do_action( 'woocommerce_before_cart_contents' ); ?>
 
 		<?php
@@ -40,6 +25,30 @@ $woocommerce->show_messages();
 				$_product = $values['data'];
 				if ( $_product->exists() && $values['quantity'] > 0 ) {
 					?>
+<div class="row">
+	<div class="col-md-8">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>My Cart</h2>
+				<hr>
+			
+				
+
+<?php do_action( 'woocommerce_before_cart_table' ); ?>
+
+<table class="shop_table cart table table-striped">
+	<thead>
+		<tr>
+			<th class="product-remove text-center">&nbsp;</th>
+			<th class="product-thumbnail text-center">&nbsp;</th>
+			<th class="product-name text-center"><?php _e( 'Item', 'woocommerce' ); ?></th>
+			<th class="product-quantity text-center"><?php _e( 'Qty', 'woocommerce' ); ?></th>
+			<th class="product-price text-center"><?php _e( 'Price', 'woocommerce' ); ?></th>
+			<th class="product-subtotal text-center"><?php _e( 'Total', 'woocommerce' ); ?></th>
+		</tr>
+	</thead>
+	<tbody>
+
 					<tr class = "<?php echo esc_attr( apply_filters('woocommerce_cart_table_item_class', 'cart_table_item', $values, $cart_item_key ) ); ?>">
 						<!-- Remove from cart link -->
 						<td class="product-remove">
@@ -65,6 +74,7 @@ $woocommerce->show_messages();
 							<?php
 								if ( ! $_product->is_visible() || ( ! empty( $_product->variation_id ) && ! $_product->parent_is_visible() ) )
 									echo apply_filters( 'woocommerce_in_cart_product_title', $_product->get_title(), $values, $cart_item_key );
+
 								else
 									printf('<a href="%s">%s</a>', esc_url( get_permalink( apply_filters('woocommerce_in_cart_product_id', $values['product_id'] ) ) ), apply_filters('woocommerce_in_cart_product_title', $_product->get_title(), $values, $cart_item_key ) );
 
@@ -77,16 +87,10 @@ $woocommerce->show_messages();
 							?>
 						</td>
 
-						<!-- Product price -->
-						<td class="product-price">
-							<?php
-								$product_price = get_option('woocommerce_tax_display_cart') == 'excl' ? $_product->get_price_excluding_tax() : $_product->get_price_including_tax();
-
-								echo apply_filters('woocommerce_cart_item_price_html', woocommerce_price( $product_price ), $values, $cart_item_key );
-							?>
-						</td>
+						
 
 						<!-- Quantity inputs -->
+
 						<td class="product-quantity">
 							<?php
 								if ( $_product->is_sold_individually() ) {
@@ -97,10 +101,25 @@ $woocommerce->show_messages();
 									$min 	= apply_filters( 'woocommerce_quantity_input_min', '', $_product );
 									$max 	= apply_filters( 'woocommerce_quantity_input_max', $_product->backorders_allowed() ? '' : $_product->get_stock_quantity(), $_product );
 
-									$product_quantity = sprintf( '<div class="quantity"><input type="number" name="cart[%s][qty]" step="%s" min="%s" max="%s" value="%s" size="4" title="' . _x( 'Qty', 'Product quantity input tooltip', 'woocommerce' ) . '" class="input-text qty text" maxlength="12" /></div>', $cart_item_key, $step, $min, $max, esc_attr( $values['quantity'] ) );
+									$product_quantity = sprintf( '<div class="quantddity input-group input-group-sm"><input type="number" name="cart[%s][qty]" step="%s" min="%s" max="%s" value="%s" title="' . _x( 'Qty', 'Product quantity input tooltip', 'woocommerce' ) . '" class="input-text qty text form-control" maxlength="2" />', $cart_item_key, $step, $min, $max, esc_attr( $values['quantity'] ) );
 								}
 
 								echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key );
+							?>
+
+							<span class="input-group-btn">
+								<input type="submit" class="button btn btn-default btn-gray-light" name="update_cart" value="<?php _e( 'Update', 'woocommerce' ); ?>" />
+							</span>
+								</div>
+							
+						</td>
+
+						<!-- Product price -->
+						<td class="product-price">
+							<?php
+								$product_price = get_option('woocommerce_tax_display_cart') == 'excl' ? $_product->get_price_excluding_tax() : $_product->get_price_including_tax();
+
+								echo apply_filters('woocommerce_cart_item_price_html', woocommerce_price( $product_price ), $values, $cart_item_key );
 							?>
 						</td>
 
@@ -118,43 +137,62 @@ $woocommerce->show_messages();
 
 		do_action( 'woocommerce_cart_contents' );
 		?>
-		<tr>
-			<td colspan="6" class="actions">
 
-				<?php if ( $woocommerce->cart->coupons_enabled() ) { ?>
-					<div class="coupon">
-
-						<label for="coupon_code"><?php _e( 'Coupon', 'woocommerce' ); ?>:</label> <input name="coupon_code" class="input-text" id="coupon_code" value="" /> <input type="submit" class="button" name="apply_coupon" value="<?php _e( 'Apply Coupon', 'woocommerce' ); ?>" />
-
-						<?php do_action('woocommerce_cart_coupon'); ?>
-
-					</div>
-				<?php } ?>
-
-				<input type="submit" class="button" name="update_cart" value="<?php _e( 'Update Cart', 'woocommerce' ); ?>" /> <input type="submit" class="checkout-button button alt" name="proceed" value="<?php _e( 'Proceed to Checkout &rarr;', 'woocommerce' ); ?>" />
-
-				<?php do_action('woocommerce_proceed_to_checkout'); ?>
-
-				<?php $woocommerce->nonce_field('cart') ?>
-			</td>
-		</tr>
 
 		<?php do_action( 'woocommerce_after_cart_contents' ); ?>
 	</tbody>
 </table>
 
-<?php do_action( 'woocommerce_after_cart_table' ); ?>
+<?php do_action( 'woocommerce_after_cart_table' ); ?>	
+
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Shipping</h2>
+				<hr>
+				<?php do_action('woocommerce_cart_collaterals'); ?>
+				<?php woocommerce_get_template( 'cart/shipping-methods.php', array( 'available_methods' => $available_methods ) ); ?>
+				<?php woocommerce_shipping_calculator(); ?>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div>
+		<!-- <div data-spy="affix" data-offset-top="40" data-offset-bottom="300"> -->
+		<h2>Summary</h2>
+		<hr>
+			<?php woocommerce_cart_totals(); ?>
+
+				<?php if ( $woocommerce->cart->coupons_enabled() ) { ?>
+				<div class="coupon">
+					<label for="coupon_code"><?php _e( 'Promo Code', 'woocommerce' ); ?>:</label> 
+					<div class="input-group">
+
+						
+						<input name="coupon_code" class="input-text form-control" id="coupon_code" value="" />
+						<span class="input-group-btn">
+							<input type="submit" class="button btn btn-default btn-gray-light" name="apply_coupon" value="<?php _e( 'Apply', 'woocommerce' ); ?>" />
+						</span>
+						<?php do_action('woocommerce_cart_coupon'); ?>
+
+					</div>
+				</div>
+				<?php } ?>
+					<br>
+					<input type="submit" class="checkout-button button alt btn btn-default btn-block" name="proceed" value="<?php _e( 'Checkout', 'woocommerce' ); ?>" />
+
+				<?php do_action('woocommerce_proceed_to_checkout'); ?>
+
+				<?php $woocommerce->nonce_field('cart') ?>
+				
+	</div>
+	</div>
+</div>
+
+
 
 </form>
-
-<div class="cart-collaterals">
-
-	<?php do_action('woocommerce_cart_collaterals'); ?>
-
-	<?php woocommerce_cart_totals(); ?>
-
-	<?php woocommerce_shipping_calculator(); ?>
-
-</div>
 
 <?php do_action( 'woocommerce_after_cart' ); ?>

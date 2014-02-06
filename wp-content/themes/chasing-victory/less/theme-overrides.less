@@ -104,6 +104,40 @@ body.modal-open,
 	}
 }
 
+/*..................................the hr */
+hr {
+	border-top: 1px solid #ccc;
+}
+
+/*..................................the tables */
+.table {
+	text-transform: uppercase;
+	// border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+
+	tbody {
+		tr:first-child td {
+			border-top: 0;
+		}
+	}
+
+	tfoot,
+	thead,
+	tbody {
+		tr > th,
+		tr > td {
+			border-top: 1px dotted #ccc;
+		}
+	}
+
+	td.icon {
+		i {
+			position: relative;
+			top: 12px;
+		}
+	}
+}
+
 /*..................................the mobile overrides */
 @media (max-width: @screen-sm-max) {
 	body {

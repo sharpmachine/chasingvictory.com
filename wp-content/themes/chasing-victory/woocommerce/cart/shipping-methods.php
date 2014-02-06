@@ -52,12 +52,21 @@ if ( $available_methods ) {
 	// Show radio buttons for methods
 	} else {
 
-		echo '<ul id="shipping_method">';
+		echo '<ul id="shipping_method" class="list-unstyled">
+						<div class="form-group">
+							<div class="checkbox">
+							<input type="checkbox" name="add_insurance" id="add_insurance" />
+							<label for="add_insurance">Add Insurance <small><em>Note: Insured orders are only shipped via FedEx.</em></small></label>
+							</div>
+						</div>
+
+						<p><small><em>Rates shown include shipping and insurance.</em></small></p>
+						<div class="form-group">';
 
 		foreach ( $available_methods as $method )
-			echo '<li><input type="radio" name="shipping_method" id="shipping_method_' . sanitize_title( $method->id ) . '" value="' . esc_attr( $method->id ) . '" ' . checked( $method->id, $woocommerce->session->chosen_shipping_method, false) . ' /> <label for="shipping_method_' . sanitize_title( $method->id ) . '">' . wp_kses_post( $method->full_label ) . '</label></li>';
+			echo '<li class="radio"><input type="radio" name="shipping_method" id="shipping_method_' . sanitize_title( $method->id ) . '" value="' . esc_attr( $method->id ) . '" ' . checked( $method->id, $woocommerce->session->chosen_shipping_method, false) . ' /> <label for="shipping_method_' . sanitize_title( $method->id ) . '">' . wp_kses_post( $method->full_label ) . '</label></li>';
 
-		echo '</ul>';
+		echo '</div></ul>';
 	}
 
 // No shipping methods are available

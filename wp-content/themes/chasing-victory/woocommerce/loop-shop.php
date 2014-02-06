@@ -24,7 +24,6 @@ _deprecated_file( basename(__FILE__), '1.6', '', 'Use your own loop code, as wel
 		<?php woocommerce_product_subcategories(); ?>
 
 		<?php while ( have_posts() ) : the_post(); ?>
-
 			<?php woocommerce_get_template_part( 'content', 'product' ); ?>
 
 		<?php endwhile; // end of the loop. ?>

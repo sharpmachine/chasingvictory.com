@@ -46,11 +46,13 @@
 }
 
 // Checkboxes
-input[type="checkbox"] {
+input[type="checkbox"],
+input[type="radio"] {
 	display: none !important;
 }
 
-input[type='checkbox'] + label:before {
+input[type='checkbox'] + label:before,
+input[type='radio'] + label:before {
 	font-family: 'icomoon';
 	padding-right: 10px;
 	speak: none;
@@ -62,13 +64,19 @@ input[type='checkbox'] + label:before {
 	-webkit-font-smoothing: antialiased;
 }
 
-input[type="checkbox"] + label:before {
+input[type="checkbox"] + label:before,
+input[type="radio"] + label:before {
 	position: relative;
 	top: 3px;
 	content: "\e600"; /* checkbox unchecked */
 }
 
-input[type="checkbox"]:checked + label:before, {
+input[type="radio"] + label:before {
+	top: 1px;
+}
+
+input[type="checkbox"]:checked + label:before,
+input[type="radio"]:checked + label:before, {
 	content: "\e601"; /* checkbox checked */
 }
 
