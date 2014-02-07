@@ -1,5 +1,8 @@
 *** Stripe Changelog ***
 
+2014.02.06 - version 1.8.2
+ * Fix notice on card delete
+
 2014.01.28 - version 1.8.1
  * set default for $checked
  

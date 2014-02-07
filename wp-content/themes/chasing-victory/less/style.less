@@ -295,6 +295,7 @@ body.page-id-33 {
 }
 
 /*..................................the cart */
+// Alerts
 ul.woocommerce-error {
 	list-style: none;
 	.alert;
@@ -309,9 +310,14 @@ ul.woocommerce-error {
 		.btn-default;
 		.btn-sm;
 		.pull-right;
+
+		@media (min-width: 0) and (max-width: @screen-xs-max) {
+			width: 100%;
+		}
 	}
 }
 
+// Cart table
 dl.variation {
 	dt {
 		display: none;
@@ -343,6 +349,18 @@ dl.variation {
 
 	td.product-quantity {
 		width: 21%;
+		
+		@media (min-width: @screen-md) and (max-width: @screen-md-max) {
+			width: 25%;
+		}
+
+		@media (min-width: 0) and (max-width: @screen-xs-max) {
+			.input-group-btn {
+				display: block;
+				width: 100%;
+			}
+		}
+
 	}
 
 	td.product-name,
@@ -353,7 +371,6 @@ dl.variation {
 
 	a.remove {
 		color: @brand-danger;
-		// font-size: 22px;
 
 		&:hover {
 			text-decoration: none;
@@ -361,6 +378,13 @@ dl.variation {
 	}
 }
 
+.table-responsive {
+	thead {
+		background-color: #F9F9F9;
+	}
+}
+
+// Shipping methods
 ul#shipping_method {
 	.radio,
 	.checkbox {
@@ -368,6 +392,7 @@ ul#shipping_method {
 	}
 }
 
+// Summary 
 .affix {
 	top: 250px;
 	width: 360px;
@@ -377,6 +402,29 @@ ul#shipping_method {
 	position: absolute;
 	width: 360px;
 }
+
+/*..................................the checkout */
+p.form-row {
+	.form-group;
+	input,
+	textarea {
+		.form-control;
+	}
+
+	textarea {
+		height: 112px;
+	}
+}
+
+.billing-addy {
+	padding-top: 34px;
+}
+
+/*..................................the layaway popover */
+#layaway-info {
+	cursor: pointer;
+}
+
 /*..................................the footer */
 footer {
 	// height: @footer-height;

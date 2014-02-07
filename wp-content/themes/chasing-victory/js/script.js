@@ -53,14 +53,18 @@ jQuery(document).ready(function($) {
 		$('li.woods, li.metals, #woods, #metals').removeClass('active');
 		$('li.gemstones, #gemstones').addClass('active');
 	});
+
+	$('#layaway-info').popover('hide');
+
+	// $('p.form-row select').wrap('<div class="select-styled"></div>');
 	
 });
 
 
 // Upload form style
-document.getElementById("uploadBtn").onchange = function () {
-    document.getElementById("uploadFile").value = this.value;
-};
+// document.getElementById("uploadBtn").onchange = function () {
+//     document.getElementById("uploadFile").value = this.value;
+// };
 
 
 

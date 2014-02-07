@@ -1,4 +1,8 @@
-<?php get_header(); ?>
+<?php 
+/*
+* Template Name: No Title
+*/
+get_header(); ?>
 
 <div id="single-page" class="page">
 	<div class="container">

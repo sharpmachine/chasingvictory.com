@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Stripe Gateway
 Plugin URI: http://woothemes.com/woocommerce
 Description: A payment gateway for Stripe (https://stripe.com/). A Stripe account and a server with Curl, SSL support, and a valid SSL certificate is required (for security reasons) for this gateway to function.
-Version: 1.8.1
+Version: 1.8.2
 Author: Mike Jolley
 Author URI: http://mikejolley.com
 
@@ -50,6 +50,11 @@ function woocommerce_stripe_init() {
 			return;
 		}
 
+		$credit_cards = get_user_meta( get_current_user_id(), '_stripe_customer_id', false );
+
+		if ( ! $credit_cards )
+			return;
+
 		if ( ! is_user_logged_in() || ! wp_verify_nonce( $_POST['_wpnonce'], "stripe_del_card" ) ) {
 			wp_die( __( 'Unable to verify deletion, please try again', 'wc_stripe' ) );
 		}
@@ -71,11 +76,6 @@ function woocommerce_stripe_init() {
 	 * @return void
 	 */
 	function woocommerce_stripe_saved_cards() {
-		$credit_cards = get_user_meta( get_current_user_id(), '_stripe_customer_id', false );
-
-		if ( ! $credit_cards )
-			return;
-
 		$credit_cards = get_user_meta( get_current_user_id(), '_stripe_customer_id', false );
 
 		if ( ! $credit_cards )

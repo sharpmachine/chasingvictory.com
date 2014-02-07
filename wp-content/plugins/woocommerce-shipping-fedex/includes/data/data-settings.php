@@ -7,7 +7,7 @@ global $woocommerce;
 
 $freight_classes = include( 'data-freight-classes.php' );
 $smartpost_hubs  = include( 'data-smartpost-hubs.php' );
-$smartpost_hubs  = array_merge( array( '' => __( 'N/A', 'wc_fedex' ) ), $smartpost_hubs );
+$smartpost_hubs  = array( '' => __( 'N/A', 'wc_fedex' ) ) + $smartpost_hubs;
 
 /**
  * Array of settings

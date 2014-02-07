@@ -15,10 +15,14 @@ global $woocommerce;
 <?php if ( $woocommerce->cart->ship_to_billing_address_only() && $woocommerce->cart->needs_shipping() ) : ?>
 
 	<h3><?php _e( 'Billing &amp; Shipping', 'woocommerce' ); ?></h3>
+	<hr>
+
+
 
 <?php else : ?>
 
 	<h3><?php _e( 'Billing Address', 'woocommerce' ); ?></h3>
+	<hr>
 
 <?php endif; ?>
 

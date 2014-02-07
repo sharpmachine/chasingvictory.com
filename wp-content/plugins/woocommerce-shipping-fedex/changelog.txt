@@ -1,5 +1,9 @@
 *** FedEx ***
 
+2014.02.04 - version 3.2.2
+ * Fix smart post hub IDs
+ * Fix CLASS IDs for freight
+
 2014.01.16 - version 3.2.1
  * Fix for per item shipping rates
 

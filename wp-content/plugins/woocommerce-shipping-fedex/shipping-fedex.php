@@ -3,7 +3,7 @@
 	Plugin Name: WooCommerce FedEx Shipping
 	Plugin URI: http://woothemes.com/woocommerce
 	Description: Obtain shipping rates dynamically via the FedEx API for your orders.
-	Version: 3.2.1
+	Version: 3.2.2
 	Author: WooThemes
 	Author URI: http://woothemes.com
 

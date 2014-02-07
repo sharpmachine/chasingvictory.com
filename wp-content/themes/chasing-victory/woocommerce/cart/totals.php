@@ -22,26 +22,28 @@ $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 		<table class="table">
 			<tbody>
 
+				<!-- Subtotals -->
 				<tr>
 					<td>Subtotal:</td>
 					<td class="text-right"><?php echo $woocommerce->cart->get_cart_subtotal();?>
 					</td>
 				</tr>
 
+				<!-- Shipping -->
 				<tr>
 					<td>Shipping :</td>
 					<td class="text-right"><?php echo $woocommerce->cart->get_cart_shipping_total(); ?></td>
 				</tr>
-
-			<?php if ( $woocommerce->cart->get_discounts_before_tax() ) : ?>
-
-					<tr class="discount">
-						<th><?php _e( 'Discount:', 'woocommerce' ); ?> <a href="<?php echo add_query_arg( 'remove_discounts', '1', $woocommerce->cart->get_cart_url() ) ?>"><small><?php _e( '[Remove]', 'woocommerce' ); ?></small></a></th>
-						<td class="text-right">-<?php echo $woocommerce->cart->get_discounts_before_tax(); ?></td>
-					</tr>
-
+				
+				<!-- Discount before tax -->
+				<?php if ( $woocommerce->cart->get_discounts_before_tax() ) : ?>
+				<tr class="discount">
+					<th><?php _e( 'Discount:', 'woocommerce' ); ?> <a href="<?php echo add_query_arg( 'remove_discounts', '1', $woocommerce->cart->get_cart_url() ) ?>"><small><?php _e( '[Remove]', 'woocommerce' ); ?></small></a></th>
+					<td class="text-right">-<?php echo $woocommerce->cart->get_discounts_before_tax(); ?></td>
+				</tr>
 				<?php endif; ?>
-
+				
+				<!-- Tax -->
 				<tr>
 					<td>Tax:</td>
 					<td class="text-right">$<?php echo $woocommerce->cart->get_taxes_total(); ?></td>
@@ -54,9 +56,9 @@ $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 					<?php do_action( 'woocommerce_cart_totals_after_shipping' ); ?>
 
 				<?php endif ?>
-
+				
+				<!-- Fees -->
 				<?php foreach ( $woocommerce->cart->get_fees() as $fee ) : ?>
-
 				<tr class="fee fee-<?php echo $fee->id ?>">
 					<th><?php echo $fee->name ?></th>
 					<td><?php
@@ -66,9 +68,9 @@ $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 						echo woocommerce_price( $fee->amount + $fee->tax );
 					?></td>
 				</tr>
-
 				<?php endforeach; ?>
-
+				
+				<!-- More tax stuff (I think) -->
 				<?php
 					// Show the tax row if showing prices exclusive of tax only
 					if ( $woocommerce->cart->tax_display_cart == 'excl' ) {
@@ -80,18 +82,18 @@ $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 						}
 					}
 				?>
-
+				
+				<!-- Discount after tax -->
 				<?php if ( $woocommerce->cart->get_discounts_after_tax() ) : ?>
-
 				<tr class="discount">
 					<th><?php _e( 'Discount', 'woocommerce' ); ?>: <a href="<?php echo add_query_arg( 'remove_discounts', '2', $woocommerce->cart->get_cart_url() ) ?>"><small><?php _e( '[Remove]', 'woocommerce' ); ?></small></a></th>
 					<td class="text-right">-<?php echo $woocommerce->cart->get_discounts_after_tax(); ?></td>
 				</tr>
-
 				<?php endif; ?>
 
 				<?php do_action( 'woocommerce_cart_totals_before_order_total' ); ?>
-
+				
+				<!-- Grand Total -->
 				<tr class="total">
 					<th><strong><?php _e( 'Total', 'woocommerce' ); ?></strong></th>
 					<td class="text-right">
@@ -112,10 +114,10 @@ $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 						?> -->
 					</td>
 				</tr>
-
+				
+				<!-- Easy Layaway Popover -->
 				<tr>
-					<th><small>Easy Layaway <br>Option Available</small></th>
-					<td class="text-right icon"><a href=""><i class="fa fa-info-circle"></i></a></td>
+					<?php get_template_part('layaway-popover'); ?>
 				</tr>
 
 				<?php do_action( 'woocommerce_cart_totals_after_order_total' ); ?>
@@ -124,26 +126,22 @@ $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 		</table>
 
 		<?php if ( $woocommerce->cart->get_cart_tax() ) : ?>
+		<p><small><?php
 
-			<p><small><?php
+			$estimated_text = ( $woocommerce->customer->is_customer_outside_base() && ! $woocommerce->customer->has_calculated_shipping() ) ? sprintf( ' ' . __( ' (taxes estimated for %s)', 'woocommerce' ), $woocommerce->countries->estimated_for_prefix() . __( $woocommerce->countries->countries[ $woocommerce->countries->get_base_country() ], 'woocommerce' ) ) : '';
 
-				$estimated_text = ( $woocommerce->customer->is_customer_outside_base() && ! $woocommerce->customer->has_calculated_shipping() ) ? sprintf( ' ' . __( ' (taxes estimated for %s)', 'woocommerce' ), $woocommerce->countries->estimated_for_prefix() . __( $woocommerce->countries->countries[ $woocommerce->countries->get_base_country() ], 'woocommerce' ) ) : '';
+			printf( __( 'Note: Shipping and taxes are estimated%s and will be updated during checkout based on your billing and shipping information.', 'woocommerce' ), $estimated_text );
 
-				printf( __( 'Note: Shipping and taxes are estimated%s and will be updated during checkout based on your billing and shipping information.', 'woocommerce' ), $estimated_text );
-
-			?></small></p>
-
+		?></small></p>
 		<?php endif; ?>
 
 	<?php elseif( $woocommerce->cart->needs_shipping() ) : ?>
 
 		<?php if ( ! $woocommerce->customer->get_shipping_state() || ! $woocommerce->customer->get_shipping_postcode() ) : ?>
 
-			<div class="woocommerce-info">
-
-				<p><?php _e( 'No shipping methods were found; please recalculate your shipping and enter your state/county and zip/postcode to ensure there are no other available methods for your location.', 'woocommerce' ); ?></p>
-
-			</div>
+		<div class="woocommerce-info">
+			<p><?php _e( 'No shipping methods were found; please recalculate your shipping and enter your state/county and zip/postcode to ensure there are no other available methods for your location.', 'woocommerce' ); ?></p>
+		</div>
 
 		<?php else : ?>
 

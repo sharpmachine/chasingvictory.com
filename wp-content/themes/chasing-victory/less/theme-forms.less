@@ -14,6 +14,7 @@
 	display:inline-block;
 	position: relative;
 	width: 100%;
+	margin-bottom: -6px;
 	background-clip: padding-box;
 
 	select {
@@ -42,6 +43,38 @@
 
 	&.champagn-border select{
 		border: 1px solid @brand-champagne;
+	}
+}
+
+//Advanced Selects
+.chzn-container-single .chzn-single,
+.chzn-container-active .chzn-single-with-drop {
+	background-image: none !important;
+	border: 1px solid #ccc !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+
+}
+
+.woocommerce-checkout .form-row .chzn-container-single .chzn-single {
+	height: 36px !important;
+	margin-bottom: -7px !important;
+	line-height: 2.4 !important;
+}
+
+.chzn-container {
+	.gill-sans-light !important;
+	font-size: 16px !important;
+}
+
+.woocommerce-checkout .form-row .chzn-container-single .chzn-single div b {
+	position: relative;
+	top: 3px !important;
+}
+
+.chzn-container-active {
+	.chzn-single-with-drop {
+		background-image: none;
 	}
 }
 
@@ -78,6 +111,11 @@ input[type="radio"] + label:before {
 input[type="checkbox"]:checked + label:before,
 input[type="radio"]:checked + label:before, {
 	content: "\e601"; /* checkbox checked */
+}
+
+.radio,
+.checkbox {
+	padding-left: 0;
 }
 
 // Files uploads

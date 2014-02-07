@@ -19,20 +19,16 @@ if ( get_option('woocommerce_enable_shipping_calc')=='no' || ! $woocommerce->car
 
 <form class="shipping_calculator" action="<?php echo esc_url( $woocommerce->cart->get_cart_url() ); ?>" method="post">
 
-	<h3><a href="#" class="shipping-calculator-button"><?php _e( 'Calculate Shipping', 'woocommerce' ); ?> <i class="fa fa-caret-down"></i></a></h3>
-
-	<section class="shipping-calculator-form">
-		<div class="row form-group">
-			<div class="col-md-6">
-		<div class="select-styled">
-			<select name="calc_shipping_country" id="calc_shipping_country" class="country_to_state form-control" rel="calc_shipping_state">
-				<option value=""><?php _e( 'Select a country&hellip;', 'woocommerce' ); ?></option>
-				<?php
-					foreach( $woocommerce->countries->get_allowed_countries() as $key => $value )
-						echo '<option value="' . esc_attr( $key ) . '"' . selected( $woocommerce->customer->get_shipping_country(), esc_attr( $key ), false ) . '>' . esc_html( $value ) . '</option>';
-				?>
-			</select>
-		</div>
+		<div class="form-group">
+			<div class="select-styled">
+				<select name="calc_shipping_country" id="calc_shipping_country" class="country_to_state form-control" rel="calc_shipping_state">
+					<option value=""><?php _e( 'Select a country&hellip;', 'woocommerce' ); ?></option>
+					<?php
+						foreach( $woocommerce->countries->get_allowed_countries() as $key => $value )
+							echo '<option value="' . esc_attr( $key ) . '"' . selected( $woocommerce->customer->get_shipping_country(), esc_attr( $key ), false ) . '>' . esc_html( $value ) . '</option>';
+					?>
+				</select>
+			</div>
 		</div>
 			<?php
 				$current_cc = $woocommerce->customer->get_shipping_country();
@@ -48,8 +44,7 @@ if ( get_option('woocommerce_enable_shipping_calc')=='no' || ! $woocommerce->car
 				} elseif ( is_array( $states ) ) {
 
 					?>
-					<div class="col-md-6">
-					<span>
+				<div class="form-group">
 					<div class="select-styled">
 						<select name="calc_shipping_state" id="calc_shipping_state" class="form-control" placeholder="<?php _e( 'State / county', 'woocommerce' ); ?>">
 							<option value=""><?php _e( 'Select a state&hellip;', 'woocommerce' ); ?></option>
@@ -59,8 +54,8 @@ if ( get_option('woocommerce_enable_shipping_calc')=='no' || ! $woocommerce->car
 							?>
 						</select>
 					</div>
-					</span>
-					</div><?php
+				</div>
+					<?php
 
 				// Standard Input
 				} else {
@@ -69,16 +64,15 @@ if ( get_option('woocommerce_enable_shipping_calc')=='no' || ! $woocommerce->car
 
 				}
 			?>
-		</div>
-		<div class="row form-group">
-			<div class="col-md-6">
+
+		<div class="form-group">
 		<?php if ( apply_filters( 'woocommerce_shipping_calculator_enable_city', false ) ) : ?>
 
 				<input type="text" class="input-text form-control" value="<?php echo esc_attr( $woocommerce->customer->get_shipping_city() ); ?>" placeholder="<?php _e( 'City', 'woocommerce' ); ?>" name="calc_shipping_city" id="calc_shipping_city" />
 
 		<?php endif; ?>
 			</div>
-			<div class="col-md-6">
+			<div class="form-group">
 		<?php if ( apply_filters( 'woocommerce_shipping_calculator_enable_postcode', true ) ) : ?>
 
 				<input type="text" class="input-text form-control" value="<?php echo esc_attr( $woocommerce->customer->get_shipping_postcode() ); ?>" placeholder="<?php _e( 'Postcode / Zip', 'woocommerce' ); ?>" name="calc_shipping_postcode" id="calc_shipping_postcode" />
@@ -86,13 +80,10 @@ if ( get_option('woocommerce_enable_shipping_calc')=='no' || ! $woocommerce->car
 
 		<?php endif; ?>
 		</div>
-		</div>
-		<p class="text-center">
-			<button type="submit" name="calc_shipping" value="1" class="button btn btn-default btn-sm"><?php _e( 'Update Totals', 'woocommerce' ); ?></button>
-		</p>
+
+			<button type="submit" name="calc_shipping" value="1" class="button btn btn-default btn-sm btn-block"><?php _e( 'Fetch Rates', 'woocommerce' ); ?></button>
 
 		<?php $woocommerce->nonce_field('cart') ?>
-	</section>
 </form>
 
 <?php do_action( 'woocommerce_after_shipping_calculator' ); ?>

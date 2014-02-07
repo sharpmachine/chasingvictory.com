@@ -32,9 +32,11 @@ global $woocommerce;
 		<label for="shiptobilling-checkbox" class="checkbox"><?php _e( 'Ship to billing address?', 'woocommerce' ); ?></label>
 	</p>
 
+<div class="shipping_address">
 	<h3><?php _e( 'Shipping Address', 'woocommerce' ); ?></h3>
+	<hr>
 
-	<div class="shipping_address">
+	
 
 		<?php do_action('woocommerce_before_checkout_shipping_form', $checkout); ?>
 
@@ -68,4 +70,4 @@ global $woocommerce;
 
 <?php endif; ?>
 
-<?php do_action('woocommerce_after_order_notes', $checkout); ?>
+<?php // do_action('woocommerce_after_order_notes', $checkout); ?>

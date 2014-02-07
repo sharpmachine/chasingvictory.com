@@ -549,6 +549,13 @@ class WC_Shipping_Fedex extends WC_Shipping_Method {
 
 		// SMART_POST
 		if ( ! empty( $this->smartpost_hub ) && $package['destination']['country'] == 'US' ) {
+			// Fix old hub IDs
+			if ( $this->smartpost_hub < 1000 ) {
+				$smartpost_hubs      = array_values( include( 'data/data-smartpost-hubs.php' ) );
+
+				if ( isset( $smartpost_hubs[ $this->smartpost_hub ] ) )
+					$this->smartpost_hub = $smartpost_hubs[ $this->smartpost_hub ];
+			}
 			$request['RequestedShipment']['SmartPostDetail'] = array(
 				'Indicia'              => 'PARCEL_SELECT',
 				'HubId'                => $this->smartpost_hub,
@@ -733,8 +740,16 @@ class WC_Shipping_Fedex extends WC_Shipping_Method {
 					'Role'                                 => 'SHIPPER',
 					'PaymentType'                          => 'PREPAID',
 				);
+
+		    	// Format freight class
+		    	$freight_class = $package_freight_class ? $package_freight_class : $this->freight_class;
+		    	if ( $freight_class < 100 ) {
+		    		$freight_class = '0' . $freight_class;
+		    	}
+		    	$freight_class = 'CLASS_' . str_replace( '.', '_', $freight_class );
+
 				$request['RequestedShipment']['FreightShipmentDetail']['LineItems'] = array(
-					'FreightClass' => 'CLASS_' . str_replace( '.', '_', ( $package_freight_class ? $package_freight_class : $this->freight_class ) ),
+					'FreightClass' => $freight_class,
 					'Packaging'    => 'SKID',
 					'Weight'       => array(
 						'Units'    => 'LB',

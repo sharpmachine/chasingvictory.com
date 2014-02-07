@@ -29,22 +29,27 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', $woocommerce-
 	<?php if ( sizeof( $checkout->checkout_fields ) > 0 ) : ?>
 
 		<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
-
-		<div class="col2-set" id="customer_details">
-
-			<div class="col-1">
-
-				<?php do_action( 'woocommerce_checkout_billing' ); ?>
-
+		<div class="row">
+			<div class="col-md-8">
+				<h2>Billing &amp; Shipping Details</h2>
+				<hr>
+				<div class="row" id="customer_details">
+					<div class="col-md-6 billing-addy">
+						<?php do_action( 'woocommerce_checkout_billing' ); ?>
+					</div>
+					<div class="col-md-6">
+						<?php do_action( 'woocommerce_checkout_shipping' ); ?>
+					</div>
+				</div>
 			</div>
-
-			<div class="col-2">
-
-				<?php do_action( 'woocommerce_checkout_shipping' ); ?>
-
+			<div class="col-md-4">
+				<h2>Order Notes</h2>
+				<hr>
 			</div>
-
 		</div>
+
+		
+
 
 		<?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
 

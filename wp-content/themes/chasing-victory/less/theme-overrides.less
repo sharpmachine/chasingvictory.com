@@ -30,6 +30,15 @@ body.modal-open,
 .modal-open .navbar-fixed-top, 
 .modal-open .navbar-fixed-bottom {
 	margin-right: 0;
+
+	.close {
+		position: relative;
+		top: 2px;
+		right: 5px;
+		margin-bottom: -7px;
+		font-size: 46px;
+		text-shadow: none;
+	}
 }
 
 .modal-body {
@@ -42,15 +51,6 @@ body.modal-open,
 
 .modal-dialog {
 	padding-top: 205px;
-}
-
-.close {
-	position: relative;
-	top: 2px;
-	right: 5px;
-	margin-bottom: -7px;
-	font-size: 46px;
-	text-shadow: none;
 }
 
 /*..................................the tabs */
@@ -72,7 +72,7 @@ body.modal-open,
 		}
 
 		&:last-child {
-		&	> a {
+			&	> a {
 				border-right: 0;
 			}
 		}
@@ -131,11 +131,20 @@ hr {
 	}
 
 	td.icon {
-		i {
-			position: relative;
-			top: 12px;
-		}
+		padding-top: 20px;
 	}
+}
+
+/*..................................the popovers */
+.popover {
+	border-radius: 0;
+}
+
+.popover-title {
+	padding: 10px 14px 6px;
+	color: @brand-champagne;
+	background-color: @brand-ebony;
+	border-radius: 0;
 }
 
 /*..................................the mobile overrides */
