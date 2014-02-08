@@ -12,7 +12,5 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 get_header('shop'); ?>
-
-	SHIT
-
+<h1>HELLO WORLD</h1>
 <?php get_footer('shop'); ?>

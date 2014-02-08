@@ -44,11 +44,6 @@ $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 				<?php endif; ?>
 				
 				<!-- Tax -->
-				<tr>
-					<td>Tax:</td>
-					<td class="text-right">$<?php echo $woocommerce->cart->get_taxes_total(); ?></td>
-				</tr>
-
 				<?php if ( $woocommerce->cart->needs_shipping() && $woocommerce->cart->show_shipping() && ( $available_methods || get_option( 'woocommerce_enable_shipping_calc' ) == 'yes' ) ) : ?>
 
 					<?php do_action( 'woocommerce_cart_totals_before_shipping' ); ?>
@@ -61,7 +56,7 @@ $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 				<?php foreach ( $woocommerce->cart->get_fees() as $fee ) : ?>
 				<tr class="fee fee-<?php echo $fee->id ?>">
 					<th><?php echo $fee->name ?></th>
-					<td><?php
+					<td class="text-right"><?php
 					if ( $woocommerce->cart->tax_display_cart == 'excl' )
 						echo woocommerce_price( $fee->amount );
 					else
@@ -76,8 +71,8 @@ $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 					if ( $woocommerce->cart->tax_display_cart == 'excl' ) {
 						foreach ( $woocommerce->cart->get_tax_totals() as $code => $tax ) {
 							echo '<tr class="tax-rate tax-rate-' . $code . '">
-								<th>' . $tax->label . '</th>
-								<td>' . $tax->formatted_amount . '</td>
+								<th>' . $tax->label . ':</th>
+								<td class="text-right">' . $tax->formatted_amount . '</td>
 							</tr>';
 						}
 					}

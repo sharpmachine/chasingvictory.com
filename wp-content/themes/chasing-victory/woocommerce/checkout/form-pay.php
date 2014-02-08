@@ -51,7 +51,7 @@ global $woocommerce;
 
 	<div id="payment">
 		<?php if ( $order->needs_payment() ) : ?>
-		<ul class="payment_methods methods">
+		<ul class="payment_methods methods list-unstyled">
 			<?php
 				if ( $available_gateways = $woocommerce->payment_gateways->get_available_payment_gateways() ) {
 					// Chosen Method
@@ -84,7 +84,7 @@ global $woocommerce;
 
 		<div class="form-row">
 			<?php $woocommerce->nonce_field('pay')?>
-			<input type="submit" class="button alt" id="place_order" value="<?php _e( 'Pay for order', 'woocommerce' ); ?>" />
+			<input type="submit" class="button alt btn btn-default btn-lg" id="place_order" value="<?php _e( 'Pay for order', 'woocommerce' ); ?>" />
 			<input type="hidden" name="woocommerce_pay" value="1" />
 		</div>
 

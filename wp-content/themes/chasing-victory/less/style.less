@@ -138,7 +138,7 @@ body {
 	}
 }
 
-/*..................................the home page */
+/*..................................the jumbotrons */
 // Jumbotron slider
 .carousel-caption {
   position: absolute;
@@ -215,7 +215,6 @@ body {
 /*..................................the general pages */
 h1.entry-title {
 	text-align: center;
-	// margin-top: 0;
 	margin-bottom: 50px;
 	padding-bottom: 35px;
 	border-bottom: 1px solid @brand-champagne;
@@ -291,6 +290,125 @@ body.page-id-33 {
 		 p {
 		 	padding: 0 14px;
 		 }
+	}
+}
+
+/*..................................the home page */
+// Filters
+.filters {
+	margin-top: 64px;
+	margin-bottom: 32px;
+
+	.select-styled {
+		width: 200px;
+		margin-right: 24px;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+
+	@media (max-width: @screen-xs-max) {
+		margin: 30px 0 0 0;
+	}
+}
+
+// Catalog
+.catalog {
+	margin-bottom: 30px;
+}
+
+.catalog-item {
+	margin-top: 30px;
+
+	h3 {
+		height: 30px;
+		margin-bottom: 0;
+		overflow: hidden;
+
+		a {
+			text-decoration: none;
+		}
+	}
+
+	@media (max-width: @screen-xs-max) {
+		text-align: center;
+
+		img {
+			margin: 0 auto;
+		}
+	}
+}
+
+.product-thumb {
+	position: relative;
+	display: block;
+	text-shadow: 0px 1px 1px @brand-ebony;
+	letter-spacing: 4px;
+
+	&:hover {
+		color: white;
+
+
+		.view-product {
+			display: block;
+			.transition(0.2s display ease);
+		}
+	}
+
+	.view-product {
+		display: none;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		padding: 16px;
+		.transition(0.2s display ease);
+
+		.view-product-inner {
+			position: relative;
+			.square(100%);
+			background-color: rgba(255, 255, 255, 0.5);
+		}
+
+		.view-product-title {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			width: 83px;
+			height: 22px;
+			margin: auto;
+		}
+	}
+}
+
+.quote-request {
+	.product-thumb {
+		font-size: 18px;
+
+
+		.view-product {
+			display: block;
+		}
+
+		.view-product-title {
+			width: 111px;
+			height: 69px;
+		}
+	}
+}
+
+img.attachment-shop_catalog {
+	.img-responsive;
+}
+
+.widget_product_categories {
+	.select-styled;
+
+	h2 {
+		display: none;
 	}
 }
 
@@ -404,6 +522,35 @@ ul#shipping_method {
 }
 
 /*..................................the checkout */
+body.page-id-66 {
+	padding-top: 206px;
+
+	@media (max-width: @screen-sm-max) {
+		padding-top: 0;
+	}
+
+	ul.woocommerce-error {
+		margin-top: 16px;
+		margin-bottom: -27px;
+
+		li {
+			text-align: center;	
+		}
+	}
+}
+
+form.checkout {
+	margin-top: -72px;
+	padding-top: 72px;
+}
+
+.billing-details,
+#payment {
+	margin: 26px 0 10px;
+	padding: 10px 0 20px;
+	background-color: #F7F6F7;
+}
+
 p.form-row {
 	.form-group;
 	input,
@@ -420,6 +567,93 @@ p.form-row {
 	padding-top: 34px;
 }
 
+
+// Payment section
+#payment {
+	margin-bottom: -45px;
+
+	ul.woocommerce_error {
+		li {
+			display: block;
+			float: none;
+		}
+	}
+}
+
+label[for="cc-expire-month"] {
+	display: block;
+}
+
+#partial-payment h3 {
+	margin-top: 22px !important;
+	margin-bottom: 20px !important;
+	padding-bottom: 21px;
+	border-bottom: 1px solid #ccc;
+}
+
+ul.payment_methods {
+	li {
+		display: inline-block;
+		float: left;
+		margin-right: 32px !important;
+	}
+}
+
+
+// WooDeposits Modal
+#wpp-calculate-deposit {
+	float: left !important;
+	.btn;
+	.btn-default;
+}
+
+.ui-dialog,
+.ui-widget,
+.ui-widget-content,
+.ui-corner-all,
+.ui-front,
+.ui-draggable,
+.ui-resizable {
+	padding: 0 !important;
+	.gill-sans-regular;
+	border-radius: 0 !important;
+}
+
+.ui-dialog {
+	table {
+		.table;
+
+		tbody > tr:nth-child(3) {
+			display: none !important;
+		}
+	}
+
+	.ui-dialog-titlebar {
+		padding: 10px !important;
+		.gill-sans-light;
+		background: @brand-ebony !important;
+		color: @brand-champagne;
+		border: 0 !important;
+		text-transform: uppercase;
+	}
+
+	.ui-dialog-titlebar-close {
+		display: none;
+	}
+
+	a {
+		.btn !important;
+		.btn-sm !important;
+		.btn-default !important;
+		border-radius: 0 !important;
+
+		@media (max-width: @screen-xs-max) {
+			.btn-block !important;
+			margin-top: 16px !important;
+		}
+	}
+}
+
 /*..................................the layaway popover */
 #layaway-info {
 	cursor: pointer;
@@ -427,8 +661,7 @@ p.form-row {
 
 /*..................................the footer */
 footer {
-	// height: @footer-height;
-	margin-top: 46px;
+	margin-top: 36px;
 
 	h3 {
 		margin-top: 0;
@@ -470,9 +703,7 @@ footer {
 	a {
 		display: inline-block;
 		.square(48px);
-		// .square(24px);
 		margin-right: 35px;
-		// padding: 21px;
 		background-color: @brand-champagne;
 		border-radius: 50%;
 		text-align: center;
@@ -526,6 +757,18 @@ body.error404 {
 /*..................................the misc */
 hr.dotted {
 	border-top: 1px dotted @gray-light;
+}
+
+hr.champagn {
+	border-top: 1px solid @brand-champagne;
+}
+
+hr.bottom {
+	margin-bottom: 0;
+}
+
+blockquote.call-to-action {
+	margin-bottom: 0;
 }
 
 figure,

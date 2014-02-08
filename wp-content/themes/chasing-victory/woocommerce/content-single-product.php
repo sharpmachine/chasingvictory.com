@@ -11,7 +11,18 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ?>
+<h1>Single Product Page</h1>
 
+	<!-- Button trigger modal -->
+			<button class="btn btn-champagne woods-active" data-toggle="modal" data-target="#swatchModal">
+				Woods
+			</button>
+			<button class="btn btn-default metals-active" data-toggle="modal" data-target="#swatchModal">
+				Metals
+			</button>
+			<button class="btn btn-gray-light btn-sm gemstones-active" data-toggle="modal" data-target="#swatchModal">
+				Gemstones
+			</button>
 <?php
 	/**
 	 * woocommerce_before_single_product hook
@@ -72,5 +83,5 @@ echo $content;
 ?>
 
 </div><!-- #product-<?php the_ID(); ?> -->
-
+	<?php get_template_part('swatches'); ?>
 <?php do_action( 'woocommerce_after_single_product' ); ?>

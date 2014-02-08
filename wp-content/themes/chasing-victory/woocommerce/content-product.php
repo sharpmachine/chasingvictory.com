@@ -35,11 +35,11 @@ if ( 0 == ( $woocommerce_loop['loop'] - 1 ) % $woocommerce_loop['columns'] || 1 
 if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 	$classes[] = 'last';
 ?>
-<li <?php post_class( $classes ); ?>>
+<div class="col-sm-4 col-md-3 catalog-item">
 
-	<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
+	<?php // do_action( 'woocommerce_before_shop_loop_item' ); ?>
 
-	<a href="<?php the_permalink(); ?>">
+	<a href="<?php the_permalink(); ?>" class="product-thumb">
 
 		<?php
 			/**
@@ -50,20 +50,23 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 			 */
 			do_action( 'woocommerce_before_shop_loop_item_title' );
 		?>
+			<div class="hidden-xs hidden-sm">
+				<div class="view-product">
+					<div class="view-product-inner">
+						<div class="view-product-title">
+							View
+						</div>
+					</div>
+				</div>
+			</div>
+		<!-- <img src="holder.js/273x180/auto" class="img-responsive" alt=""> -->
+		</a>
+		<h3><a href="<?php the_permalink(); ?>"><?php short_title(50); ?></a></h3>
 
-		<h3><?php the_title(); ?></h3>
+	<?php if ( $price_html = $product->get_price_html() ) : ?>
+		<div class="price"><?php echo $price_html; ?></div>
+	<?php endif; ?>
 
-		<?php
-			/**
-			 * woocommerce_after_shop_loop_item_title hook
-			 *
-			 * @hooked woocommerce_template_loop_price - 10
-			 */
-			do_action( 'woocommerce_after_shop_loop_item_title' );
-		?>
+	<?php // do_action( 'woocommerce_after_shop_loop_item' ); ?>
 
-	</a>
-
-	<?php do_action( 'woocommerce_after_shop_loop_item' ); ?>
-
-</li>
+</div>

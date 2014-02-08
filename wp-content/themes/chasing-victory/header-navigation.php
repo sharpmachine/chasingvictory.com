@@ -5,6 +5,7 @@
 			<div class="navbar-header">
 			
 				<a class="navbar-brand" href="<?php bloginfo('url') ?>"><img src="<?php bloginfo('template_directory'); ?>/img/logo.png" alt="Chasing Victory Logo" class="img-responsive" width="169" height="84"></a>
+				<?php if (!is_page('checkout')): ?>
 				<div class="menu-btn visible-xs">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 						<span class="icon-bar"></span>
@@ -12,8 +13,10 @@
 						<span class="icon-bar"></span>
 					</button>
 				</div>
+			<?php endif; ?>
 			
 		</div>
+		<?php if (!is_page('checkout')): ?>
 		<div class="collapse navbar-collapse">
 	
 				<ul class="nav navbar-nav">
@@ -22,5 +25,6 @@
 				</ul>
 	
 		</div><!--/.nav-collapse -->
+		<?php endif; ?>
 	</div>
 </header>

@@ -71,6 +71,7 @@
     <script src="<?php bloginfo('template_directory'); ?>/js/carousel.js"></script>
     <script src="<?php bloginfo('template_directory'); ?>/js/affix.js"></script>
     <script src="<?php bloginfo('template_directory'); ?>/js/retina.js"></script>
+    <script src="<?php bloginfo('template_directory'); ?>/js/holder.js"></script>
 
     <!-- scripts concatenated and minified via ant build script-->
     <script src="<?php bloginfo ('template_directory'); ?>/js/plugins.js"></script>
