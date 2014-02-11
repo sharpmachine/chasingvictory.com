@@ -37,7 +37,7 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 ?>
 <div class="col-sm-4 col-md-3 catalog-item">
 
-	<?php // do_action( 'woocommerce_before_shop_loop_item' ); ?>
+	<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
 
 	<a href="<?php the_permalink(); ?>" class="product-thumb">
 
@@ -59,7 +59,6 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 					</div>
 				</div>
 			</div>
-		<!-- <img src="holder.js/273x180/auto" class="img-responsive" alt=""> -->
 		</a>
 		<h3><a href="<?php the_permalink(); ?>"><?php short_title(50); ?></a></h3>
 
@@ -67,6 +66,6 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 		<div class="price"><?php echo $price_html; ?></div>
 	<?php endif; ?>
 
-	<?php // do_action( 'woocommerce_after_shop_loop_item' ); ?>
+	<?php do_action( 'woocommerce_after_shop_loop_item' ); ?>
 
 </div>

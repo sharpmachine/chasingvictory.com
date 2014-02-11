@@ -412,6 +412,50 @@ img.attachment-shop_catalog {
 	}
 }
 
+a.product_type_variable {
+	display: none;
+}
+
+/*..................................the product page */
+// .commentlist {
+// 	list-style: none;
+// }
+
+@font-face {font-family: 'star';
+src: url('../../plugins/woocommerce/assets/fonts/star.eot');
+src: url('../../plugins/woocommerce/assets/fonts/star.eot?#iefix') format('embedded-opentype'),
+url('../../plugins/woocommerce/assets/fonts/star.woff') format('woff'),
+url('../../plugins/woocommerce/assets/fonts/star.ttf') format('truetype');
+}
+
+.woocommerce .star-rating,
+.woocommerce-page .star-rating {
+	float: right;
+	overflow: hidden;
+	position: relative;
+	height: 1em;
+	line-height: 1em;
+	font-size: 1em;
+	width: 5.4em;
+	font-family: 'star';
+}
+
+.woocommerce .star-rating span, .woocommerce-page .star-rating span {
+overflow: hidden;
+float: left;
+top: 0;
+left: 0;
+position: absolute;
+padding-top: 1.5em;
+}
+
+.woocommerce .star-rating span:before, .woocommerce-page .star-rating span:before {
+content: "\53\53\53\53\53";
+top: 0;
+position: absolute;
+left: 0;
+}
+
 /*..................................the cart */
 // Alerts
 ul.woocommerce-error {

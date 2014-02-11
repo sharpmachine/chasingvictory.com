@@ -11,9 +11,18 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $woocommerce, $post;
 
-$heading = esc_html( apply_filters('woocommerce_product_description_heading', __( 'Product Description', 'woocommerce' ) ) );
+$heading = esc_html( apply_filters('woocommerce_product_description_heading', __( 'FAQ', 'woocommerce' ) ) );
 ?>
 
-<h2><?php echo $heading; ?></h2>
+<h2>FAQ</h2>
 
-<?php the_content(); ?>
+<div class="two-col">
+<?php
+	$my_id = 37;
+	$post_id_37 = get_post($my_id);
+	$content = $post_id_37->post_content;
+	$content = apply_filters('the_content', $content);
+	$content = str_replace(']]>', ']]>', $content);
+	echo $content;
+?>
+</div>

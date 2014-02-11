@@ -539,3 +539,5 @@ function woo_product_categories_dropdown( $atts ) {
 	return ob_get_clean();
 	
 }
+
+add_action( 'add_to_cart', 'woocommerce_template_single_add_to_cart', 30 );
