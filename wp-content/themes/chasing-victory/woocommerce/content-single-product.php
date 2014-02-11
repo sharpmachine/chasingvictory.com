@@ -10,57 +10,27 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+global $woocommerce, $product, $post;
 ?>
 <div class="container">
 	<div class="row">
 		<div class="col-md-4">
 			<div class="row">
-				<div class="col-md-12">
-					Product Photos
+				<div class="col-md-12 product-images">
 					<?php woocommerce_get_template( 'single-product/product-image.php' ); ?>
 				</div>
-				<div class="col-md-12">
-					<a href="http://www.pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&media=<?php echo wp_get_attachment_url( get_post_thumbnail_id() ); ?>&description=<?php bloginfo('name'); ?> - <?php the_title(); ?>">Pin it</a> <br>
-					<a href="http://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>">Share on Facebook</a> <br>
-					<a href="http://twitter.com/home?status=<?php the_title(); ?> - <?php the_permalink(); ?>">Share on Twitter</a>
+				<div class="col-md-12 social-sharing">
+					<span>Share: </span>
+					<a href="http://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>"><i class="fa fa-facebook"></i> Facebook</a>
+					<a href="http://twitter.com/home?status=<?php the_title(); ?> - <?php the_permalink(); ?>"><i class="fa fa-twitter"></i> Twitter</a>
+					<a href="http://www.pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&media=<?php echo wp_get_attachment_url( get_post_thumbnail_id() ); ?>&description=<?php bloginfo('name'); ?> - <?php the_title(); ?>"><i class="fa fa-pinterest"></i> Pinterest</a>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-5">
-			<h1 class="h2"><?php the_title(); ?></h1>
-			<?php the_content(); ?>
-			<hr>
-			<?php woocommerce_get_template( 'single-product/short-description.php' ); ?>
-			<hr>
-			<h3>Custom Options</h3>
-
-		</div>
-		<div class="col-md-3">
-			
-		<div class="price"></div>
-
-		<?php woocommerce_get_template( 'single-product/price.php' ); ?>
+		<!-- Form start here -->
+		<?php do_action('add_to_cart' ); ?>
 		
-		<?php if(has_term('made-to-order', 'product_cat')): ?>
-				Made to order <br>
-					please allow....
-			<?php else: ?>
-				Ready to ship
-			<?php endif; ?> 
-			<br>
-			<br>
-			<table class="table">
-				<tr>
-					ASk a questions
-				</tr>
-				<tr>
-					<?php get_template_part('layaway-popover'); ?>
-				</tr>
-			</table>
-
-			<?php do_action('add_to_cart' ); ?>
-
-		</div>
+		<!-- Form End about here -->
 	</div>
 </div>
 
