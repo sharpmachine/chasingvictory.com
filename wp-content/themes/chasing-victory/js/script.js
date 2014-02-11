@@ -62,6 +62,11 @@ jQuery(document).ready(function($) {
 		e.preventDefault();
 		$('.product-custom-options').slideToggle('fast');
 	});
+
+	$('.product-filter-dropdown').change(function() {
+		var $this = $(this);
+		location.href = "?product_cat=" + $this.val();
+	});
 	
 });
 
