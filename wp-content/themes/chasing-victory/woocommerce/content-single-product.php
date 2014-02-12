@@ -13,28 +13,28 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 global $woocommerce, $product, $post;
 ?>
 <div class="container">
-	<div class="row">
-		<div class="col-md-4">
-			<div class="row">
-				<div class="col-md-12 product-images">
-					<?php woocommerce_get_template( 'single-product/product-image.php' ); ?>
-				</div>
-				<div class="col-md-12 social-sharing">
-					<span>Share: </span>
-					<a href="http://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>"><i class="fa fa-facebook"></i> Facebook</a>
-					<a href="http://twitter.com/home?status=<?php the_title(); ?> - <?php the_permalink(); ?>"><i class="fa fa-twitter"></i> Twitter</a>
-					<a href="http://www.pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&media=<?php echo wp_get_attachment_url( get_post_thumbnail_id() ); ?>&description=<?php bloginfo('name'); ?> - <?php the_title(); ?>"><i class="fa fa-pinterest"></i> Pinterest</a>
+	<div itemscope itemtype="http://schema.org/Product" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
+		<div class="row">
+			<div class="col-sm-4 col-md-4">
+				<div class="row">
+					<div class="col-md-12 product-images">
+						<h1 class="product-title text-center visible-xs"><?php the_title(); ?></h1>
+						<?php woocommerce_get_template( 'single-product/product-image.php' ); ?>
+					</div>
+					<div class="col-md-12 social-sharing hidden-xs">
+						<span>Share: </span>
+						<a href="http://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>"><i class="fa fa-facebook"></i> Facebook</a>
+						<a href="http://twitter.com/home?status=<?php the_title(); ?> - <?php the_permalink(); ?>"><i class="fa fa-twitter"></i> Twitter</a>
+						<a href="http://www.pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&media=<?php echo wp_get_attachment_url( get_post_thumbnail_id() ); ?>&description=<?php bloginfo('name'); ?> - <?php the_title(); ?>"><i class="fa fa-pinterest"></i> Pinterest</a>
+					</div>
 				</div>
 			</div>
+			<!-- Form start here -->
+			<?php do_action('add_to_cart' ); ?>
+			<!-- Form End about here -->
 		</div>
-		<!-- Form start here -->
-		<?php do_action('add_to_cart' ); ?>
-		
-		<!-- Form End about here -->
-	</div>
+	</div><!-- #product-<?php the_ID(); ?> -->
 </div>
-
-<div class="container">
 
 <?php
 	/**
@@ -44,8 +44,6 @@ global $woocommerce, $product, $post;
 	 */
 	 do_action( 'woocommerce_before_single_product' );
 ?>
-
-<div itemscope itemtype="http://schema.org/Product" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 	<?php
 		/**
@@ -57,7 +55,7 @@ global $woocommerce, $product, $post;
 		//do_action( 'woocommerce_before_single_product_summary' );
 	?>
 
-	<div class="summary entry-summary">
+	<div class="summary entry-summary hidden">
 
 		<?php
 			/**
@@ -84,26 +82,13 @@ global $woocommerce, $product, $post;
 		 * @hooked woocommerce_output_product_data_tabs - 10
 		 * @hooked woocommerce_output_related_products - 20
 		 */
-		do_action( 'woocommerce_after_single_product_summary' );
+		 //do_action( 'woocommerce_output_product_data_tabs' );
 	?>
-
+	
+	<?php do_action('product_tabs'); ?>
 
 
 	<?php get_template_part('swatches'); ?>
-<?php do_action( 'woocommerce_after_single_product' ); ?>
-</div>  <!-- Extra div...not sure why it's there -->
-</div><!-- #product-<?php the_ID(); ?> -->
-</div><!-- END: .container -->
+	<?php get_template_part('ask-a-question'); ?>
+<?php //do_action( 'woocommerce_after_single_product' ); ?>
 
-<div class="container">
-	<!-- Button trigger modal -->
-			<button class="btn btn-champagne woods-active" data-toggle="modal" data-target="#swatchModal">
-				Woods
-			</button>
-			<button class="btn btn-default metals-active" data-toggle="modal" data-target="#swatchModal">
-				Metals
-			</button>
-			<button class="btn btn-gray-light btn-sm gemstones-active" data-toggle="modal" data-target="#swatchModal">
-				Gemstones
-			</button>
-</div>

@@ -494,6 +494,7 @@ function short_title($limit) {
 }
 
 add_action( 'add_to_cart', 'woocommerce_template_single_add_to_cart', 30 );
+add_action( 'product_tabs', 'woocommerce_output_product_data_tabs', 10 );
 
 add_action( 'woocommerce_cart_loaded_from_session', 'set_insure_session');
 function set_insure_session() {

@@ -16,7 +16,6 @@
 				
       <div class="modal-body">
 				
-        
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<?php $terms = get_terms('material_type');

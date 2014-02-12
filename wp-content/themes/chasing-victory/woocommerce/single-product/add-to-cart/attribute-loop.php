@@ -48,6 +48,3 @@
 			?>
 		</select>
 	</div><!-- END: .select-styled -->
-	<div class="view-swatch">
-		<a href="#">View Swatches</a>
-	</div>

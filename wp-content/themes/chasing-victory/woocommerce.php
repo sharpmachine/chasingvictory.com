@@ -26,20 +26,22 @@
 			</div>
 		</div>
 	</div>
+</div>
 <?php endif; ?>
 
-	<div class="row catalog">
+	
 
-			<?php if(is_page('home')): ?>
-
+			<?php if(is_page('home') || is_archive()): ?>
+			<div class="container">
+				<div class="row catalog">
 				<?php if ( have_posts() ) : ?>
-
+					
 						<?php while ( have_posts() ) : the_post(); ?>
 
 							<?php woocommerce_get_template_part( 'content', 'product' ); ?>
 
 						<?php endwhile; // end of the loop. ?>
-
+					
 				<?php else : ?>
 
 					<?php if ( ! woocommerce_product_subcategories( array( 'before' => woocommerce_product_loop_start( false ), 'after' => woocommerce_product_loop_end( false ) ) ) ) : ?>
@@ -47,23 +49,18 @@
 						<p><?php _e( 'No products found which match your selection.', 'woocommerce' ); ?></p>
 
 					<?php endif; ?>
-
+						
 				<?php endif; ?>
-	</div>
-</div>
+					</div>
+					<hr class="champagn">
+					<blockquote class="call-to-action">
+						<p class="text-center"><span>Looking for custom?</span><a href="<?php bloginfo('url'); ?>/quote-request" class="btn btn-default btn-champagne">Get a quote request</a></p>
+					</blockquote>
+				</div>
 			<?php else: ?>
 
 				<?php woocommerce_content(); ?>
 
 			<?php endif; ?>
-
-	
-<div class="container">
-	<hr class="champagn">
-	<blockquote class="call-to-action">
-		<p class="text-center">Looking for custom? <br> <a href="<?php bloginfo('url'); ?>/quote-request" class="btn btn-default">Get a quote request</a></p>
-	</blockquote>
-</div>	
-
 
 <?php get_footer(); ?>

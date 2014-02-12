@@ -69,7 +69,7 @@ $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 								</td>
 
 								<!-- Product Name -->
-								<td class="product-name">
+								<td class="product-name text-left">
 									<?php
 										if ( ! $_product->is_visible() || ( ! empty( $_product->variation_id ) && ! $_product->parent_is_visible() ) )
 											echo apply_filters( 'woocommerce_in_cart_product_title', $_product->get_title(), $values, $cart_item_key );
@@ -87,7 +87,7 @@ $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 								</td>
 
 								<!-- Quantity inputs -->
-								<td class="product-quantity">
+								<td class="product-quantity text-center">
 									<?php
 										if ( $_product->is_sold_individually() ) {
 											$product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
@@ -110,7 +110,7 @@ $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 								</td>
 
 								<!-- Product price -->
-								<td class="product-price">
+								<td class="product-price text-center">
 									<?php
 										$product_price = get_option('woocommerce_tax_display_cart') == 'excl' ? $_product->get_price_excluding_tax() : $_product->get_price_including_tax();
 
@@ -119,7 +119,7 @@ $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 								</td>
 
 								<!-- Product subtotal -->
-								<td class="product-subtotal">
+								<td class="product-subtotal text-center">
 									<?php
 										echo apply_filters( 'woocommerce_cart_item_subtotal', $woocommerce->cart->get_product_subtotal( $_product, $values['quantity'] ), $values, $cart_item_key );
 									?>

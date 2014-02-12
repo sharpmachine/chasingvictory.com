@@ -10,6 +10,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $woocommerce, $product;
+// global $woocommerce, $product, $post;
 
 if ( ! $product->is_purchasable() ) return;
 ?>
@@ -29,19 +30,29 @@ if ( ! $product->is_purchasable() ) return;
 
 	<form class="cart" method="post" enctype='multipart/form-data'>
 
-	 	<?php do_action('woocommerce_before_add_to_cart_button'); ?>
-
+	 	<?php //do_action('woocommerce_before_add_to_cart_button'); ?>
+		<!-- Start QTY -->
 	 	<?php
-	 		if ( ! $product->is_sold_individually() )
-	 			woocommerce_quantity_input( array(
-	 				'min_value' => apply_filters( 'woocommerce_quantity_input_min', 1, $product ),
-	 				'max_value' => apply_filters( 'woocommerce_quantity_input_max', $product->backorders_allowed() ? '' : $product->get_stock_quantity(), $product )
-	 			) );
+	 		// if ( ! $product->is_sold_individually() )
+	 		// 	woocommerce_quantity_input( array(
+	 		// 		'min_value' => apply_filters( 'woocommerce_quantity_input_min', 1, $product ),
+	 		// 		'max_value' => apply_filters( 'woocommerce_quantity_input_max', $product->backorders_allowed() ? '' : $product->get_stock_quantity(), $product )
+	 		// 	) );
 	 	?>
 
-	 	<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product->id ); ?>" />
+	 	<div class="col-sm-8 col-md-5 product-details">
+			<?php woocommerce_get_template( 'single-product/product-details.php' ); ?>
+		</div>
+		<div class="clear visible-sm"></div>
+		<div class="col-sm-12 col-md-3 product-add-to-cart">
+			<?php woocommerce_get_template( 'single-product/product-cart-summary.php' ); ?>
+			<!-- Start button -->
+		 	<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product->id ); ?>" />
 
-	 	<button type="submit" class="single_add_to_cart_button button alt"><?php echo apply_filters('single_add_to_cart_text', __( 'Add to cart', 'woocommerce' ), $product->product_type); ?></button>
+		 	<button type="submit" class="single_add_to_cart_button button alt btn btn-default btn-block"><?php echo apply_filters('single_add_to_cart_text', __( 'Add to cart', 'woocommerce' ), $product->product_type); ?></button>
+		</div>
+			
+		
 
 	 	<?php do_action('woocommerce_after_add_to_cart_button'); ?>
 

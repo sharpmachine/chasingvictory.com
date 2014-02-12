@@ -11,7 +11,6 @@ jQuery(document).ready(function($) {
 	$("li.page_item_has_children > a").attr('data-toggle','dropdown');
 	$("a.dropdown-toggle").append('<b class="caret"></b>');
 	$("ul.children").addClass('dropdown-menu');
-	$("ul.page-numbers").addClass('pagination');
 
 	// Add bootstrap pagination class to WordPress pagination
 	$("ul.page-numbers").addClass('pagination');
@@ -41,18 +40,20 @@ jQuery(document).ready(function($) {
 	$('#jumbotron-standard .item:first-child, #jumbotron-cinematic .item:first-child').addClass("active");
 	$('#jumbotron-standard li, #jumbotron-cinematic li').addClass("active");
 
-	$('.woods-active').click(function(){
-		$('li.metals, li.gemstones, #woods, #gemstones').removeClass('active');
-		$('li.woods, #woods').addClass('active');
-	});
-	$('.metals-active').click(function(){
-		$('li.woods, li.gemstones, #woods, #gemstones').removeClass('active');
-		$('li.metals, #metals').addClass('active');
-	});
-	$('.gemstones-active').click(function(){
-		$('li.woods, li.metals, #woods, #metals').removeClass('active');
-		$('li.gemstones, #gemstones').addClass('active');
-	});
+	// $('.woods-active').click(function(){
+	// 	$('li.metals, li.gemstones, #woods, #gemstones').removeClass('active');
+	// 	$('li.woods, #woods').addClass('active');
+	// });
+	// $('.metals-active').click(function(){
+	// 	$('li.woods, li.gemstones, #woods, #gemstones').removeClass('active');
+	// 	$('li.metals, #metals').addClass('active');
+	// });
+	// $('.gemstones-active').click(function(){
+	// 	$('li.woods, li.metals, #woods, #metals').removeClass('active');
+	// 	$('li.gemstones, #gemstones').addClass('active');
+	// });
+
+	$('.nav-tabs > li:first-child, .tab-content .tab-pane:first-child').addClass('active');
 
 	$('#layaway-info').popover('hide');
 
@@ -74,12 +75,6 @@ jQuery(document).ready(function($) {
 	});
 	
 });
-
-// Upload form style
-// document.getElementById("uploadBtn").onchange = function () {
-//     document.getElementById("uploadFile").value = this.value;
-// };
-
 
 
 
