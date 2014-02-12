@@ -494,3 +494,58 @@ function short_title($limit) {
 }
 
 add_action( 'add_to_cart', 'woocommerce_template_single_add_to_cart', 30 );
+
+add_action( 'woocommerce_cart_loaded_from_session', 'set_insure_session');
+function set_insure_session() {
+	global $woocommerce;
+
+	if (isset($_GET['insure'])) {
+		if ($_GET['insure'] == '1') {
+			$woocommerce->session->set('insure', true);
+		} else {
+			$woocommerce->session->set('insure', false);
+		}
+	}
+}
+
+function cv_shipping_methods() {
+	global $woocommerce;
+	$available_methods = array();
+	$fedex = new WC_Shipping_Fedex();
+	$fedex->insure_contents = true;
+	foreach ($woocommerce->shipping->packages as $package) {
+		$fedex->calculate_shipping($package);
+		foreach ($fedex->rates as $rate) {
+			$rate->label .= ' (insured)';
+			$available_methods[$rate->id] = $rate;
+		}
+	}
+	return $available_methods;
+}
+
+add_action('woocommerce_calculated_total', 'cv_recalculate_total', 10, 2);
+function cv_recalculate_total($total, $cart) {
+	global $woocommerce;
+	if ($woocommerce->session->insure) {
+		$available_methods = cv_shipping_methods();
+		if (isset($available_methods[$woocommerce->session->chosen_shipping_method])) {
+			$shipping = $available_methods[$woocommerce->session->chosen_shipping_method];
+			$total = doubleval($total);
+			$total -= doubleval($cart->shipping_total);
+			$total += doubleval($shipping->cost);
+			$total = max(0, $total);
+			$total = number_format($total, $cart->dp, '.', '');
+		}
+	}
+	return $total;
+}
+
+add_action('woocommerce_available_shipping_methods', 'cv_recalculate_shipping', 10, 1);
+function cv_recalculate_shipping($rates) {
+	global $woocommerce;
+	if ($woocommerce->session->insure == true) {
+		return cv_shipping_methods();
+	} else {
+		return $rates;
+	}
+}

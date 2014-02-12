@@ -12,9 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 global $woocommerce;
 
 $available_methods = $woocommerce->shipping->get_available_shipping_methods();
-?>
 
-		
+?>
 
 <div id="order_review">
 	<div class="container">

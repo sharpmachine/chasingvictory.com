@@ -64,12 +64,16 @@ jQuery(document).ready(function($) {
 	});
 
 	$('.product-filter-dropdown').change(function() {
-		var $this = $(this);
-		location.href = "?product_cat=" + $this.val();
+		location.href = "?product_cat=" + $(this).val();
+	});
+
+	$('.entry-content').on('change', '#add_insurance', function() {
+		checked = $(this).is(':checked');
+		console.log('lasdfasdfasdf');
+		location.href = "?insure=" + (checked ? '1' : '0');
 	});
 	
 });
-
 
 // Upload form style
 // document.getElementById("uploadBtn").onchange = function () {

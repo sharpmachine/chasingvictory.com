@@ -52,15 +52,16 @@ if ( $available_methods ) {
 	// Show radio buttons for methods
 	} else {
 
+		$insure_checked = $woocommerce->session->insure == true ? ' checked ' : '';
+
 		echo '<ul id="shipping_method" class="list-unstyled">
 						<div class="form-group">
 							<div class="checkbox">
-							<input type="checkbox" name="add_insurance" id="add_insurance" />
+							<input type="checkbox" name="add_insurance" id="add_insurance"' . $insure_checked . ' />
 							<label for="add_insurance">Add Insurance <small><em>Note: Insured orders are only shipped via FedEx.</em></small></label>
 							</div>
 						</div>
-
-						<p><small><em>Rates shown include shipping and insurance.</em></small></p>
+						
 						<div class="form-group">';
 
 		foreach ( $available_methods as $method )

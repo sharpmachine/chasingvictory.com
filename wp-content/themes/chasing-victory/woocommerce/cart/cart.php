@@ -12,6 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 global $woocommerce;
 
 $woocommerce->show_messages();
+
 $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 ?>
 
@@ -159,7 +160,7 @@ $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 					<div class="col-sm-6 col-md-8">
 						<h3>Rates &amp; Insurance</h3>
 						<hr>
-						<?php woocommerce_get_template( 'cart/shipping-methods.php', array( 'available_methods' => $available_methods ) ); ?>
+						<?php woocommerce_get_template( 'cart/shipping-methods.php', array('available_methods' => $available_methods )); ?>
 					</div>
 				</div>
 			</div>
