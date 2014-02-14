@@ -509,26 +509,38 @@ function set_insure_session() {
 	}
 }
 
-function cv_shipping_methods() {
-	global $woocommerce;
-	$available_methods = array();
-	$fedex = new WC_Shipping_Fedex();
-	$fedex->insure_contents = true;
-	foreach ($woocommerce->shipping->packages as $package) {
-		$fedex->calculate_shipping($package);
-		foreach ($fedex->rates as $rate) {
-			$rate->label .= ' (insured)';
-			$available_methods[$rate->id] = $rate;
+class CV_Shipping {
+	public static function shipping_methods() {
+		global $woocommerce;
+		$packages = $woocommerce->shipping->packages;
+		$cache_hash = md5(serialize($packages));
+		$methods = array();
+
+		$last_hash = $woocommerce->session->get('shipping_hash');
+		if ($last_hash != $cache_hash) {
+			$woocommerce->session->set('shipping_hash', $cache_hash);
+			$fedex = new WC_Shipping_Fedex();
+			$fedex->insure_contents = true;
+			foreach ($woocommerce->shipping->packages as $package) {
+				$fedex->calculate_shipping($package);
+				foreach ($fedex->rates as $rate) {
+					$rate->label .= ' (insured)';
+					$methods[$rate->id] = $rate;
+				}
+			}
+			$woocommerce->session->set('shipping_methods', $methods);
+		} else {
+			$methods = $woocommerce->session->get('shipping_methods');
 		}
+		return $methods;
 	}
-	return $available_methods;
 }
 
 add_action('woocommerce_calculated_total', 'cv_recalculate_total', 10, 2);
 function cv_recalculate_total($total, $cart) {
 	global $woocommerce;
 	if ($woocommerce->session->insure) {
-		$available_methods = cv_shipping_methods();
+		$available_methods = CV_Shipping::shipping_methods();
 		if (isset($available_methods[$woocommerce->session->chosen_shipping_method])) {
 			$shipping = $available_methods[$woocommerce->session->chosen_shipping_method];
 			$total = doubleval($total);
@@ -545,7 +557,7 @@ add_action('woocommerce_available_shipping_methods', 'cv_recalculate_shipping', 
 function cv_recalculate_shipping($rates) {
 	global $woocommerce;
 	if ($woocommerce->session->insure == true) {
-		return cv_shipping_methods();
+		return CV_Shipping::shipping_methods();
 	} else {
 		return $rates;
 	}
