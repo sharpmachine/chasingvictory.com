@@ -81,35 +81,35 @@ function woocommerce_stripe_init() {
 		if ( ! $credit_cards )
 			return;
 		?>
-			<h2 id="saved-cards" style="margin-top:40px;"><?php _e('Saved cards', 'wc_stripe' ); ?></h2>
-			<table class="shop_table">
-				<thead>
-					<tr>
-						<th><?php _e('Card ending in...','wc_stripe'); ?></th>
-						<th><?php _e('Expires','wc_stripe'); ?></th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php foreach ( $credit_cards as $i => $credit_card ) : ?>
-					<tr>
-                        <td><?php esc_html_e($credit_card['active_card']); ?></td>
-                        <td><?php echo esc_html($credit_card['exp_month']) . '/' . esc_html($credit_card['exp_year']); ?></td>
-						<td>
-                            <form action="" method="POST">
-                                <?php wp_nonce_field ( 'stripe_del_card' ); ?>
-                                <input type="hidden" name="stripe_delete_card" value="<?php echo esc_attr($i); ?>">
-                                <input type="submit" class="button" value="<?php _e( 'Delete card', 'wc_stripe' ); ?>">
-                            </form>
-						</td>
-					</tr>
-					<?php endforeach; ?>
-				</tbody>
-			</table>
-		<?php
-	}
+		<h2 id="saved-cards" style="margin-top:40px;"><?php _e('Saved cards', 'wc_stripe' ); ?></h2>
+		<table class="shop_table">
+			<thead>
+				<tr>
+					<th><?php _e('Card ending in...','wc_stripe'); ?></th>
+					<th><?php _e('Expires','wc_stripe'); ?></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ( $credit_cards as $i => $credit_card ) : ?>
+				<tr>
+					<td><?php esc_html_e($credit_card['active_card']); ?></td>
+					<td><?php echo esc_html($credit_card['exp_month']) . '/' . esc_html($credit_card['exp_year']); ?></td>
+					<td>
+						<form action="" method="POST">
+							<?php wp_nonce_field ( 'stripe_del_card' ); ?>
+							<input type="hidden" name="stripe_delete_card" value="<?php echo esc_attr($i); ?>">
+							<input type="submit" class="button" value="<?php _e( 'Delete card', 'wc_stripe' ); ?>">
+						</form>
+					</td>
+				</tr>
+			<?php endforeach; ?>
+		</tbody>
+	</table>
+	<?php
+}
 
-	add_action( 'woocommerce_after_my_account', 'woocommerce_stripe_saved_cards' );
+add_action( 'woocommerce_after_my_account', 'woocommerce_stripe_saved_cards' );
 
 	/**
 	 * Capture payment when the order is changed from on-hold to complete or processing
@@ -128,7 +128,7 @@ function woocommerce_stripe_init() {
 
 				$result = $stripe->stripe_request( array(
 					'amount' => $order->order_total * 100
-				), 'charges/' . $charge . '/capture' );
+					), 'charges/' . $charge . '/capture' );
 
 				if ( is_wp_error( $result ) ) {
 					$order->add_order_note( __( 'Unable to capture charge!', 'wc_stripe' ) . ' ' . $result->get_error_message() );
@@ -164,7 +164,7 @@ function woocommerce_stripe_init() {
 
 				$result = $stripe->stripe_request( array(
 					'amount' => $order->order_total * 100
-				), 'charges/' . $charge . '/refund' );
+					), 'charges/' . $charge . '/refund' );
 
 				if ( is_wp_error( $result ) ) {
 					$order->add_order_note( __( 'Unable to refund charge!', 'wc_stripe' ) . ' ' . $result->get_error_message() );
@@ -183,13 +183,13 @@ function woocommerce_stripe_init() {
 	/**
  	* Add the Gateway to WooCommerce
  	*/
-	function add_stripe_gateway($methods) {
-		if ( class_exists( 'WC_Subscriptions_Order' ) )
-			$methods[] = 'WC_Gateway_Stripe_Subscriptions';
-		else
-			$methods[] = 'WC_Gateway_Stripe';
-		return $methods;
-	}
+ 	function add_stripe_gateway($methods) {
+ 		if ( class_exists( 'WC_Subscriptions_Order' ) )
+ 			$methods[] = 'WC_Gateway_Stripe_Subscriptions';
+ 		else
+ 			$methods[] = 'WC_Gateway_Stripe';
+ 		return $methods;
+ 	}
 
-	add_filter('woocommerce_payment_gateways', 'add_stripe_gateway' );
-}
+ 	add_filter('woocommerce_payment_gateways', 'add_stripe_gateway' );
+ }

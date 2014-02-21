@@ -64,7 +64,7 @@ function smm_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
 		'primary' => __( 'Primary Navigation', 'smm' ),
-	) );
+		) );
 }
 endif;
 
@@ -179,23 +179,23 @@ if ( ! function_exists( 'smm_comment' ) ) :
 function smm_comment( $comment, $args, $depth ) {
 	$GLOBALS['comment'] = $comment;
 	switch ( $comment->comment_type ) :
-		case '' :
+	case '' :
 	?>
 	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
 		<div id="comment-<?php comment_ID(); ?>">
-		<div class="comment-author vcard">
-			<?php echo get_avatar( $comment, 40 ); ?>
-			<?php printf( __( '%s <span class="says">says:</span>', 'smm' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link() ) ); ?>
-		</div><!-- .comment-author .vcard -->
-		<?php if ( $comment->comment_approved == '0' ) : ?>
+			<div class="comment-author vcard">
+				<?php echo get_avatar( $comment, 40 ); ?>
+				<?php printf( __( '%s <span class="says">says:</span>', 'smm' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link() ) ); ?>
+			</div><!-- .comment-author .vcard -->
+			<?php if ( $comment->comment_approved == '0' ) : ?>
 			<em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'smm' ); ?></em>
 			<br />
 		<?php endif; ?>
 
 		<div class="comment-meta commentmetadata"><a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
 			<?php
-				/* translators: 1: date, 2: time */
-				printf( __( '%1$s at %2$s', 'smm' ), get_comment_date(),  get_comment_time() ); ?></a><?php edit_comment_link( __( '(Edit)', 'smm' ), ' ' );
+			/* translators: 1: date, 2: time */
+			printf( __( '%1$s at %2$s', 'smm' ), get_comment_date(),  get_comment_time() ); ?></a><?php edit_comment_link( __( '(Edit)', 'smm' ), ' ' );
 			?>
 		</div><!-- .comment-meta .commentmetadata -->
 
@@ -207,17 +207,17 @@ function smm_comment( $comment, $args, $depth ) {
 	</div><!-- #comment-##  -->
 
 	<?php
-			break;
-		case 'pingback'  :
-		case 'trackback' :
+	break;
+	case 'pingback'  :
+	case 'trackback' :
 	?>
 	<li class="post pingback">
 		<p><?php _e( 'Pingback:', 'smm' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( __( '(Edit)', 'smm' ), ' ' ); ?></p>
-	<?php
-			break;
-	endswitch;
-}
-endif;
+		<?php
+		break;
+		endswitch;
+	}
+	endif;
 
 /**
  * Register widgetized areas, including two sidebars and four widget-ready columns in the footer.
@@ -238,7 +238,7 @@ function smm_widgets_init() {
 		'after_widget' => '</li>',
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
-	) );
+		) );
 
 	// Area 2, located below the Primary Widget Area in the sidebar. Empty by default.
 	register_sidebar( array(
@@ -249,7 +249,7 @@ function smm_widgets_init() {
 		'after_widget' => '</li>',
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
-	) );
+		) );
 
 	// Area 3, located in the footer. Empty by default.
 	register_sidebar( array(
@@ -260,7 +260,7 @@ function smm_widgets_init() {
 		'after_widget' => '</li>',
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
-	) );
+		) );
 
 	// Area 4, located in the footer. Empty by default.
 	register_sidebar( array(
@@ -271,7 +271,7 @@ function smm_widgets_init() {
 		'after_widget' => '</li>',
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
-	) );
+		) );
 
 	// Area 5, located in the footer. Empty by default.
 	register_sidebar( array(
@@ -282,7 +282,7 @@ function smm_widgets_init() {
 		'after_widget' => '</li>',
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
-	) );
+		) );
 
 	// Area 6, located in the footer. Empty by default.
 	register_sidebar( array(
@@ -293,7 +293,7 @@ function smm_widgets_init() {
 		'after_widget' => '</li>',
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
-	) );
+		) );
 }
 /** Register sidebars by running smm_widgets_init() on the widgets_init hook. */
 add_action( 'widgets_init', 'smm_widgets_init' );
@@ -328,13 +328,13 @@ function smm_posted_on() {
 			get_permalink(),
 			esc_attr( get_the_time() ),
 			get_the_date()
-		),
+			),
 		sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s">%3$s</a></span>',
 			get_author_posts_url( get_the_author_meta( 'ID' ) ),
 			sprintf( esc_attr__( 'View all posts by %s', 'smm' ), get_the_author() ),
 			get_the_author()
-		)
-	);
+			)
+		);
 }
 endif;
 
@@ -361,12 +361,12 @@ function smm_posted_in() {
 		$tag_list,
 		get_permalink(),
 		the_title_attribute( 'echo=0' )
-	);
+		);
 }
 endif;
 
 function bootstrap_menu() { ?>
- <?php wp_list_pages('title_li&show_home=1'); ?>
+<?php wp_list_pages('title_li&show_home=1'); ?>
 <?php }
 add_filter( 'wp_page_menu', 'bootstrap_menu' );
 
@@ -426,9 +426,9 @@ echo paginate_links( array(
 
 // Enqueue jQuery right from the get go for Hashgrid
 function getgo_method() {
-    wp_enqueue_script( 'jquery' );
+	wp_enqueue_script( 'jquery' );
 }    
- 
+
 add_action('wp_enqueue_scripts', 'getgo_method');
 
 
@@ -439,11 +439,11 @@ add_action('woocommerce_before_main_content', 'my_theme_wrapper_start', 10);
 add_action('woocommerce_after_main_content', 'my_theme_wrapper_end', 10);
 
 function my_theme_wrapper_start() {
-  echo '<section id="main">';
+	echo '<section id="main">';
 }
 
 function my_theme_wrapper_end() {
-  echo '</section>';
+	echo '</section>';
 }
 
 add_theme_support( 'woocommerce' );
@@ -464,33 +464,33 @@ function custom_image_sizes_choose( $sizes ) {
 
 function remove_acf_menu()
 {
- 
+	
     // provide a list of usernames who can edit custom field definitions here
-    $admins = array( 
-        'sharpmachine'
-    );
- 
+	$admins = array( 
+		'sharpmachine'
+		);
+	
     // get the current user
-    $current_user = wp_get_current_user();
- 
+	$current_user = wp_get_current_user();
+	
     // match and remove if needed
-    if( !in_array( $current_user->user_login, $admins ) )
-    {
-        remove_menu_page('edit.php?post_type=acf');
-    }
- 
+	if( !in_array( $current_user->user_login, $admins ) )
+	{
+		remove_menu_page('edit.php?post_type=acf');
+	}
+	
 }
- 
+
 add_action( 'admin_menu', 'remove_acf_menu', 999 );
 
 function short_title($limit) {
-		global $post;
-    $title = get_the_title($post->ID);
-    if(strlen($title) > $limit) {
-        $title = substr($title, 0, $limit) . '...';
-    }
-    
-    echo $title;
+	global $post;
+	$title = get_the_title($post->ID);
+	if(strlen($title) > $limit) {
+		$title = substr($title, 0, $limit) . '...';
+	}
+	
+	echo $title;
 }
 
 add_action( 'add_to_cart', 'woocommerce_template_single_add_to_cart', 30 );
@@ -561,4 +561,10 @@ function cv_recalculate_shipping($rates) {
 	} else {
 		return $rates;
 	}
+}
+
+
+add_action('admin_menu','wphidenag');
+function wphidenag() {
+	remove_action( 'admin_notices', 'update_nag', 3 );
 }
