@@ -290,12 +290,18 @@ body.page-id-33 {
 }
 
 /*..................................the home page */
+.site-title {
+	@media (max-width: @screen-xs-max) {
+		margin-top: -48px;
+		font-size: 36px;
+	}
+}
 // Filters
 .filters {
 	margin-bottom: 32px;
 
 	.select-styled {
-		width: 200px;
+		// width: 200px;
 		margin-right: 24px;
 
 		&:last-child {
@@ -768,7 +774,9 @@ p.stars {
 	top: -10px;
 }
 
-p.comment-form-comment {
+p.comment-form-comment,
+p.comment-form-author,
+p.comment-form-email {
 	clear: both;
 
 	label {
@@ -777,6 +785,10 @@ p.comment-form-comment {
 
 	textarea {
 		width: 100%;
+	}
+
+	span.required {
+		display: none;
 	}
 }
 

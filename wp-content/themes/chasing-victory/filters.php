@@ -1,6 +1,7 @@
 
 	<?php $wcatTerms = get_terms('product_cat', array('hide_empty' => 1, 'orderby' => 'ASC',  'parent' =>0)); //, 'exclude' => '17,77'
 		foreach($wcatTerms as $wcatTerm): ?>
+		<div class="col-sm-3">
 			<div class="select-styled champagn-border">
 				<select name="product_cat"  id="dropdown_product_cat" class="form-control product-filter-dropdown">
 					<option><?php echo $wcatTerm->name; ?></option>
@@ -22,6 +23,7 @@
 				?>  
 				<select>
 			</div>
+		</div>
 	<?php 
 		endforeach; 
 	?>

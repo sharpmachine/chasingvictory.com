@@ -35,8 +35,8 @@
             <h3>Social</h3>
             <div class="social-media">
               <a href="https://www.facebook.com/pages/Chasing-Victory-Wooden-Rings/198903756809909"><i class="fa fa-facebook"></i></a> 
-              <a href="http://twitter.com/chasingvictory"><i class="fa fa-twitter"></i></a>
-              <a href="http://www.pinterest.com/chasingvictory"><i class="fa fa-pinterest"></i></a>
+              <a href="http://twitter.com/chasing_victory"><i class="fa fa-twitter"></i></a>
+              <a href="http://www.pinterest.com/csvictory"><i class="fa fa-pinterest"></i></a>
             </div>
           </div>
         </div>

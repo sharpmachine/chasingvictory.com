@@ -57,7 +57,7 @@ jQuery(document).ready(function($) {
 
 	$('#layaway-info').popover('hide');
 
-	$('.widget_product_categories select').addClass('form-control champagn-border');
+	$('.widget_product_categories select').addClass('form-control champagn-border product-filter-dropdown');
 
 	$('a.custom-options').click(function(e){
 		e.preventDefault();

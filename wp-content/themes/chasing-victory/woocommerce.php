@@ -17,14 +17,14 @@
 <?php if(is_page('home') || is_tax('product_cat')): ?>
 <div class="container">
 	<div class="row filters text-center">
-		<div class="col-xs-12">
+		<!-- <div class="col-xs-12"> -->
 			<div class="hidden-xs">
 				<?php get_template_part('filters'); ?>
 			</div>
 			<div class="visible-xs">
 				<?php the_widget('WC_Widget_Product_Categories', 'dropdown=1&hierarchical=true'); ?>
 			</div>
-		</div>
+		<!-- </div> -->
 	</div>
 </div>
 <?php endif; ?>
