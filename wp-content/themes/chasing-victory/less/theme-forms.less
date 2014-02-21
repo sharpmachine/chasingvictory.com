@@ -22,12 +22,23 @@
 		position: relative;
 		z-index: 2;
 		display: block;
-		-moz-appearance: window;
-		-moz-padding-end: 19px;
+		// -moz-appearance: window;
+		-moz-appearance: none;
+		-moz-padding-end: 10px;
+		-o-padding-end: 10px;
 		background: transparent;
 		background-color: transparent;
 		-webkit-appearance: none;
+		-o-appearance: window;
+		-ms-appearance: none;
 		appearance: none;
+		text-overflow: ''; /* this is important! */
+		overflow : hidden;
+		text-indent : 0.01px;
+
+		&::-ms-expand {
+			display: none;
+		}
 	}
 
 	&:after {
@@ -168,6 +179,12 @@ form.wpcf7-form {
 
 	textarea {
 		height: 232px !important;
+	}
+}
+
+#wpcf7-f309-p77-o1 {
+	input.btn-champagne {
+		.btn-champagne !important;
 	}
 }
 

@@ -5,7 +5,7 @@
     <div class="container">
       <div class="col-md-8 col-md-offset-2 col-sm-12">
         <div class="row">
-          <div class="col-sm-6 pull-right">
+          <div class="col-sm-6 newsletter-signup">
             <h3>Newsletter</h3>
 
             <!-- Begin MailChimp Signup Form -->
