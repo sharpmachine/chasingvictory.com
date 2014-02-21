@@ -58,31 +58,10 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="<?php bloginfo('template_directory'); ?>/js/transition.js"></script>
-    <script src="<?php bloginfo('template_directory'); ?>/js/alert.js"></script>
-    <script src="<?php bloginfo('template_directory'); ?>/js/modal.js"></script>
-    <script src="<?php bloginfo('template_directory'); ?>/js/dropdown.js"></script>
-    <script src="<?php bloginfo('template_directory'); ?>/js/scrollspy.js"></script>
-    <script src="<?php bloginfo('template_directory'); ?>/js/tab.js"></script>
-    <script src="<?php bloginfo('template_directory'); ?>/js/tooltip.js"></script>
-    <script src="<?php bloginfo('template_directory'); ?>/js/popover.js"></script>
-    <script src="<?php bloginfo('template_directory'); ?>/js/button.js"></script>
-    <script src="<?php bloginfo('template_directory'); ?>/js/collapse.js"></script>
-    <script src="<?php bloginfo('template_directory'); ?>/js/carousel.js"></script>
-    <script src="<?php bloginfo('template_directory'); ?>/js/affix.js"></script>
-    <script src="<?php bloginfo('template_directory'); ?>/js/retina.js"></script>
-    <script src="<?php bloginfo('template_directory'); ?>/js/holder.js"></script>
 
     <!-- scripts concatenated and minified via ant build script-->
-    <script src="<?php bloginfo ('template_directory'); ?>/js/plugins.js"></script>
-    <script src="<?php bloginfo ('template_directory'); ?>/js/script.js"></script>
-
-    <!-- Remove these before deploying to production -->
-    <script src="<?php bloginfo ('template_directory'); ?>/js/hashgrid.js" type="text/javascript"></script>
-
-    <script type="text/javascript">
-    var grid = new hashgrid({ numberOfGrids: 1 });
-    </script>
+    <script src="<?php bloginfo ('template_directory'); ?>/js/plugins-min.js"></script>
+    <script src="<?php bloginfo ('template_directory'); ?>/js/script-min.js"></script>
 
     <?php wp_footer(); ?>
   </body>

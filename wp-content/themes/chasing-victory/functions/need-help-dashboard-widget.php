@@ -23,8 +23,9 @@ function help_dashboard_widget_function() {
 		<ul style="width:40%;float:left;min-width:153px;">
 			<li style="color:#666;font-size:14px;border-bottom-style:solid;border-bottom-width:1px;border-bottom-color:#DFDFDF;padding-bottom:5px;margin-bottom:10px;">Videos Specific To Your Site:</li>
 			<li><a href="http://www.youtube.com/watch?v=IE_10_nwe0c" target="_blank">SEO Ultimate Tutorial</a></li>
-			<li><a href="#" target="_blank">Video</a></li>
-			<li><a href="#" target="_blank">Video</a></li>
+			<li><a href="http://youtu.be/RXPyRflCxeY" target="_blank">Managing Products</a></li>
+			<li><a href="http://youtu.be/3GPyniBWYdI" target="_blank">Managing Swatches</a></li>
+			<li><a href="http://youtu.be/h2ATuubY3Z0" target="_blank">Managing Jumbotron</a></li>
 		</ul>
 		
 		<p style="clear:both;padding-top:5px;margin-bottom:0.5em;color:#666;font-size:14px;">Helpful Quick Links:</p>
