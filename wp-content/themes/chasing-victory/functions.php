@@ -464,21 +464,21 @@ function custom_image_sizes_choose( $sizes ) {
 
 function remove_acf_menu()
 {
-	
+
     // provide a list of usernames who can edit custom field definitions here
 	$admins = array( 
 		'sharpmachine'
 		);
-	
+
     // get the current user
 	$current_user = wp_get_current_user();
-	
+
     // match and remove if needed
 	if( !in_array( $current_user->user_login, $admins ) )
 	{
 		remove_menu_page('edit.php?post_type=acf');
 	}
-	
+
 }
 
 add_action( 'admin_menu', 'remove_acf_menu', 999 );
@@ -489,7 +489,7 @@ function short_title($limit) {
 	if(strlen($title) > $limit) {
 		$title = substr($title, 0, $limit) . '...';
 	}
-	
+
 	echo $title;
 }
 
