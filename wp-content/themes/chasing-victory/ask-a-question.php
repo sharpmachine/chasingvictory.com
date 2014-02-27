@@ -45,7 +45,6 @@
               <span class="wpcf7-form-control-wrap textarea-709"><textarea name="textarea-709" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea wpcf7-validates-as-required form-control" aria-required="true" aria-invalid="false"></textarea></span><br /></p>
               <input type="submit" value="Send" class="wpcf7-form-control wpcf7-submit btn btn-default  pull-right" />
               <input type="submit" value="Cancel" class="btn btn-default btn-champagne pull-right" data-dismiss="modal" />
-              <!-- <button type="button" class="btn btn-default btn-champagne pull-right" data-dismiss="modal">Cancel</button> -->
             </p></div>
           </p></div>
         </p></div>
