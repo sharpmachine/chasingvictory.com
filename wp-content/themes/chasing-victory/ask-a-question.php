@@ -8,12 +8,12 @@
       </div>
       <div class="modal-body">
         <h4>Product: <?php the_title(); ?></h4>
-        <div class="wpcf7" id="wpcf7-f309-p77-o1"><form action="/chasingvictory.com/product/ebony-with-raw-diamond-dust-inlay/?codekitCB=413940516.985170#wpcf7-f309-p77-o1" method="post" class="wpcf7-form" novalidate="novalidate">
+        <div class="wpcf7" id="wpcf7-f530-p77-o1"><form action="/chasingvictory.com/product/ebony-with-raw-diamond-dust-inlay/?codekitCB=413940516.985170#wpcf7-f530-p77-o1" method="post" class="wpcf7-form" novalidate="novalidate">
           <div style="display: none;">
-            <input type="hidden" name="_wpcf7" value="309" />
+            <input type="hidden" name="_wpcf7" value="530" />
             <input type="hidden" name="_wpcf7_version" value="3.7" />
             <input type="hidden" name="_wpcf7_locale" value="en_US" />
-            <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f309-p77-o1" />
+            <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f530-p77-o1" />
             <input type="hidden" name="_wpnonce" value="e807a14507" />
           </div>
           <div class="row">

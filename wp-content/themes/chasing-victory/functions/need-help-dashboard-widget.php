@@ -32,7 +32,6 @@ function help_dashboard_widget_function() {
 		
 		<a href="http://login.mailchimp.com" target="_blank">Mailchimp Login</a> |
 		<a href="http://mailchimp.com/support/online-training" target="_blank">Mailchimp Training</a> |
-		<a href="http://docs.disqus.com/kb" target="_blank">Disqus Training</a> |
 		<a href="http://google.com/analytics" target="_blank">Analytics Login</a> | 	
 		<a href="http://mail.'. substr(get_bloginfo('url'), 7).'" target="_blank">Mail Login</a>
 		
