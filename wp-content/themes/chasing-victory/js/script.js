@@ -2,7 +2,7 @@
 
 */
 
-// Allows you to use the $ shortcut.  Put all your code  inside this wrapper
+// Allows you to use the $ shortcut.  Put all your code  inside this wrapper.
 jQuery(document).ready(function($) {
 	
 	// Forces WordPress to place nice with dropdowns
@@ -59,10 +59,10 @@ jQuery(document).ready(function($) {
 
 	$('.widget_product_categories select').addClass('form-control champagn-border product-filter-dropdown');
 
-	$('a.custom-options').click(function(e){
-		e.preventDefault();
-		$('.product-custom-options').slideToggle('fast');
-	});
+	// $('a.custom-options').click(function(e){
+	// 	e.preventDefault();
+	// 	$('.product-custom-options').slideToggle('fast');
+	// });
 
 	$('.product-filter-dropdown').change(function() {
 		location.href = "?product_cat=" + $(this).val();

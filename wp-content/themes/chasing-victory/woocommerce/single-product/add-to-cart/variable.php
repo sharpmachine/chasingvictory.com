@@ -23,7 +23,6 @@ global $woocommerce, $product, $post;
 			<p class="text-muted"><small><em>Some custom options cost extra.</em></small></p>
 			<div class="row">
 				<?php $loop = 0; foreach ( $attributes as $name => $options ) : $loop++; ?>
-				<?php if ($name != 'pa_sizes'): ?>
 				<div class="col-md-6">
 					<?php woocommerce_get_template('single-product/add-to-cart/attribute-loop.php',
 						array(
@@ -32,7 +31,6 @@ global $woocommerce, $product, $post;
 							'selected_attributes' => $selected_attributes,
 							)); ?>
 						</div>
-					<?php endif; ?>
 				<?php endforeach;?>
 			</div>
 			<div class="clearfix"></div>
@@ -47,12 +45,6 @@ global $woocommerce, $product, $post;
 
 	<div class="col-sm-12 col-md-3 product-add-to-cart">
 		<?php woocommerce_get_template( 'single-product/product-cart-summary.php' ); ?>
-
-<?php woocommerce_get_template('single-product/add-to-cart/attribute-loop.php', array(
-	'name' => 'pa_sizes', 
-	'options' => $attributes['pa_sizes'],
-	'selected_attributes' => $selected_attributes,
-	)); ?>
 
 	<?php //do_action('woocommerce_before_add_to_cart_button'); ?>
 	<div class="single_variation_wrap" style="display:none;">
