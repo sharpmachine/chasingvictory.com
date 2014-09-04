@@ -59,10 +59,10 @@ jQuery(document).ready(function($) {
 
 	$('.widget_product_categories select').addClass('form-control champagn-border product-filter-dropdown');
 
-	$('a.custom-options').click(function(e){
-		e.preventDefault();
-		$('.product-custom-options').slideToggle('fast');
-	});
+	// $('a.custom-options').click(function(e){
+	// 	e.preventDefault();
+	// 	$('.product-custom-options').slideToggle('fast');
+	// });
 
 	$('.product-filter-dropdown').change(function() {
 		location.href = "?product_cat=" + $(this).val();
