@@ -51,20 +51,27 @@ jQuery(function($) {
 		currentUri.path = currentUri.path + 'index.php';
 	}
 
+	//Special case: if post_type is not specified for edit.php and post-new.php,
+	//WordPress assumes it is "post". Here we make this explicit.
+	if ( (currentUri.file === 'edit.php') || (currentUri.file === 'post-new.php') ) {
+		if ( !currentUri.queryKey.hasOwnProperty('post_type') ) {
+			currentUri.queryKey['post_type'] = 'post';
+		}
+	}
+
     var adminMenu = $('#adminmenu');
 	adminMenu.find('li > a').each(function(index, link) {
 		var $link = $(link);
 
-		//Skip links that contain nothing but an "#anchor". Both AME and some
+		//Skip links that have no href or contain nothing but an "#anchor". Both AME and some
 		//other plugins (e.g. S2Member 120703) use them as separators.
-		if ($link.attr('href').substring(0, 1) == '#') {
+		if ( !$link.is('[href]') || ($link.attr('href').substring(0, 1) == '#') ) {
 			return;
 		}
 
 		var uri = parseUri(link.href);
 
-		//Special case: if post_type is not specified for edit.php and post-new.php,
-		//WordPress assumes it is "post". Here we make this explicit.
+		//Same as above - use "post" as the default post type.
 		if ( (uri.file === 'edit.php') || (uri.file === 'post-new.php') ) {
 			if ( !uri.queryKey.hasOwnProperty('post_type') ) {
 				uri.queryKey['post_type'] = 'post';

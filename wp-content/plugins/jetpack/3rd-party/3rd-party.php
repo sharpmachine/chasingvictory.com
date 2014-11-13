@@ -6,3 +6,5 @@
  */
 
 require_once( 'buddypress.php' );
+require_once( 'wpml.php' );
+require_once( 'bitly.php' );

@@ -8,6 +8,9 @@
  * currently registered hooks and the presence of specific files in admin/plugin folders.
  */
 abstract class ameMenuItem {
+	const unclickableTemplateId = '>special:none';
+	const unclickableTemplateClass = 'ame-unclickable-menu-item';
+
 	/**
 	 * @var array A partial list of files in /wp-admin/. Correct as of WP 3.8-RC1, 2013.12.04.
 	 * When trying to determine if a menu links to one of the default WP admin pages, it's faster
@@ -34,14 +37,15 @@ abstract class ameMenuItem {
 	 */
 	public static function fromWpItem($item, $position = 0, $parent = '') {
 		static $separator_count = 0;
+		$default_css_class = empty($parent) ? 'menu-top' : '';
 		$item = array(
 			'menu_title'   => $item[0],
 			'access_level' => $item[1], //= required capability
 			'file'         => $item[2],
 			'page_title'   => (isset($item[3]) ? $item[3] : ''),
-			'css_class'    => (isset($item[4]) ? $item[4] : 'menu-top'),
+			'css_class'    => (isset($item[4]) ? $item[4] : $default_css_class),
 			'hookname'     => (isset($item[5]) ? $item[5] : ''), //Used as the ID attr. of the generated HTML tag.
-			'icon_url'     => (isset($item[6]) ? $item[6] : 'images/generic.png'),
+			'icon_url'     => (isset($item[6]) ? $item[6] : 'dashicons-admin-generic'),
 			'position'     => $position,
 			'parent'       => $parent,
 		);
@@ -87,14 +91,16 @@ abstract class ameMenuItem {
 			'access_level' => 'read',
 			'extra_capability' => '',
 			'file' => '',
+			'page_heading' => '',
 	        'position' => 0,
 	        'parent' => '',
 
 	        //Fields that apply only to top level menus.
 	        'css_class' => 'menu-top',
 	        'hookname' => '',
-	        'icon_url' => 'images/generic.png',
+	        'icon_url' => 'dashicons-admin-generic',
 	        'separator' => false,
+			'colors' => false,
 
 	        //Internal fields that may not map directly to WP menu structures.
 			'open_in' => 'same_window', //'new_window', 'iframe' or 'same_window' (the default)
@@ -119,6 +125,7 @@ abstract class ameMenuItem {
 			'items' => array(), //List of sub-menu items.
 			'grant_access' => array(), //Per-role and per-user access. Supersedes role_access.
 			'role_access' => array(), //Per-role access settings.
+			'colors' => null,
 
 			'custom' => false,  //True if item is made-from-scratch and has no template.
 			'missing' => false, //True if our template is no longer present in the default admin menu. Note: Stored values will be ignored. Set upon merging.
@@ -134,12 +141,15 @@ abstract class ameMenuItem {
 		return array(
 			'menu_title' => 'Custom Menu',
 			'access_level' => 'read',
+			'extra_capability' => '',
 			'page_title' => '',
 			'css_class' => 'menu-top',
 			'hookname' => '',
-			'icon_url' => 'images/generic.png',
+			'icon_url' => 'dashicons-admin-generic',
 			'open_in' => 'same_window',
 			'is_plugin_page' => false,
+			'page_heading' => '',
+			'colors' => false,
 		);
 	}
 
@@ -211,6 +221,14 @@ abstract class ameMenuItem {
 
 		if ($parent_file === 'profile.php') {
 			$parent_file = 'users.php';
+		}
+
+		//Special case: In WP 4.0+ the URL of the "Appearance -> Customize" item is different on every admin page.
+		//This is because the URL includes a "return" parameter that contains the current page's URL. It also makes
+		//the template ID different on every page, so it's impossible to identify the menu. To fix that, lets remove
+		//the "return" parameter from the ID.
+		if ( ($parent_file === 'themes.php') && (strpos($item_file, 'customize.php?') === 0) ) {
+			$item_file = remove_query_arg('return', $item_file);
 		}
 
 		return $parent_file . '>' . $item_file;
@@ -369,6 +387,11 @@ abstract class ameMenuItem {
 		$menu_url = is_array($item_slug) ? self::get($item_slug, 'file') : $item_slug;
 		$parent_url = !empty($parent_slug) ? $parent_slug : 'admin.php';
 
+		//Workaround for WooCommerce 2.1.12: For some reason, it uses "&amp;" instead of a plain "&" to separate
+		//query parameters. We need a plain URL, not a HTML-entity-encoded one.
+		//It is theoretically possible that another plugin might want to use a literal "&amp;", but its very unlikely.
+		$menu_url = str_replace('&amp;', '&', $menu_url);
+
 		if ( strpos($menu_url, '://') !== false ) {
 			return $menu_url;
 		}
@@ -388,13 +411,35 @@ abstract class ameMenuItem {
 		}
 		$pageFile = self::remove_query_from($page_url);
 
+		/*
+		 * Special case: Absolute paths.
+		 *
+		 * - add_submenu_page() applies plugin_basename() to the menu slug, so we don't need to worry about plugin
+		 * paths. However, absolute paths that *don't* point point to the plugins directory can be a problem.
+		 *
+		 * - If we blindly append $pageFile to another path, we'll get something like "C:\a\b/wp-admin/C:\c\d.php".
+		 * PHP 5.2.5 has a known bug where calling file_exists() on that kind of an invalid filename will cause
+		 * a timeout and a crash in some configurations. See: https://bugs.php.net/bug.php?id=44412
+		 *
+		 * - WP 3.9.2 and 4.0+ unintentionally break menu URLs like "foo.php?page=c:\a\b.php" because esc_url()
+		 * interprets the part before the colon as an invalid protocol. As a result, such links have an empty URL
+		 * on Windows (but they might still work on other OS).
+		 *
+		 * - Recent versions of WP won't let you load a PHP file from outside the plugins and mu-plugins directories
+		 * with "admin.php?page=filename". See the validate_file() call in /wp-admin/admin.php. However, such filenames
+		 * can still be used as unique slugs for menus with hook callbacks, so we shouldn't reject them outright.
+		 * Related: https://core.trac.wordpress.org/ticket/10011
+		 */
+		$allowPathConcatenation = (substr($pageFile, 1, 1) !== ':'); //Reject "C:\whatever" and similar.
+
 		//Check our hard-coded list of admin pages first. It's measurably faster than
 		//hitting the disk with is_file().
 		if ( isset(self::$known_wp_admin_files[$pageFile]) ) {
 			return false;
 		}
+
 		//Now actually check the filesystem.
-		$adminFileExists = is_file(ABSPATH . '/wp-admin/' . $pageFile);
+		$adminFileExists = $allowPathConcatenation && is_file(ABSPATH . 'wp-admin/' . $pageFile);
 		if ( $adminFileExists ) {
 			return false;
 		}
@@ -404,7 +449,10 @@ abstract class ameMenuItem {
 			return true;
 		}
 
-		$pluginFileExists = ($page_url != 'index.php') && is_file(WP_PLUGIN_DIR . '/' . $pageFile);
+		//Note: We don't need to call plugin_basename() on $pageFile because add_submenu_page() already did that.
+		$pluginFileExists = $allowPathConcatenation
+			&& ($page_url != 'index.php')
+			&& is_file(WP_PLUGIN_DIR . '/' . $pageFile);
 		if ( $pluginFileExists ) {
 			return true;
 		}

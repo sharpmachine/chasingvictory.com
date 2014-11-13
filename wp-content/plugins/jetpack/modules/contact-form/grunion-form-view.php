@@ -8,7 +8,7 @@ wp_localize_script( 'grunion', 'GrunionFB_i18n', array(
 	'nameLabel' => esc_attr( _x( 'Name', 'Label for HTML form "Name" field in contact form builder', 'jetpack' ) ),
 	'emailLabel' => esc_attr( _x( 'Email', 'Label for HTML form "Email" field in contact form builder', 'jetpack' ) ),
 	'urlLabel' => esc_attr( _x( 'Website', 'Label for HTML form "URL/Website" field in contact form builder', 'jetpack' ) ),
-	'commentLabel' => esc_attr( _x( 'Comment', 'Label for HTML form "Comment/Response" field in contact form builder', 'jetpack' ) ),
+	'commentLabel' => esc_attr( _x( 'Comment', 'noun', 'jetpack' ) ),
 	'newLabel' => esc_attr( _x( 'New Field', 'Default label for new HTML form field in contact form builder', 'jetpack' ) ),
 	'optionsLabel' => esc_attr( _x( 'Options', 'Label for the set of options to be included in a user-created dropdown in contact form builder', 'jetpack' ) ),
 	'optionsLabel' => esc_attr( _x( 'Option', 'Label for an option to be included in a user-created dropdown in contact form builder', 'jetpack' ) ),
@@ -20,6 +20,7 @@ wp_localize_script( 'grunion', 'GrunionFB_i18n', array(
 	'savedMessage' => esc_attr__( 'Saved successfully', 'jetpack' ),
 	'requiredLabel' => esc_attr( _x( '(required)', 'This HTML form field is marked as required by the user in contact form builder', 'jetpack' ) ),
 	'exitConfirmMessage' => esc_attr__( 'Are you sure you want to exit the form editor without saving?  Any changes you have made will be lost.', 'jetpack' ),
+	'maxNewFields' => intval( apply_filters( 'grunion_max_new_fields', 5 ) ),
 ) );
 
 ?>
@@ -140,6 +141,8 @@ wp_localize_script( 'grunion', 'GrunionFB_i18n', array(
 		<div id="fb-email-desc" class="fb-desc" style="display: none;">
 			<h3><?php esc_html_e( 'Do I need to fill this out?', 'jetpack' ); ?></h3>
 			<p><?php esc_html_e( 'Nope.  However, if you&#8217;d like to modify where your feedback is sent, or the subject line you can.  If you don&#8217;t make any changes here, feedback will be sent to the author of the page/post and the subject will be the name of this page/post.', 'jetpack' ); ?></p>
+			<h3 style="margin-top: 21px;"><?php esc_html_e( 'Can I send a notification to more than one person?', 'jetpack' ); ?></h3>
+			<p><?php esc_html_e( 'Yep. You can enter multiple email addresses in the Email address field, and separate them with commas. A notification email will then be sent to each email address.', 'jetpack' ); ?></h3>
 			<div class="clear"></div>
 		</div>
 		<div id="fb-add-field" style="display: none;">
