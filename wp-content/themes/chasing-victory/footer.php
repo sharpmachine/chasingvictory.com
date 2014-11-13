@@ -10,7 +10,7 @@
 
             <!-- Begin MailChimp Signup Form -->
             <div id="mc_embed_signup">
-              <form action="http://chasingvictory.us3.list-manage.com/subscribe/post?u=def8a9fa0d5b06cff63f6ddd2&amp;id=323e804015" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <form action="//chasingvictory.us3.list-manage.com/subscribe/post?u=def8a9fa0d5b06cff63f6ddd2&amp;id=323e804015" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 
                 <div class="mc-field-group input-group input-group-lg">
                   <input type="email" class="form-control required email" id="mce-EMAIL" name="EMAIL" placeholder="Enter your email to subscribe…" value="">
