@@ -2,6 +2,7 @@
 /**
  * @var array $editor_data Various pieces of data passed by the plugin.
  */
+$current_user = wp_get_current_user();
 $images_url = $editor_data['images_url'];
 
 $icons = array(
@@ -82,7 +83,12 @@ if ( $show_whats_new ):
 endif;
 ?>
 
-<?php include dirname(__FILE__) . '/access-editor-dialog.php'; ?>
+<?php
+include dirname(__FILE__) . '/access-editor-dialog.php';
+if ( apply_filters('admin_menu_editor_is_pro', false) ) {
+	include dirname(__FILE__) . '/../extras/menu-color-dialog.php';
+}
+?>
 
 <div id='ws_menu_editor'>
     <div id="ws_actor_selector_container">
@@ -121,13 +127,15 @@ endif;
 					<a id='ws_toggle_all_menus' class='ws_button' href='javascript:void(0)'
 					   title='Toggle all menus for the selected role'><img src='<?php echo $icons['toggle-all']; ?>' alt="Toggle all" /></a>
 				<?php endif; ?>
+
+				<div class="clear"></div>
 			</div>
 		</div>
 
 		<div id='ws_menu_box' class="ws_box">
 		</div>
 
-		<?php do_action('admin_menu_editor_container', 'menu'); ?>
+		<?php do_action('admin_menu_editor-container', 'menu'); ?>
 	</div>
 
 	<div class='ws_main_container'>
@@ -158,13 +166,15 @@ endif;
 				<a id='ws_sort_descending' class='ws_button' href='javascript:void(0)' title='Sort descending'>
 					<img src='<?php echo $images_url; ?>/sort_descending.png' alt="Sort descending" />
 				</a>
+
+				<div class="clear"></div>
 			</div>
 		</div>
 
 		<div id='ws_submenu_box' class="ws_box">
 		</div>
 
-		<?php do_action('admin_menu_editor_container', 'submenu'); ?>
+		<?php do_action('admin_menu_editor-container', 'submenu'); ?>
 	</div>
 
 	<div class="ws_basic_container">
@@ -183,7 +193,7 @@ endif;
 			<input type="button" id='ws_load_menu' value="Load default menu" class="button ws_main_button" />
 
 			<?php
-				do_action('admin_menu_editor_sidebar');
+				do_action('admin_menu_editor-sidebar');
 			?>
 		</div>
 
@@ -264,7 +274,8 @@ endif;
 ?>
 
 <!-- Menu icon selector widget -->
-<div id="ws_icon_selector" style="display: none;">
+<?php $iconSelectorClass = $editor_data['show_extra_icons'] ? 'ws_with_more_icons' : ''; ?>
+<div id="ws_icon_selector" class="<?php echo $iconSelectorClass; ?>" style="display: none;">
 	<?php
 	//Let the user select a custom icon via the media uploader.
 	//We only support the new WP 3.5+ media API. Hence the function_exists() check.
@@ -280,18 +291,78 @@ endif;
 	?>
 
 	<?php
-	$defaultWpIcons = array(
-		'generic', 'dashboard', 'post', 'media', 'links', 'page', 'comments',
-		'appearance', 'plugins', 'users', 'tools', 'settings', 'site',
-	);
-	foreach($defaultWpIcons as $icon) {
-		printf(
-			'<div class="ws_icon_option" title="%1$s" data-icon-class="menu-icon-%2$s">
-				<div class="ws_icon_image icon16 icon-%2$s"><br></div>
-			</div>',
-			esc_attr(ucwords($icon)),
-			$icon
+	//The old "menu-icon-something" icons are only available in WP 3.8.x and below. Newer versions use Dashicons.
+	//Plugins can change $wp_version to something useless for security, so lets check if Dashicons are available
+	//before we throw away the old icons.
+	$oldMenuIconsAvailable = ( !$editor_data['dashicons_available'] )
+		|| version_compare($GLOBALS['wp_version'], '3.9-beta', '<');
+
+	if ($oldMenuIconsAvailable) {
+		$defaultWpIcons = array(
+			'generic', 'dashboard', 'post', 'media', 'links', 'page', 'comments',
+			'appearance', 'plugins', 'users', 'tools', 'settings', 'site',
 		);
+		foreach($defaultWpIcons as $icon) {
+			printf(
+				'<div class="ws_icon_option" title="%1$s" data-icon-class="menu-icon-%2$s">
+					<div class="ws_icon_image icon16 icon-%2$s"><br></div>
+				</div>',
+				esc_attr(ucwords($icon)),
+				$icon
+			);
+		}
+	}
+
+	//These dashicons are used in the default admin menu.
+	$defaultDashicons = array(
+		'admin-generic', 'dashboard', 'admin-post', 'admin-media', 'admin-links', 'admin-page', 'admin-comments',
+		'admin-appearance', 'admin-plugins', 'admin-users', 'admin-tools', 'admin-settings', 'admin-network',
+	);
+
+	//The rest of Dashicons. Some icons were manually removed as they wouldn't look good as menu icons.
+	$dashicons = array(
+		'admin-site', 'admin-home',
+		'align-center', 'align-left', 'align-none', 'align-right', 'analytics', 'art', 'awards', 'backup',
+		'book', 'book-alt', 'businessman', 'calendar', 'camera', 'cart', 'category', 'chart-area', 'chart-bar',
+		'chart-line', 'chart-pie', 'clock', 'cloud', 'desktop', 'dismiss', 'download', 'edit', 'editor-customchar',
+		'editor-distractionfree', 'editor-help', 'editor-insertmore',
+		'editor-justify', 'editor-kitchensink', 'editor-ol', 'editor-paste-text',
+		'editor-paste-word', 'editor-quote', 'editor-removeformatting', 'editor-rtl', 'editor-spellcheck',
+		'editor-ul', 'editor-unlink', 'editor-video',
+		'email', 'email-alt', 'exerpt-view', 'facebook', 'facebook-alt', 'feedback', 'flag', 'format-aside',
+		'format-audio', 'format-chat', 'format-gallery', 'format-image', 'format-quote', 'format-status',
+		'format-video', 'forms', 'googleplus', 'groups', 'hammer', 'id', 'id-alt', 'image-crop',
+		'image-flip-horizontal', 'image-flip-vertical', 'image-rotate-left', 'image-rotate-right', 'images-alt',
+		'images-alt2', 'info', 'leftright', 'lightbulb', 'list-view', 'location', 'location-alt', 'lock', 'marker',
+		'menu', 'migrate', 'minus', 'networking', 'no', 'no-alt', 'performance', 'plus', 'portfolio', 'post-status',
+		'pressthis', 'products', 'redo', 'rss', 'screenoptions', 'search', 'share', 'share-alt',
+		'share-alt2', 'share1', 'shield', 'shield-alt', 'slides', 'smartphone', 'smiley', 'sort', 'sos', 'star-empty',
+		'star-filled', 'star-half', 'tablet', 'tag', 'testimonial', 'translation', 'twitter', 'undo',
+		'update', 'upload', 'vault', 'video-alt', 'video-alt2', 'video-alt3', 'visibility', 'welcome-add-page',
+		'welcome-comments', 'welcome-learn-more', 'welcome-view-site', 'welcome-widgets-menus', 'welcome-write-blog',
+		'wordpress', 'wordpress-alt', 'yes'
+	);
+
+	if ($editor_data['dashicons_available']) {
+		function ws_ame_print_dashicon_option($icon, $isExtraIcon = false) {
+			printf(
+				'<div class="ws_icon_option%3$s" title="%1$s" data-icon-url="dashicons-%2$s">
+					<div class="ws_icon_image icon16 dashicons dashicons-%2$s"></div>
+				</div>',
+				esc_attr(ucwords(str_replace('-', ' ', $icon))),
+				$icon,
+				$isExtraIcon ? ' ws_icon_extra' : ''
+			);
+		}
+
+		if ( !$oldMenuIconsAvailable ) {
+			foreach($defaultDashicons as $icon) {
+				ws_ame_print_dashicon_option($icon);
+			}
+		}
+		foreach($dashicons as $icon) {
+			ws_ame_print_dashicon_option($icon, true);
+		}
 	}
 
 	$defaultIconImages = array(
@@ -305,21 +376,40 @@ endif;
 			esc_attr($icon)
 		);
 	}
+
 	?>
 	<div class="ws_icon_option ws_custom_image_icon" title="Custom image" style="display: none;">
 		<img src="<?php echo esc_attr(admin_url('images/loading.gif')); ?>">
 	</div>
+
+
+	<?php if ($editor_data['dashicons_available']): ?>
+		<!-- Only show this button on recent WP versions where Dashicons are included. -->
+		<input type="button" class="button"
+		   id="ws_show_more_icons"
+		   title="Toggle additional icons"
+		   value="<?php echo esc_attr($editor_data['show_extra_icons'] ? 'Less &#x25B2;' : 'More &#x25BC;'); ?>">
+	<?php endif; ?>
+
 	<div class="clear"></div>
 </div>
 
 <span id="ws-ame-screen-meta-contents" style="display:none;">
-<label for="ws-hide-advanced-settings">
-	<input type="checkbox" id="ws-hide-advanced-settings"<?php
-		if ( $this->options['hide_advanced_settings'] ){
+	<label for="ws-hide-advanced-settings">
+		<input type="checkbox" id="ws-hide-advanced-settings"<?php
+			if ( $this->options['hide_advanced_settings'] ){
+				echo ' checked="checked"';
+			}
+		?> /> Hide advanced options
+	</label><br>
+
+	<label for="ws-show-extra-icons">
+		<input type="checkbox" id="ws-show-extra-icons"<?php
+		if ( $this->options['show_extra_icons'] ){
 			echo ' checked="checked"';
 		}
-	?> /> Hide advanced options
-</label>
+		?> /> Show extra menu icons
+	</label>
 </span>
 
 
@@ -356,6 +446,28 @@ endif;
 	</label>
 </div>
 
+<!-- Confirmation dialog when trying to delete a non-custom item. -->
+<div id="ws-ame-menu-deletion-error" title="Error" style="display: none;">
+	<div class="ws_dialog_panel">
+		Sorry, it's not possible to permanently delete
+		<span id="ws-ame-menu-type-desc">{a built-in menu item|an item added by another plugin}</span>.
+		Would you like to hide it instead?
+	</div>
+
+	<div class="ws_dialog_buttons ame-vertical-button-list">
+		<?php
+		submit_button('Hide it from all users', 'secondary', 'ws_hide_menu_from_everyone', false);
+		submit_button(
+			sprintf('Hide it from everyone except "%s"', $current_user->get('user_login')),
+			'secondary',
+			'ws_hide_menu_except_current_user',
+			false
+		);
+		submit_button('Cancel', 'secondary', 'ws_cancel_menu_deletion', false);
+		?>
+	</div>
+</div>
+
 
 <script type='text/javascript'>
 var defaultMenu = <?php echo $editor_data['default_menu_js']; ?>;
@@ -365,4 +477,4 @@ var customMenu = <?php echo $editor_data['custom_menu_js']; ?>;
 <?php
 
 //Let the Pro version script output it's extra HTML & scripts.
-do_action('admin_menu_editor_footer');
+do_action('admin_menu_editor-footer');

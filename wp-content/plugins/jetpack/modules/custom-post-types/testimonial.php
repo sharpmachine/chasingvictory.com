@@ -33,6 +33,9 @@ class Jetpack_Testimonial {
 	 * WordPress. We'll just return early instead.
 	 */
 	function __construct() {
+		// Make sure the post types are loaded for imports
+		add_action( 'import_start', array( $this, 'register_post_types' ) );
+
 		// Return early if theme does not support Jetpack Testimonial.
 		if ( ! $this->site_supports_testimonial() )
 			return;
@@ -62,6 +65,10 @@ class Jetpack_Testimonial {
 
 	/* Setup */
 	function register_post_types() {
+		if ( post_type_exists( self::TESTIMONIAL_POST_TYPE ) ) {
+			return;
+		}
+
 		register_post_type( self::TESTIMONIAL_POST_TYPE, array(
 			'description' => __( 'Customer Testimonials', 'jetpack' ),
 			'labels' => array(
@@ -88,10 +95,10 @@ class Jetpack_Testimonial {
 				'slug'       => 'testimonial',
 				'with_front' => false,
 				'feeds'      => false,
-				'pages'      => false,
+				'pages'      => true,
 			),
 			'public'          => true,
-			'show_ui'         => true, // set to false to replace with custom UI
+			'show_ui'         => true,
 			'menu_position'   => 20, // below Pages
 			'capability_type' => 'page',
 			'map_meta_cap'    => true,
@@ -193,6 +200,7 @@ class Jetpack_Testimonial {
 		$wp_customize->add_section( 'jetpack_testimonials', array(
 			'title'          => esc_html__( 'Testimonials', 'jetpack' ),
 			'theme_supports' => 'jetpack-testimonial',
+			'priority'       => 130,
 		) );
 
 		$wp_customize->add_setting( 'jetpack_testimonials[page-title]', array(
@@ -217,17 +225,16 @@ class Jetpack_Testimonial {
 			'label'    => esc_html__( 'Testimonial Page Content', 'jetpack' ),
 		) ) );
 
-		if ( current_theme_supports( 'post-thumbnails' ) ) {
-			$wp_customize->add_setting( 'jetpack_testimonials[featured-image]', array(
-				'default'              => '',
-				'sanitize_callback'    => array( 'Jetpack_Testimonial_Image_Control', 'attachment_guid_to_id' ),
-				'sanitize_js_callback' => array( 'Jetpack_Testimonial_Image_Control', 'attachment_guid_to_id' ),
-			) );
-			$wp_customize->add_control( new Jetpack_Testimonial_Image_Control( $wp_customize, 'jetpack_testimonials[featured-image]', array(
-				'section' => 'jetpack_testimonials',
-				'label'   => esc_html__( 'Testimonial Page Featured Image', 'jetpack' ),
-			) ) );
-		}
+		$wp_customize->add_setting( 'jetpack_testimonials[featured-image]', array(
+			'default'              => '',
+			'sanitize_callback'    => array( 'Jetpack_Testimonial_Image_Control', 'attachment_guid_to_id' ),
+			'sanitize_js_callback' => array( 'Jetpack_Testimonial_Image_Control', 'attachment_guid_to_id' ),
+			'theme_supports'       => 'post-thumbnails',
+		) );
+		$wp_customize->add_control( new Jetpack_Testimonial_Image_Control( $wp_customize, 'jetpack_testimonials[featured-image]', array(
+			'section' => 'jetpack_testimonials',
+			'label'   => esc_html__( 'Testimonial Page Featured Image', 'jetpack' ),
+		) ) );
 	}
 }
 

@@ -2,7 +2,7 @@
 Contributors: elliotcondon
 Tags: custom, field, custom field, advanced, simple fields, magic fields, more fields, repeater, matrix, post, type, text, textarea, file, image, edit, admin
 Requires at least: 3.5.0
-Tested up to: 3.8.0
+Tested up to: 4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -106,6 +106,27 @@ http://support.advancedcustomfields.com/
 
 
 == Changelog ==
+
+= 4.3.9 =
+* Core: Added compatibility for WP4 media grid
+* Relationship field: Fixed bug showing incorrect post type
+* Language: Added Slovak translations - Thanks to wp.sk
+* Language: Added Serbo-Croatian translation - thanks to Borisa Djuraskovic
+* Language: Updating Persian translation - Thanks to Ghaem Omidi
+
+= 4.3.8 =
+* Validation: Fixed disabled button issue in WP 3.9
+
+= 4.3.7 =
+* WYSIWYG field: Fixed missing tinyMCE buttons in WP 3.9
+
+= 4.3.6 =
+* Core: Improved efficiency and speed when saving values by removing ACF meta from the native WP postmeta box
+* Field Group: Fixed cache issue causing field settings to not update
+* WYSIWYG field: Added support for new tinymce 4 in WP 3.9
+* Number field: Fixed bug causing blank values to save as 0
+* Google Maps field: Fixed JS bug causing google maps to not render when Google library is already loaded
+* Validation: Fixed JS bug where hidden field groups's fields were being validated
 
 = 4.3.5 =
 * Textarea field: Added new `rows` setting
